@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CallusController;
 use Illuminate\Support\Facades\Route;
 
 /*
