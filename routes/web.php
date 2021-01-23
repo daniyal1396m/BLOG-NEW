@@ -12,7 +12,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*
+ * articles Routes
+ */
+Route::get('/', [ArticleController::class, 'index']);
+Route::middleware('auth')->get('/form', [ArticleController::class, 'form']);
+Route::post('/send/Article', [ArticleController::class, 'store'])->name('article.send');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+// contacts Routes
+*
+*/
+Route::get('/contactus', [CallusController::class, 'index'])->name('contactUs');
+Route::post('/sendContact', [CallusController::class, 'store'])->name('sendContactus');
+Route::post('/Newsletter', [NewsletterController::class, 'store'])->name('storeNewsLetter');
