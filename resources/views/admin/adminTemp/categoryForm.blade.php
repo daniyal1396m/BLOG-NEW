@@ -3,7 +3,7 @@
     <div class="x_panel">
         <div class="x_title">
             <h2>فرم ایجاد دسته بندی
-                <small>عناصر مختلف فرم ها</small>
+{{--                <small>عناصر مختلف فرم ها</small>--}}
             </h2>
             <ul class="nav navbar-right panel_toolbox">
                 {{--                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>--}}
@@ -42,9 +42,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3" for="last-name">انتخاب مورد بالا برای یکی از زیر دسته های روبر</label>
+                    <label class="control-label col-md-3" for="last-name">انتخاب مورد بالا برای یکی از زیر دسته های
+                        روبر</label>
                     <div class="col-md-7">
-                        <select type="text" id="last-name2" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                        <select type="text" id="last-name2" name="last-name" required="required"
+                                class="form-control col-md-7 col-xs-12">
                             <option value="1">1</option>
                             <option value="1">1</option>
                             <option value="1">1</option>
@@ -52,7 +54,8 @@
                         </select>
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary btn-lg btn-block">ارسال دسته بندی یا زیر دسته بندی </button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block">ارسال دسته بندی یا زیر دسته بندی
+                </button>
             </form>
 
         </div>
