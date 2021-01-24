@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Compound;
 
 class CategoryController extends Controller
 {
@@ -35,8 +37,8 @@ class CategoryController extends Controller
      * */
     public function check()
     {
-
-        return view('admin.adminTemp.articleForm');
+$subcat=DB::table('categories')->where('parent_id','category_id')->get();
+        return view('admin.adminTemp.articleForm',compact('subcat'));
 
     }
 }
