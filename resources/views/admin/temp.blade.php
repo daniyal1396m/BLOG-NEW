@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="fontiran.com:license" content="Y68A9">
     <link rel="icon" href="../build/images/favicon.ico" type="image/ico"/>
-    <title>Gentelella Alela! | قالب مدیریت رایگان </title>
+    <title>پنل ادمین</title>
 
     <!-- Bootstrap -->
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,23 +38,10 @@
         <div class="col-md-3 left_col hidden-print">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                    <h1>پنل مدیر</h1>
                 </div>
 
                 <div class="clearfix"></div>
-
-                <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="../build/images/img.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>خوش آمدید,</span>
-                        <h2>مرتضی کریمی</h2>
-                    </div>
-                </div>
-                <!-- /menu profile quick info -->
-
                 <br/>
 
                 <!-- sidebar menu -->
@@ -66,17 +53,12 @@
                                 <ul class="nav child_menu">
                                     <li><a href="index.html">فرم ارسال مقاله</a></li>
                                     <li><a href="index.html">فرم ارسال دسته بندی</a></li>
-{{--                                    <li><a href="index.html">فرم ارسال زیر دسته بندی</a></li>--}}
+                                    {{--                                    <li><a href="index.html">فرم ارسال زیر دسته بندی</a></li>--}}
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i>لیست داده ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="form.html">لیست  ها  </a></li>
-{{--                                    <li><a href="form_wizards.html">لیست مقاله ها</a></li>--}}
-{{--                                    <li><a href="form_upload.html">لیست دسته بندی و زیر دسته بندی ها</a></li>--}}
-{{--                                    <li><a href="form_buttons.html">لیست مدیران </a></li>--}}
-{{--                                    <li><a href="form_buttons.html">لیست پیام های ارتباط با ما </a></li>--}}
-{{--                                    <li><a href="form_buttons.html">لیست ایمیل های ذخبره شده خبرنامه </a></li>--}}
+                                    <li><a href="form.html">لیست ها </a></li>
 
                                 </ul>
                             </li>
@@ -88,18 +70,9 @@
 
                 <!-- /menu footer buttons -->
                 <div class="sidebar-footer hidden-small">
-                    <!--                    <a data-toggle="tooltip" data-placement="top" title="تنظیمات">-->
-                    <!--                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
-                    <!--                    </a>-->
                     <a data-toggle="tooltip" data-placement="top" title="تمام صفحه" onclick="toggleFullScreen();">
                         <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
                     </a>
-                    <!--                    <a data-toggle="tooltip" data-placement="top" title="قفل" class="lock_btn">-->
-                    <!--                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
-                    <!--                    </a>-->
-                    <!--                    <a data-toggle="tooltip" data-placement="top" title="خروج" href="login.html">-->
-                    <!--                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
-                    <!--                    </a>-->
                 </div>
                 <!-- /menu footer buttons -->
             </div>
@@ -113,96 +86,43 @@
                         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                     </div>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                               aria-expanded="false">
-                                <img src="../build/images/img.jpg" alt="">مرتضی کریمی
-                                <span class=" fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;"> نمایه</a></li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>تنظیمات</span>
-                                    </a>
-                                </li>
-                                <li><a href="javascript:;">کمک</a></li>
-                                <li><a href="logout"><i class="fa fa-sign-out pull-right"></i> خروج</a></li>
-                            </ul>
-                        </li>
+{{--                    <ul class="nav navbar-nav navbar-right">--}}
+                        <ul class="nav navbar-nav ml-auto navbar-right">
+                            <!-- Authentication Links -->
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('ورود به حساب') }}</a>
+                                    </li>
+                                @endif
 
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
-                               aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="../build/images/img.jpg"
-                                                                 alt="Profile Image"/></span>
-                                        <span>
-                          <span>مرتضی کریمی</span>
-                          <span class="time">3 دقیقه پیش</span>
-                        </span>
-                                        <span class="message">
-                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....
-                        </span>
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('register') }}">{{ __('ساخت حساب ') }}</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }}
                                     </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="../build/images/img.jpg"
-                                                                 alt="Profile Image"/></span>
-                                        <span>
-                          <span>مرتضی کریمی</span>
-                          <span class="time">3 دقیقه پیش</span>
-                        </span>
-                                        <span class="message">
-                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="../build/images/img.jpg"
-                                                                 alt="Profile Image"/></span>
-                                        <span>
-                          <span>مرتضی کریمی</span>
-                          <span class="time">3 دقیقه پیش</span>
-                        </span>
-                                        <span class="message">
-                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="../build/images/img.jpg"
-                                                                 alt="Profile Image"/></span>
-                                        <span>
-                          <span>مرتضی کریمی</span>
-                          <span class="time">3 دقیقه پیش</span>
-                        </span>
-                                        <span class="message">
-                          فیلمای فستیوال فیلمایی که اجرا شده یا راجع به لحظات مرده ایه که فیلمسازا میسازن. آنها جایی بودند که....
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a>
-                                            <strong>مشاهده تمام اعلان ها</strong>
-                                            <i class="fa fa-angle-right"></i>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item btn btn-primary btn-lg btn-block" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('خروج') }}
                                         </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
-                            </ul>
-                        </li>
-                    </ul>
+                            @endguest
+                        </ul>
+{{--                    </ul>--}}
                 </nav>
             </div>
         </div>
@@ -256,6 +176,7 @@
         <!-- Custom Theme Scripts -->
         <script src="/build/js/custom.min.js"></script>
 
-
+    </div>
+</div>
 </body>
 </html>

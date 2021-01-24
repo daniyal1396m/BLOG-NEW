@@ -1,5 +1,10 @@
 @extends('admin.temp')
 @section('admin_content')
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="x_panel">
         <div class="x_title">
             <h2>ارسال مقاله

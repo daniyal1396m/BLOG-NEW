@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('admin.adminTemp.articleForm');
+//        return view('home');
     }
 }
