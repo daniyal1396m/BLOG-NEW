@@ -52,10 +52,13 @@
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <select name="category" id="cat" class="form-control col-md-7 col-xs-12">
-                            <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
+                        <select name="category" id="category" class="form-control col-md-7 col-xs-12">
+                            @foreach($categorys as $rowCat)
+                                <option value="{{$rowCat->id}}">{!! $rowCat->name !!}</option>
+                            @endforeach
+                            {{--                            <option value="1"></option>--}}
+                            {{--                            <option value="1">1</option>--}}
+                            {{--                            <option value="1">1</option>--}}
                         </select>
                     </div>
                 </div>
@@ -64,10 +67,8 @@
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <select name="category" id="cat" class="form-control col-md-7 col-xs-12">
-                            <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
+                        <select name="category" id="sub_category" class="form-control col-md-7 col-xs-12">
+
                         </select>
                     </div>
                 </div>

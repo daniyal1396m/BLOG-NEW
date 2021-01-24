@@ -51,3 +51,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
  * */
 Route::get('categoryList',[CategoryController::class, 'index'])->name('category');
 Route::get('Lists',[ArticleController::class, 'list'])->name('list');
+Route::post('getCatSub',[CategoryController::class, 'check'])->name('getSub');
