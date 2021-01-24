@@ -23,6 +23,8 @@ class CreateArticlesTable extends Migration
             $table->string('video', 255)->nullable();
             $table->boolean('status');
             $table->string('slug');
+            $table->integer('countViews',null);
+            $table->integer('countComments',null);
             $table->timestamps();
         });
     }

@@ -26,13 +26,6 @@
 
                     <div class="block category-listing category-style2">
                         <h3 class="block-title"><span>تکنولوژی</span></h3>
-
-{{--                        <ul class="subCategory unstyled">--}}
-{{--                            <li><a href="#">رباتیک</a></li>--}}
-{{--                            <li><a href="#">بازی ها</a></li>--}}
-{{--                            <li><a href="#">گجت ها</a></li>--}}
-{{--                        </ul>--}}
-
                         <div class="post-block-style post-list clearfix">
                             <div class="row">
                                 <div class="col-md-5 col-sm-6">
