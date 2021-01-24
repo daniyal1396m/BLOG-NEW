@@ -7,12 +7,7 @@
     @endif
     <div class="x_panel">
         <div class="x_title">
-            <h2>ارسال مقاله
-                <small>عناصر مختلف فرم ها </small>
-            </h2>
-            <ul class="nav navbar-right panel_toolbox">
-
-            </ul>
+            <h2>ارسال مقاله</h2>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
@@ -54,6 +49,18 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-3" for="first-name">دسته بندی <span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-7">
+                        <select name="category" id="cat" class="form-control col-md-7 col-xs-12">
+                            <option value="1">1</option>
+                            <option value="1">1</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3" for="first-name">زیر دسته بندی<span
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">

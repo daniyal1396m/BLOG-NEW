@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CallusController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,13 +19,15 @@ use Illuminate\Support\Facades\Route;
 */
 /*
  * articles Routes
+ *
  */
 Route::get('/', [ArticleController::class, 'index']);
-Route::middleware('auth')->get('/form', [ArticleController::class, 'form']);
+Route::middleware('auth')->get('/form', [ArticleController::class, 'form'])->name('form');
 Route::post('/send/Article', [ArticleController::class, 'store'])->name('article.send');
 
 /*
 * contacts Routes
+*
 *
 */
 Route::get('/contactus', [CallusController::class, 'index'])->name('contactUs');
@@ -37,8 +41,13 @@ Route::post('/Newsletter', [NewsletterController::class, 'store'])->name('storeN
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+/*
+ * admin pages
+ * */
+Route::get('categoryList',[CategoryController::class, 'index'])->name('category');
+Route::get('Lists',[ArticleController::class, 'list'])->name('list');

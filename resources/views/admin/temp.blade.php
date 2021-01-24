@@ -7,29 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="fontiran.com:license" content="Y68A9">
-    <link rel="icon" href="../build/images/favicon.ico" type="image/ico"/>
+    <link rel="icon" href="/build/images/favicon.ico" type="image/ico"/>
     <title>پنل ادمین</title>
 
-    <!-- Bootstrap -->
-    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/vendors/bootstrap-rtl/dist/css/bootstrap-rtl.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
-    <link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <!-- bootstrap-daterangepicker -->
-    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
-    <!-- FullCalendar -->
-    <link href="/vendors/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
-    <link href="/vendors/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print">
-
-    <!-- Custom Theme Style -->
-    <link href="/build/css/custom.min.css" rel="stylesheet">
+    @include('layouts.headerLinksAdmin')
 </head>
 <!-- /header content -->
 <body class="nav-md">
@@ -51,14 +32,14 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> فرم ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="index.html">فرم ارسال مقاله</a></li>
-                                    <li><a href="index.html">فرم ارسال دسته بندی</a></li>
+                                    <li><a href="{{route('form')}}">فرم ارسال مقاله</a></li>
+                                    <li><a href="{{route('category')}}">فرم ارسال دسته بندی</a></li>
                                     {{--                                    <li><a href="index.html">فرم ارسال زیر دسته بندی</a></li>--}}
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i>لیست داده ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="form.html">لیست ها </a></li>
+                                    <li><a href="{{route('list')}}">لیست ها </a></li>
 
                                 </ul>
                             </li>
@@ -85,8 +66,6 @@
                     <div class="nav toggle">
                         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                     </div>
-
-{{--                    <ul class="nav navbar-nav navbar-right">--}}
                         <ul class="nav navbar-nav ml-auto navbar-right">
                             <!-- Authentication Links -->
                             @guest
@@ -151,32 +130,9 @@
                 </tr>
             </table>
         </div>
-        <!-- jQuery -->
-        <script src="/vendors/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- FastClick -->
-        <script src="/vendors/fastclick/lib/fastclick.js"></script>
-        <!-- NProgress -->
-        <script src="/vendors/nprogress/nprogress.js"></script>
-        <!-- bootstrap-progressbar -->
-        <script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-        <!-- iCheck -->
-        <script src="/vendors/iCheck/icheck.min.js"></script>
-
-        <!-- bootstrap-daterangepicker -->
-        <script src="/vendors/moment/min/moment.min.js"></script>
-
-        <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-        <!-- FullCalendar -->
-        <script src="/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
-        <script src='/vendors/fullcalendar/dist/lang/fa.js'></script>
-
-        <!-- Custom Theme Scripts -->
-        <script src="/build/js/custom.min.js"></script>
-
     </div>
 </div>
+@include('layouts.footerLinksAdmin')
+@include('layouts.adminJquery')
 </body>
 </html>
