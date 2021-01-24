@@ -25,8 +25,8 @@ class CategoryController extends Controller
      * */
     public function show()
     {
-        $categorys = 0;
-        return view('admin.adminTemp.articleForm', compact('categorys'));
+        $categories = DB::table('category')->where("parent_id", "null")->get();
+        return view('admin.adminTemp.articleForm', compact('categories'));
 
     }
 
@@ -37,8 +37,19 @@ class CategoryController extends Controller
      * */
     public function check()
     {
-$subcat=DB::table('categories')->where('parent_id','category_id')->get();
-        return view('admin.adminTemp.articleForm',compact('subcat'));
+        $subcat = DB::table('categories')->where(['parent_id'=>'category_id', 'status'=>'1'])->get();
+        return view('admin.adminTemp.articleForm', compact('subcat'));
+
+    }
+    /*
+     * add category
+     *
+     *
+     * */
+    public function add()
+    {
+
+        return view('admin.adminTemp.articleForm');
 
     }
 }
