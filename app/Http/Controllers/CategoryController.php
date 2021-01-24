@@ -25,7 +25,7 @@ class CategoryController extends Controller
      * */
     public function show()
     {
-        $categories = DB::table('category')->where("parent_id", "null")->get();
+        $categories = DB::table('categories')->where("parent_id", "null")->get();
         return view('admin.adminTemp.articleForm', compact('categories'));
 
     }
@@ -37,19 +37,26 @@ class CategoryController extends Controller
      * */
     public function check()
     {
-        $subcat = DB::table('categories')->where(['parent_id'=>'category_id', 'status'=>'1'])->get();
-        return view('admin.adminTemp.articleForm', compact('subcat'));
+        $subCat = DB::table('categories')->where(['parent_id' => 'category_id', 'status' => '1'])->get();
+        return view('admin.adminTemp.articleForm', compact('subCat'));
 
     }
+
     /*
      * add category
      *
      *
      * */
-    public function add()
+    public function add(Request $request)
     {
-
+        $request->validate([
+            'category' => 'required',
+        ]);
+        if (empty('category')) {
+            echo 'hello ';
+        } else {
+            echo 'no hello';
+        }
         return view('admin.adminTemp.articleForm');
-
     }
 }
