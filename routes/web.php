@@ -34,3 +34,7 @@ Route::post('/sendContact', [CallusController::class, 'store'])->name('sendConta
  *
  * */
 Route::post('/Newsletter', [NewsletterController::class, 'store'])->name('storeNewsLetter');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
