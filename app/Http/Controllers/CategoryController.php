@@ -57,7 +57,7 @@ class CategoryController extends Controller
             'category' => 'required',
         ]);
         if (empty('category')) {
-            echo 'hello ';
+           
         } else {
             echo 'no hello';
         }

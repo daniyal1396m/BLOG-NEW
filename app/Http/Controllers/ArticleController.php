@@ -51,8 +51,8 @@ class ArticleController extends Controller
         $request->validate([
             'category' => 'required',
             'subcategory' => 'required',
-            'title' => 'required',
-            'body' => 'required',
+            'title' => 'required|min:5',
+            'body' => 'required|min:50',
             'pic' => 'required',
         ]);
         $name = $request->name;
@@ -64,10 +64,15 @@ class ArticleController extends Controller
         $article->name = $name;
 //        $article->;
 
-        DB::table('articles')->insert([
-            ['title' => 'taylor@example.com', 'votes' => 0],
-            ['email' => 'dayle@example.com', 'votes' => 0]
-        ]);
+        Category::create(
+            [
+                'title' => $request['title'],
+                'pic' => $request['pic'],
+                'body' => $request['title'],
+                'cat_id' => $request['category'],
+                'sub_cat_id' => $request['subcategory'],
+                'status' => 1,
+                ]);
         return view('admin.adminTemp.articleForm');
     }
 
