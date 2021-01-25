@@ -34,47 +34,51 @@
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <input type="file" id="first-name2"
-                               class="form-control col-md-7 col-xs-12" name="file">
+                        <input type="file" id="pic"
+                               class="form-control col-md-7 col-xs-12" name="pic">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3" for="first-name">عنوان <span
+                    <label class="control-label col-md-3" for="title">عنوان <span
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <input type="text" id="first-name2"
+                        <input type="text" id="title"
                                class="form-control col-md-7 col-xs-12" name="title">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3" for="first-name">دسته بندی <span
+                    <label class="control-label col-md-3" for="category">دسته بندی <span
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
                         <select name="category" id="category" class="form-control col-md-7 col-xs-12">
-                            @foreach($categories as $rowCat)
-                                <option value="{{$rowCat->id}}">{!! $rowCat->name !!}</option>
-                            @endforeach
+                            @if(count($categories))
+                                @foreach($categories as $rowCategory)
+                                    <option value="{{$rowCategory->id}}">{{$rowCategory->name}}</option>
+                                @endforeach
+                            @else
+                                <option class="disabled">هیچ دسته بندی وجود ندارد</option>
+                            @endif
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3" for="first-name">زیر دسته بندی<span
+                    <label class="control-label col-md-3" for="sub_category">زیر دسته بندی<span
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <select name="category" id="sub_category" class="form-control col-md-7 col-xs-12">
+                        <select name="subcategory" id="sub_category" class="form-control col-md-7 col-xs-12">
 
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3" for="last-name">متن <span
+                    <label class="control-label col-md-3" for="body">متن <span
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <textarea type="text" id="last-name2" name="body"
+                        <textarea type="text" id="body" name="body"
                                   class="form-control col-md-7 col-xs-12" rows="7"></textarea>
                     </div>
                 </div>
@@ -83,5 +87,31 @@
             </form>
         </div>
     </div>
-    </div>
+@endsection
+@section('script')
+    {{--    <script>--}}
+    {{--        $(document).ready(function () {--}}
+    {{--            $('#category').on('change', function () {--}}
+    {{--                var category_id = this.value;--}}
+    {{--                $.ajax({--}}
+    {{--                    url: "{{route('getSub')}}",--}}
+    {{--                    type: "POST",--}}
+    {{--                    data: {--}}
+    {{--                        category_id: category_id--}}
+    {{--                    },--}}
+    {{--                    cache: false,--}}
+    {{--                    success: function (subcategories) {--}}
+    {{--                        var subcat = "";--}}
+    {{--                        for (var i=0,i<0,subcategories as subcategory)--}}
+    {{--                        {--}}
+    {{--                        }--}}
+    {{--                        subcat = "<option value='{{$subcategory->id}}'>{{$subcategory->name}}</option>";--}}
+    {{--                        $("#sub_category").html(subcat);--}}
+    {{--                    }--}}
+    {{--                };--}}
+    {{--            });--}}
+    {{--        });--}}
+    {{--        })--}}
+    {{--        ;--}}
+    {{--    </script>--}}
 @endsection

@@ -134,5 +134,6 @@
 </div>
 @include('layouts.footerLinksAdmin')
 @include('layouts.adminJquery')
+@yield('script')
 </body>
 </html>

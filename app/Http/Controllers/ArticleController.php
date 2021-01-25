@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
 use DB;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Type\Time;
@@ -37,7 +38,8 @@ class ArticleController extends Controller
      * */
     public function form()
     {
-        return view('admin.adminTemp.articleForm');
+        $categories=Category::where(['parent_id'=>null,'status'=>1])->get();
+        return view('admin.adminTemp.articleForm',compact('categories'));
     }
 
     /*
@@ -53,7 +55,7 @@ class ArticleController extends Controller
 
         $article=new Article();
         $article->name=$name;
-        $article->;
+//        $article->;
 
         DB::table('articles')->insert([
             ['title' => 'taylor@example.com', 'votes' => 0],

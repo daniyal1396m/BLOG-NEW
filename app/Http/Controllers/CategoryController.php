@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\Types\Compound;
@@ -25,8 +26,10 @@ class CategoryController extends Controller
      * */
     public function show()
     {
-        $categories = DB::table('categories')->where("parent_id", "null")->get();
-        return view('admin.adminTemp.articleForm', compact('categories'));
+//        dd(1111);
+//        $categories = Category::(["parent_id" => "null", 'status' => 1])->get();
+//        dd($categories);
+////        return view('admin.adminTemp.articleForm', compact('categories'));
 
     }
 

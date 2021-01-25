@@ -49,6 +49,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 /*
  * admin pages
  * */
-Route::get('categoryList',[CategoryController::class, 'index'])->name('category');
-Route::get('Lists',[ArticleController::class, 'list'])->name('list');
-Route::post('getCatSub',[CategoryController::class, 'check'])->name('getSub');
+Route::get('/categoryList',[CategoryController::class, 'index'])->name('category');
+Route::get('/Lists',[ArticleController::class, 'list'])->name('list');
+Route::post('/getCatSub',[CategoryController::class, 'check'])->name('getSub');
