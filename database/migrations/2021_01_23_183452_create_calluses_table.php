@@ -18,9 +18,9 @@ class CreateCallusesTable extends Migration
             $table->string('name',50);
             $table->string('lastname',50);
             $table->string('email',100);
-            $table->integer('phone',null);
+            $table->integer('phone',null)->nullable();
             $table->string('title',50);
-            $table->string('body',50);
+            $table->string('body',100);
             $table->timestamps();
         });
     }
