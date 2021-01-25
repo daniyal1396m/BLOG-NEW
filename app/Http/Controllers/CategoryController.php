@@ -57,12 +57,12 @@ class CategoryController extends Controller
         $request->validate([
             'category' => 'required',
         ]);
-       $parent=Category::findorfail($request['subcategory'])->level;
+        $parent = Category::findorfail($request['subcategory'])->level;
         if (empty('subcategory')) {
             Category::create(
                 [
                     'name' => $request['category'],
-                    'level' => $parent+1,
+                    'level' => $parent + 1,
                     'status' => 1,
                 ]);
         } else {
@@ -76,5 +76,17 @@ class CategoryController extends Controller
         }
 //        return view('admin.adminTemp.categoryForm');
         return redirect('/categoryList');
+    }
+
+    /*
+     *
+     *
+     * delete category
+     *
+     * */
+    public function delete(Request $request)
+    {
+        Category::where('id', $request['id'])->update(['status' => '0']);
+        redirect('/Lists');
     }
 }

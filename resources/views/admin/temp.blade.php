@@ -2,7 +2,6 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,7 +33,6 @@
                                 <ul class="nav child_menu">
                                     <li><a href="{{route('form')}}">فرم ارسال مقاله</a></li>
                                     <li><a href="{{route('category')}}">فرم ارسال دسته بندی</a></li>
-                                    {{--                                    <li><a href="index.html">فرم ارسال زیر دسته بندی</a></li>--}}
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i>لیست داده ها <span class="fa fa-chevron-down"></span></a>
@@ -101,12 +99,9 @@
                                 </li>
                             @endguest
                         </ul>
-{{--                    </ul>--}}
                 </nav>
             </div>
         </div>
-        <!-- /top navigation -->
-        <!-- /header content -->
 
         <!-- page content -->
         <div class="right_col" role="main">

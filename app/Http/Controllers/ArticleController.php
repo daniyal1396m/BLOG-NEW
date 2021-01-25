@@ -28,7 +28,8 @@ class ArticleController extends Controller
      * */
     public function list()
     {
-        return view('admin.adminTemp.articleList');
+        $categories=Category::first()->paginate(5);
+        return view('admin.adminTemp.articleList', compact('categories'));
     }
 
     /*
