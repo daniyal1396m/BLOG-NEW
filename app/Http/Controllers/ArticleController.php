@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use DB;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Time;
 
 class ArticleController extends Controller
 {
@@ -41,8 +44,21 @@ class ArticleController extends Controller
     * send article
     *
     * */
-    public function store()
+    public function store(Request $request)
     {
+        $name=$request->name;
+        $img=$request->file('file');
+        $imgName=time().'_'.$img->extension();
+        $img->move(public_path('uploads'),$imgName);
+
+        $article=new Article();
+        $article->name=$name;
+        $article->;
+
+        DB::table('articles')->insert([
+            ['title' => 'taylor@example.com', 'votes' => 0],
+            ['email' => 'dayle@example.com', 'votes' => 0]
+        ]);
         return view('admin.adminTemp.articleForm');
     }
 
