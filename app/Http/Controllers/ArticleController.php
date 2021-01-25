@@ -38,8 +38,8 @@ class ArticleController extends Controller
      * */
     public function form()
     {
-        $categories=Category::where(['parent_id'=>null,'status'=>1])->get();
-        return view('admin.adminTemp.articleForm',compact('categories'));
+        $categories = Category::where(['parent_id' => null, 'status' => 1])->get();
+        return view('admin.adminTemp.articleForm', compact('categories'));
     }
 
     /*
@@ -48,13 +48,20 @@ class ArticleController extends Controller
     * */
     public function store(Request $request)
     {
-        $name=$request->name;
-        $img=$request->file('file');
-        $imgName=time().'_'.$img->extension();
-        $img->move(public_path('uploads'),$imgName);
+        $request->validate([
+            'category' => 'required',
+            'subcategory' => 'required',
+            'title' => 'required',
+            'body' => 'required',
+            'pic' => 'required',
+        ]);
+        $name = $request->name;
+        $img = $request->file('file');
+        $imgName = time() . '_' . $img->extension();
+        $img->move(public_path('uploads'), $imgName);
 
-        $article=new Article();
-        $article->name=$name;
+        $article = new Article();
+        $article->name = $name;
 //        $article->;
 
         DB::table('articles')->insert([

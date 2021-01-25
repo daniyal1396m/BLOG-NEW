@@ -40,8 +40,9 @@ class CategoryController extends Controller
      * */
     public function check()
     {
-        $subCat = DB::table('categories')->where(['parent_id' => 'category_id', 'status' => '1'])->get();
-        return view('admin.adminTemp.articleForm', compact('subCat'));
+        $subCat = Category::where(['parent_id' => 'category_id', 'status' => '1'])->get();
+        dd($subCat);
+//        return view('admin.adminTemp.articleForm', compact(''));
 
     }
 

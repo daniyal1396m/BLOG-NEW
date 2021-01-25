@@ -89,29 +89,25 @@
     </div>
 @endsection
 @section('script')
-    {{--    <script>--}}
-    {{--        $(document).ready(function () {--}}
-    {{--            $('#category').on('change', function () {--}}
-    {{--                var category_id = this.value;--}}
-    {{--                $.ajax({--}}
-    {{--                    url: "{{route('getSub')}}",--}}
-    {{--                    type: "POST",--}}
-    {{--                    data: {--}}
-    {{--                        category_id: category_id--}}
-    {{--                    },--}}
-    {{--                    cache: false,--}}
-    {{--                    success: function (subcategories) {--}}
-    {{--                        var subcat = "";--}}
-    {{--                        for (var i=0,i<0,subcategories as subcategory)--}}
-    {{--                        {--}}
-    {{--                        }--}}
-    {{--                        subcat = "<option value='{{$subcategory->id}}'>{{$subcategory->name}}</option>";--}}
-    {{--                        $("#sub_category").html(subcat);--}}
-    {{--                    }--}}
-    {{--                };--}}
-    {{--            });--}}
-    {{--        });--}}
-    {{--        })--}}
-    {{--        ;--}}
-    {{--    </script>--}}
+
+    <script>
+        $(document).ready(function () {
+            $('#category').on('change', function () {
+                var category_id = this.value;
+                $.ajax({
+                    url: "{{route('getSub')}}",
+                    type: "POST",
+                    data: {
+                        category_id: category_id
+                    },
+                    cache: false,
+                    success: function (getsubcats) {
+                        $("#sub_category").html(getsubcats);
+                    }
+                });
+
+
+            });
+        });
+    </script>
 @endsection
