@@ -7,36 +7,59 @@
             <ul class="nav navbar-right panel_toolbox">
 
             </ul>
+
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
             <br/>
 
             <h4>ارسال دسته بندی یا زیر دسته بندی </h4>
-            <form class="form-horizontal form-label-left" method="post">
+            <form class="form-horizontal form-label-left" method="post" action="{{route('store.category')}}">
                 @csrf
                 <div class="form-group">
-                    <label class="control-label col-md-3" for="category">نام دسته بندی <span class="required">*</span></label>
+                    <label class="control-label col-md-3" for="category">نام دسته بندی <span
+                            class="required">*</span></label>
                     <div class="col-md-7">
-                        <input type="text" id="category" name="category" required="required" class="form-control col-md-7 col-xs-12">
+                        <input type="text" id="category" name="category" class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-3" for="subcategory">انتخاب مورد بالا برای یکی از زیر دسته های
                         روبر</label>
                     <div class="col-md-7">
-                        <select type="text"  name="subcategory" id="subcategory" required="required" class="form-control col-md-7 col-xs-12">
-                            <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
-                            <option value="1">1</option>
+                        <select name="subcategory" id="subcategory" class="form-control col-md-7 col-xs-12">
+                            <option class="disabled">میتوانید یکی را پدر ان قرار دهید</option>
+                            @if(count($subCat))
+                            @foreach($subCat as $rowCategory)
+                                <option value="{{$rowCategory->id}}">{{$rowCategory->name}}</option>
+                            @endforeach
+                            @else
+                                <option class="disabled">ریکورد وجود ندارد</option>
+                            @endif
+
                         </select>
+
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary btn-lg btn-block">ارسال دسته بندی یا زیر دسته بندی</button>
+                <button type="submit" class="btn btn-secondary btn-lg btn-block">ارسال دسته بندی یا زیر دسته بندی
+                </button>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
             </form>
 
         </div>
     </div>
-    </div>
+
 @endsection

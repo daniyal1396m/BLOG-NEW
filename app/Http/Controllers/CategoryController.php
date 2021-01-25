@@ -16,7 +16,8 @@ class CategoryController extends Controller
      * */
     public function index()
     {
-        return view('admin.adminTemp.categoryForm');
+        $subCat = Category::where(['status' => 1])->get();
+        return view('admin.adminTemp.categoryForm', compact('subCat'));
     }
 
     /*
@@ -51,16 +52,29 @@ class CategoryController extends Controller
      *
      *
      * */
-    public function add(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'category' => 'required',
         ]);
-        if (empty('category')) {
-           
+       $parent=Category::findorfail($request['subcategory'])->level;
+        if (empty('subcategory')) {
+            Category::create(
+                [
+                    'name' => $request['category'],
+                    'level' => $parent+1,
+                    'status' => 1,
+                ]);
         } else {
-            echo 'no hello';
+            Category::create(
+                [
+                    'name' => $request['category'],
+//                    'parent_id' => $request['subcategory'],
+                    'level' => 1,
+                    'status' => 1,
+                ]);
         }
-        return view('admin.adminTemp.articleForm');
+//        return view('admin.adminTemp.categoryForm');
+        return redirect('/categoryList');
     }
 }
