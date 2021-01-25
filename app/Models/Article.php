@@ -11,7 +11,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'cat_id', 'title', 'pic', 'video', 'slug', 'body', 'status', 'countViews', 'countComments'];
+    protected $fillable = ['id', 'user_id', 'cat_id', 'title', 'pic', 'video', 'slug', 'body', 'status', 'countViews', 'countComments'];
 
     public function slugable(): array
     {

@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Callus extends Model
 {
     use HasFactory;
+    protected $fillable=['id','email','name'];
 }

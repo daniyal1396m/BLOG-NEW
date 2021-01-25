@@ -27,10 +27,6 @@ class CategoryController extends Controller
      * */
     public function show()
     {
-//        dd(1111);
-//        $categories = Category::(["parent_id" => "null", 'status' => 1])->get();
-//        dd($categories);
-////        return view('admin.adminTemp.articleForm', compact('categories'));
 
     }
 

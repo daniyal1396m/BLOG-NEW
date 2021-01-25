@@ -10,7 +10,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'parent_id', 'status', 'level'];
+    protected $fillable = ['id','name', 'parent_id', 'status', 'level'];
 
     public function childs(): HasMany
     {

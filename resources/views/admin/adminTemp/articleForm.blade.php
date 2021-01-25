@@ -89,7 +89,6 @@
     </div>
 @endsection
 @section('script')
-
     <script>
         $(document).ready(function () {
             $('#category').on('change', function () {
@@ -105,7 +104,6 @@
                         $("#sub_category").html(getsubcats);
                     }
                 });
-
 
             });
         });
