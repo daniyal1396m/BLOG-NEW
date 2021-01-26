@@ -78,11 +78,25 @@ class CategoryController extends Controller
      *
      *
      * delete category
+     * edit category
+     * store edit category
      *
      * */
     public function delete(Request $request)
     {
         Category::where('id', $request['id'])->update(['status' => '0']);
-        redirect('/Lists');
+        return back();
+    }
+
+    public function edit(Request $request)
+    {
+        $editCat = Category::where('id', $request['id']);
+        return view('admin.adminTemp.categoryFormEdit', compact('editCat'));
+    }
+
+    public function storeEdit(Request $request)
+    {
+        Category::where('id', $request['id'])->update(['name' => $request['name']]);
+        return back();
     }
 }
