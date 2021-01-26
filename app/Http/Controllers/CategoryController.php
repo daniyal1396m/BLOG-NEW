@@ -53,7 +53,6 @@ class CategoryController extends Controller
         $request->validate([
             'category' => 'required',
         ]);
-
         if (!empty('subcategory')) {
             $parent = Category::findorfail($request['subcategory'])->level;
             Category::create(

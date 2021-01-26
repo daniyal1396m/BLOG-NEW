@@ -52,7 +52,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/categoryList',[CategoryController::class, 'index'])->name('category');
 Route::get('/Lists',[ArticleController::class, 'list'])->name('list');
 Route::post('/getCatSub',[CategoryController::class, 'check'])->name('getSub');
-Route::post('/store/category',[CategoryController::class, 'store'])->name('store.category');
+Route::post('/storeCategory',[CategoryController::class, 'store'])->name('store.category');
+Route::get('/res/callus/{id}',[CallusController::class, 'response']);
 
 /*
  *
@@ -61,4 +62,5 @@ Route::post('/store/category',[CategoryController::class, 'store'])->name('store
  *
  *
  * */
-Route::post('/delete/category/{id}',[CategoryController::class, 'delete'])->name('delete.category');
+Route::get('/delete/category/{id}',[CategoryController::class, 'delete'])->name('delete.category');
+Route::get('/edit/category/{id}',[CategoryController::class, 'edit'])->name('edit.category');

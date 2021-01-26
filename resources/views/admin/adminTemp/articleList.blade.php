@@ -148,16 +148,15 @@
                                             <td>{{$cats->level}}</td>
                                             <td>{{$cats->parent_id}}</td>
                                             @if($cats->status==1)
-                                                <td><a href="#"
+                                                <td><a href="{{ url('delete/category/'.$cats->id)}}"
                                                        class="btn btn-outline-success btn-lg btn-block delete-cat">
                                                         فعال</a></td>
                                             @else
-                                                <td><a href="#" class="btn btn-outline-danger btn-lg btn-block">غیر
+                                                <td><a href="{{ url('delete/category/'.$cats->id)}}" class="btn btn-outline-danger btn-lg btn-block">غیر
                                                         فعال</a>
                                                 </td>
                                             @endif
-                                            {{--                                        <td><a href="#" class="btn btn-dark">ویرایش</a></td>--}}
-                                            <td><a href="#" class="btn btn-outline-dark btn-lg btn-block">ویرایش</a>
+                                            <td><a href="{{ url('edit/category/'.$cats->id)}}" class="btn btn-outline-dark btn-lg btn-block">ویرایش</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -206,7 +205,7 @@
                                                 <td>{{$rowCallus->email}}</td>
                                                 <td>{{$rowCallus->title}}</td>
                                                 <td>{{$rowCallus->body}}</td>
-                                                <td><a href="#" class="btn btn-primary">پاسخ به این پیام</a></td>
+                                                <td><a href="{{ url('res/callus/'.$rowCallus->id) }}" class="btn btn-primary">پاسخ به این پیام</a></td>
                                             </tr>
                                         @else
                                             <th scope="row">نیست</th>
