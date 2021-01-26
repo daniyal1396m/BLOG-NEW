@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Newsletter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class NewsletterController extends Controller
 {
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'email' => 'required'

@@ -64,3 +64,4 @@ Route::get('/res/callus/{id}',[CallusController::class, 'response']);
  * */
 Route::get('/delete/category/{id}',[CategoryController::class, 'delete'])->name('delete.category');
 Route::get('/edit/category/{id}',[CategoryController::class, 'edit'])->name('edit.category');
+Route::post('/edit/category',[CategoryController::class, 'storeEdit'])->name('store.category.edit');

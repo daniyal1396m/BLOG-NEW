@@ -23,10 +23,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3" for="subcategory">انتخاب مورد بالا برای یکی از زیر دسته های
+                    <label class="control-label col-md-3" for="subCategory">انتخاب مورد بالا برای یکی از زیر دسته های
                         روبر</label>
                     <div class="col-md-7">
-                        <select name="subcategory" id="subcategory" class="form-control col-md-7 col-xs-12">
+                        <select name="subCategory" id="subCategory" class="form-control col-md-7 col-xs-12">
                             <option class="disabled">میتوانید یکی را پدر ان قرار دهید</option>
                             @if(count($subCat))
                             @foreach($subCat as $rowCategory)
@@ -35,7 +35,6 @@
                             @else
                                 <option class="disabled">ریکورد وجود ندارد</option>
                             @endif
-
                         </select>
 
                     </div>
@@ -60,5 +59,4 @@
 
         </div>
     </div>
-
 @endsection

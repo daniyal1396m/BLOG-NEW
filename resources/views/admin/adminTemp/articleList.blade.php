@@ -3,12 +3,10 @@
 @section('admin_content')
     <div class="right_col" role="main">
         <div class="left_col" role="main">
-            <div class="">
+            <div class="x_panel">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>جداول
-                            <small>بعضی از نمونه ها برای شروع کار شما</small>
-                        </h3>
+                        <h3>جداول</h3>
                     </div>
 
                 </div>
@@ -33,45 +31,38 @@
                                     <thead>
                                     <tr>
                                         <th>کد</th>
-                                        <th>فایل</th>
+                                        <th>عکس</th>
                                         <th>عنوان</th>
                                         <th>متن</th>
                                         <th>دسته بندی</th>
-                                        <th>زیر دسته بندی</th>
                                         <th>فعال غیر فعال</th>
+                                        <th>ویرایش</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($articles as $art)
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>سطح 2</td>
-                                        <td>فعال عیر فعال</td>
+                                        <th scope="row">{{$art->id}}</th>
+                                        <td><img src="/uploads/{{$art->pic}}" alt="pic"></td>
+                                        <td>{{$art->title}}</td>
+                                        <td>{{$art->body}}</td>
+                                        <td>{{$art->cat_id}}</td>
+                                        @if($arti->status==1)
+                                            <td><a href="{{ url('delete/article/'.$art->id)}}"
+                                                   class="btn btn-success  delete-cat">
+                                                    فعال</a></td>
+                                        @else
+                                            <td><a href="{{ url('delete/article/'.$art->id)}}" class="btn btn-danger">غیر
+                                                    فعال</a>
+                                            </td>
+                                        @endif
+                                        <td><a href="#">ویرایش</a></td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>سطح 2</td>
-                                        <td>فعال عیر فعال</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>سطح 2</td>
-                                        <td>فعال عیر فعال</td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
+                            {!! $articles->render() !!}
                         </div>
                     </div>
 
@@ -149,14 +140,14 @@
                                             <td>{{$cats->parent_id}}</td>
                                             @if($cats->status==1)
                                                 <td><a href="{{ url('delete/category/'.$cats->id)}}"
-                                                       class="btn btn-outline-success btn-lg btn-block delete-cat">
+                                                       class="btn btn-success  delete-cat">
                                                         فعال</a></td>
                                             @else
-                                                <td><a href="{{ url('delete/category/'.$cats->id)}}" class="btn btn-outline-danger btn-lg btn-block">غیر
+                                                <td><a href="{{ url('delete/category/'.$cats->id)}}" class="btn btn-danger">غیر
                                                         فعال</a>
                                                 </td>
                                             @endif
-                                            <td><a href="{{ url('edit/category/'.$cats->id)}}" class="btn btn-outline-dark btn-lg btn-block">ویرایش</a>
+                                            <td><a href="{{ url('edit/category/'.$cats->id)}}" class="btn btn-dark">ویرایش</a>
                                             </td>
                                         </tr>
                                     @endforeach
