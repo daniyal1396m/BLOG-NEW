@@ -194,5 +194,8 @@
     @include('layouts.copyRight')
 </div><!-- Body inner end -->
 @include('layouts.footerLinks')
+
+@yield('script')
+
 </body>
 </html>

@@ -7,6 +7,7 @@ use App\Models\Callus;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Newsletter;
+use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 use Ramsey\Uuid\Type\Time;
@@ -31,14 +32,13 @@ class ArticleController extends Controller
      * */
     public function list()
     {
-        $categories = Category::first()->paginate(5);
-        $newsletters = Newsletter::first()->paginate(5);
-        $articles = Article::first()->paginate(5);
-        $calluses = Callus::first()->paginate(5);
-        $comments = Comment::first()->paginate(5);
-//        return view('admin.adminTemp.articleList', compact('categories'));
-//        return view('admin.adminTemp.articleList', compact('categories','newsletters'));
-        return view('admin.adminTemp.articleList', ['categories' => $categories, 'newsletter' => $newsletters, 'articles' => $articles, 'calluses' => $calluses, 'comments' => $comments]);
+        $categories = Category::paginate(5);
+        $newsletters = Newsletter::paginate(5);
+        $articles = Article::paginate(5);
+        $calluses = Callus::paginate(5);
+        $comments = Comment::paginate(5);
+        $users = User::paginate(5);
+        return view('admin.adminTemp.articleList', compact('categories', 'newsletters', 'articles', 'calluses', 'comments','users'));
     }
 
     /*

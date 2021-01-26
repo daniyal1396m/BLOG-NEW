@@ -152,26 +152,63 @@
         </div><!-- Sidebar Ad end -->
 
         <div class="widget m-bottom-0">
+
             <h3 class="block-title"><span>خبرنامه</span></h3>
             <div class="ts-newsletter">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                 <div class="newsletter-introtext">
                     <h4>به روز باشید</h4>
                     <p>با عضویت در خبرنامه جدیدترین اخبار را در ایمیل خود دریافت کنید!</p>
                 </div>
 
                 <div class="newsletter-form">
-                    <form action="{{route('storeNewsLetter')}}" method="post">
+                    <form id="news" action="{{route('storeNewsLetter')}}" method="post">
                         @csrf
                         <div class="form-group">
                             <input type="email" name="email" id="newsletter-form-email"
                                    class="form-control form-control-lg" placeholder="ایمیل"
                                    autocomplete="off">
-                            <button class="btn btn-primary">عضویت</button>
+                            <button class="btn btn-primary" type="submit" id="submit">عضویت</button>
                         </div>
+
                     </form>
+
                 </div>
             </div><!-- Newsletter end -->
         </div><!-- Newsletter widget end -->
 
     </div><!-- Sidebar right end -->
 </div><!-- Sidebar Col end -->
+@section('script')
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>--}}
+{{--    <script type="text/javascript">--}}
+{{--        $('#news').on('submit',function(event){--}}
+{{--            event.preventDefault();--}}
+{{--            let email = $('#email').val();--}}
+{{--            $.ajax({--}}
+{{--                url: "{{route('storeNewsLetter')}}",--}}
+{{--                type:"POST",--}}
+{{--                data:{--}}
+{{--                    "_token": "{{ csrf_token() }}",--}}
+{{--                    email:email,--}}
+{{--                },--}}
+{{--                success:function(response){--}}
+{{--                    console.log(response);--}}
+{{--                },--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
+@endsection

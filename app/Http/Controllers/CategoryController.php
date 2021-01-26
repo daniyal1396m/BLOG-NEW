@@ -53,8 +53,9 @@ class CategoryController extends Controller
         $request->validate([
             'category' => 'required',
         ]);
-        $parent = Category::findorfail($request['subcategory'])->level;
-        if (empty('subcategory')) {
+
+        if (!empty('subcategory')) {
+            $parent = Category::findorfail($request['subcategory'])->level;
             Category::create(
                 [
                     'name' => $request['category'],
@@ -70,8 +71,8 @@ class CategoryController extends Controller
                     'status' => 1,
                 ]);
         }
-//        return view('admin.adminTemp.categoryForm');
-        return redirect('/categoryList');
+        return view('admin.adminTemp.categoryForm');
+//        return redirect('/categoryList');
     }
 
     /*

@@ -98,15 +98,15 @@
                                     </thead>
                                     <tbody>
                                     @foreach($newsletters as $rowNews)
-                                        @if(!empty($newsletters))
-                                            <tr>
-                                                <th scope="row">{{$rowNews->id}}</th>
-                                                <td>{{$rowNews->email}}</td>
-                                            </tr>
-                                        @else
+                                        @if(empty($newsletters))
                                             <tr>
                                                 <th scope="row">نیست</th>
                                                 <td>نیست</td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <th scope="row">{{$rowNews->id}}</th>
+                                                <td>{{$rowNews->email}}</td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -244,59 +244,29 @@
                                     <thead>
                                     <tr>
                                         <th>کد</th>
-                                        <th>نام</th>
-                                        <th>نام خانوادگی</th>
-                                        <th>نام کاربری</th>
-                                        <th>سطح</th>
+                                        <th>نام و نام خانوادگی</th>
+                                        <th>ایمیل</th>
+{{--                                        <th>سطح</th>--}}
                                         <th>فعال غیر فعال</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($users as $user)
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Otto</td>
-                                        <td>سطح 2</td>
-                                        <td>فعال عیر فعال</td>
+                                        <th scope="row">{{$user->id}}</th>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+{{--                                        <td>{{$user->role}}</td>--}}
+                                        <td>
+                                            <a href="#" class="btn btn-success">فعال</a>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>Thornton</td>
-                                        <td>سطح 2</td>
-                                        <td>فعال عیر فعال</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>سطح 2</td>
-                                        <td>فعال عیر فعال</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>سطح 2</td>
-                                        <td>فعال عیر فعال</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                        <td>سطح 2</td>
-                                        <td>فعال عیر فعال</td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
 
                             </div>
-                            {!! $categories->render() !!}
+                            {!! $users->render() !!}
                         </div>
                     </div>
 
