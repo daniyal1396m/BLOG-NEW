@@ -22,7 +22,9 @@ class ArticleController extends Controller
      * */
     public function index()
     {
-        return view('indexes.index');
+        $articles = Article::where('status' == 1)->paginate(5);
+        $categories = Category::where('status' == 1)->get();
+        return view('indexes.index', compact('articles', 'categories'));
     }
 
     /*
@@ -38,7 +40,7 @@ class ArticleController extends Controller
         $calluses = Callus::paginate(5);
         $comments = Comment::paginate(5);
         $users = User::paginate(5);
-        return view('admin.adminTemp.articleList', compact('categories', 'newsletters', 'articles', 'calluses', 'comments','users'));
+        return view('admin.adminTemp.articleList', compact('categories', 'newsletters', 'articles', 'calluses', 'comments', 'users'));
     }
 
     /*
@@ -63,27 +65,23 @@ class ArticleController extends Controller
             'subcategory' => 'required',
             'title' => 'required|min:5',
             'body' => 'required|min:50',
-            'pic' => 'required',
+            'pic' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'description' => 'required|min:50|max:255',
         ]);
-        $name = $request->name;
-        $img = $request->file('file');
-        $imgName = time() . '_' . $img->extension();
-        $img->move(public_path('uploads'), $imgName);
-
-        $article = new Article();
-        $article->name = $name;
-//        $article->;
-
+        $name = $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->store('public/uploads');
         Category::create(
             [
                 'title' => $request['title'],
-                'pic' => $request['pic'],
-                'body' => $request['title'],
+                'pic' => $name,
+                'path' => $path,
+                'body' => $request['body'],
+                'description' => $request['description'],
                 'cat_id' => $request['category'],
                 'sub_cat_id' => $request['subcategory'],
                 'status' => 1,
             ]);
-        return view('admin.adminTemp.articleForm');
+        return redirect('admin.adminTemp.articleForm')->with('status','فرم ارسال شد ');
     }
 
     /*

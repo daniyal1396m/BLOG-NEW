@@ -20,6 +20,17 @@ class CategoryController extends Controller
         $subCat = Category::where(['status' => 1])->get();
         return view('admin.adminTemp.categoryForm', compact('subCat'));
     }
+
+    /*
+     * show category list
+     *
+     *
+     * */
+    public function show()
+    {
+
+    }
+
     /*
      * show sub category list
      *
@@ -30,6 +41,7 @@ class CategoryController extends Controller
         $subCat = Category::where(['parent_id' => 'category_id', 'status' => '1'])->get();
         dd($subCat);
 //        return view('admin.adminTemp.articleForm', compact(''));
+
     }
 
     /*
@@ -43,16 +55,22 @@ class CategoryController extends Controller
             'category' => 'required',
         ]);
         if (empty($request['subCategory'])) {
-            Category::create(
-                [
-                    'name' => $request['category'],
-                    'level' => 1,
-                    'status' => 1,
-                ]);
+
+            //            Category::create(
+//                [
+//                    'name' => $request['category'],
+//                    'level' => 1,
+//                    'status' => 1,
+//                ]);
+            $category = new Category;
+            $category->name = $request->category;
+            $category->level = 1;
+            $category->satus = 1;
+            $category->save();
         } else {
-            echo 1;
-            $parent = Category::findorfail($request->subCategory)->level;
-//            $parent = Category::findorfail($request['subCategory'])->level;
+
+//            $parent = Category::findorfail($request->subCategory)->level;
+            $parent = Category::findorfail($request['subCategory'])->level;
             Category::create(
                 [
                     'name' => $request['category'],
@@ -60,6 +78,7 @@ class CategoryController extends Controller
                     'level' => $parent + 1,
                     'status' => 1,
                 ]);
+
         }
         return back();
     }
@@ -73,24 +92,20 @@ class CategoryController extends Controller
      * */
     public function delete(Request $request): RedirectResponse
     {
-        Category::find('status')->where('id', $request['id']);
-        if ('status' === 0) {
-            Category::where('id', $request['id'])->update(['status' => '1']);
-        } else {
-            Category::where('id', $request['id'])->update(['status' => '0']);
-        }
+
+        Category::where('id', $request['id'])->update(['status' => '0']);
         return back();
     }
 
     public function edit($id)
     {
-        $editCat = Category::findorfail($id);
+        $editCat = Category::where('id', $id)->get();
         return view('admin.adminTemp.categoryFormEdit', compact('editCat'));
     }
 
     public function storeEdit(Request $request): RedirectResponse
     {
-        Category::find('id', $request['editId'])->update(['name' => $request['name']]);
+        Category::where('id', $request['id'])->update(['name' => $request['name']]);
         return back();
     }
 }

@@ -10,9 +10,10 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','name', 'parent_id', 'status', 'level'];
+    protected $fillable = ['id','name', 'parent_id', 'status', 'children'];
 
-    public function childs(): HasMany
+
+    public function childS(): HasMany
     {
         return $this->hasMany(Category::class, 'parent_id');
     }

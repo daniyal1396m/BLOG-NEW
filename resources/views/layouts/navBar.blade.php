@@ -10,14 +10,7 @@
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">خانه <i class="fa fa-angle-down"></i></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="index.html">خانه 1</a></li>
-                        <li><a href="index-2.html">خانه 2</a></li>
-                        <li><a href="index-3.html">خانه 3</a></li>
-                        <li><a href="index-4.html">خانه 4</a></li>
-                        <li><a href="index-5.html">خانه 5</a></li>
-                    </ul>
+                    <a href="/" class="dropdown-toggle" data-toggle="dropdown">خانه <i class="fa fa-angle-down"></i></a>
                 </li>
 
                 <li class="dropdown mega-dropdown">

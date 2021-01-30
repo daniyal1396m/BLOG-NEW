@@ -18,23 +18,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 /*
+ *
+ *
  * articles Routes
  *
+ * 
  */
 Route::get('/', [ArticleController::class, 'index']);
 Route::middleware('auth')->get('/form', [ArticleController::class, 'form'])->name('form');
 Route::post('/send/Article', [ArticleController::class, 'store'])->name('article.send');
 
 /*
-* contacts Routes
-*
-*
-*/
+ *
+ *
+ * contacts Routes
+ *
+ *
+ * */
 Route::get('/contactus', [CallusController::class, 'index'])->name('contactUs');
 Route::post('/sendContact', [CallusController::class, 'store'])->name('sendContactus');
 
 /*
+ *
+ *
  * NewLetter Route
+ *
  *
  * */
 Route::post('/Newsletter', [NewsletterController::class, 'store'])->name('storeNewsLetter');
@@ -47,12 +55,17 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 /*
+ *
+ *
  * admin pages
+ *
+ *
  * */
 Route::get('/categoryList',[CategoryController::class, 'index'])->name('category');
 Route::get('/Lists',[ArticleController::class, 'list'])->name('list');
 Route::post('/getCatSub',[CategoryController::class, 'check'])->name('getSub');
-Route::post('/storeCategory',[CategoryController::class, 'store'])->name('store.category');
+//Route::post('/storeCategory',[CategoryController::class, 'store'])->name('store');
+Route::post('/storeCategory',[CategoryController::class, 'store']);
 Route::get('/res/callus/{id}',[CallusController::class, 'response']);
 
 /*

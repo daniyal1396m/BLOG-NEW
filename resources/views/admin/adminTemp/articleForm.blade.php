@@ -44,7 +44,7 @@
                     </label>
                     <div class="col-md-7">
                         <input type="text" id="title"
-                               class="form-control col-md-7 col-xs-12" name="title">
+                               class="form-control col-md-7 col-xs-12" name="title" placeholder="تیتر">
                     </div>
                 </div>
                 <div class="form-group">
@@ -78,8 +78,16 @@
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <textarea type="text" id="body" name="body"
-                                  class="form-control col-md-7 col-xs-12" rows="7"></textarea>
+                        <input type="text" id="body" name="body" class="form-control col-md-7 col-xs-12" placeholder="متن">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3" for="description">توضیحات بیشتر <span
+                            class="required">*</span>
+                    </label>
+                    <div class="col-md-7">
+                        <textarea type="text" id="description" name="description"
+                                  class="form-control col-md-7 col-xs-12" rows="7" placeholder="توضیحات بیشتتر"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-secondary btn-lg btn-block">ارسال مقاله</button>

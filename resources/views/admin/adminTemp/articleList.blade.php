@@ -41,23 +41,24 @@
                                     </thead>
                                     <tbody>
                                     @foreach($articles as $art)
-                                    <tr>
-                                        <th scope="row">{{$art->id}}</th>
-                                        <td><img src="/uploads/{{$art->pic}}" alt="pic"></td>
-                                        <td>{{$art->title}}</td>
-                                        <td>{{$art->body}}</td>
-                                        <td>{{$art->cat_id}}</td>
-                                        @if($arti->status==1)
-                                            <td><a href="{{ url('delete/article/'.$art->id)}}"
-                                                   class="btn btn-success  delete-cat">
-                                                    فعال</a></td>
-                                        @else
-                                            <td><a href="{{ url('delete/article/'.$art->id)}}" class="btn btn-danger">غیر
-                                                    فعال</a>
-                                            </td>
-                                        @endif
-                                        <td><a href="#">ویرایش</a></td>
-                                    </tr>
+                                        <tr>
+                                            <th scope="row">{{$art->id}}</th>
+                                            <td><img src="/uploads/{{$art->pic}}" alt="pic"></td>
+                                            <td>{{$art->title}}</td>
+                                            <td>{{$art->body}}</td>
+                                            <td>{{$art->cat_id}}</td>
+                                            @if($arti->status==1)
+                                                <td><a href="{{ url('delete/article/'.$art->id)}}"
+                                                       class="btn btn-success  delete-cat">
+                                                        فعال</a></td>
+                                            @else
+                                                <td><a href="{{ url('delete/article/'.$art->id)}}"
+                                                       class="btn btn-danger">غیر
+                                                        فعال</a>
+                                                </td>
+                                            @endif
+                                            <td><a href="#">ویرایش</a></td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -143,7 +144,8 @@
                                                        class="btn btn-success  delete-cat">
                                                         فعال</a></td>
                                             @else
-                                                <td><a href="{{ url('delete/category/'.$cats->id)}}" class="btn btn-danger">غیر
+                                                <td><a href="{{ url('delete/category/'.$cats->id)}}"
+                                                       class="btn btn-danger">غیر
                                                         فعال</a>
                                                 </td>
                                             @endif
@@ -196,7 +198,8 @@
                                                 <td>{{$rowCallus->email}}</td>
                                                 <td>{{$rowCallus->title}}</td>
                                                 <td>{{$rowCallus->body}}</td>
-                                                <td><a href="{{ url('res/callus/'.$rowCallus->id) }}" class="btn btn-primary">پاسخ به این پیام</a></td>
+                                                <td><a href="{{ url('res/callus/'.$rowCallus->id) }}"
+                                                       class="btn btn-primary">پاسخ به این پیام</a></td>
                                             </tr>
                                         @else
                                             <th scope="row">نیست</th>
@@ -236,21 +239,19 @@
                                         <th>کد</th>
                                         <th>نام و نام خانوادگی</th>
                                         <th>ایمیل</th>
-{{--                                        <th>سطح</th>--}}
                                         <th>فعال غیر فعال</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($users as $user)
-                                    <tr>
-                                        <th scope="row">{{$user->id}}</th>
-                                        <td>{{$user->name}}</td>
-                                        <td>{{$user->email}}</td>
-{{--                                        <td>{{$user->role}}</td>--}}
-                                        <td>
-                                            <a href="#" class="btn btn-success">فعال</a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <th scope="row">{{$user->id}}</th>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->email}}</td>
+                                            <td>
+                                                <a href="#" class="btn btn-success">فعال</a>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -266,4 +267,45 @@
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+            integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+            crossorigin="anonymous"></script>
+    <script>
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'مطعمن هستید حذف شود؟',
+            text: "شما نمیتوانید این را برگردانید",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'بله, حذف شود!',
+            cancelButtonText: 'نه, انصراف!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                    'جذف!',
+                    'حذف شد',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'انصراف',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+    </script>
 @endsection

@@ -20,7 +20,9 @@ class CreateArticlesTable extends Migration
             $table->integer('sub_cat_id',null);
             $table->string('title', 100);
             $table->string('body', 255);
-            $table->string('pic', 255);
+            $table->string('description', 255);
+            $table->string('name', 255);
+            $table->string('pic', 255);//path
 //            $table->string('video', 255)->nullable();
             $table->boolean('status');
             $table->string('slug');

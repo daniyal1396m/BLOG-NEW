@@ -13,7 +13,8 @@
             <br/>
 
             <h4>ارسال دسته بندی یا زیر دسته بندی </h4>
-            <form class="form-horizontal form-label-left" method="post" action="{{route('store.category')}}">
+{{--            <form class="form-horizontal form-label-left" method="post" action="{{route('store')}}">--}}
+            <form class="form-horizontal form-label-left" method="post" action="/storeCategory">
                 @csrf
                 <div class="form-group">
                     <label class="control-label col-md-3" for="category">نام دسته بندی <span
