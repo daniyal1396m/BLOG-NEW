@@ -16,6 +16,7 @@ class ArticleController extends Controller
 {
     /*
      *
+     *
      * see fist page
      *
      *
@@ -28,6 +29,8 @@ class ArticleController extends Controller
     }
 
     /*
+     *
+     *
      * admin list panel
      *
      *
@@ -44,6 +47,8 @@ class ArticleController extends Controller
     }
 
     /*
+     *
+     *
      * admin form  for send
      *
      *
@@ -53,11 +58,13 @@ class ArticleController extends Controller
         $categories = Category::where(['parent_id' => null, 'status' => 1])->get();
         return view('admin.adminTemp.articleForm', compact('categories'));
     }
-
     /*
-    * send article
-    *
-    * */
+     *
+     *
+     * send article
+     *
+     *
+     * */
     public function store(Request $request)
     {
         $request->validate([
@@ -68,23 +75,43 @@ class ArticleController extends Controller
             'pic' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'description' => 'required|min:50|max:255',
         ]);
-        $name = $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->store('public/uploads');
-        Category::create(
-            [
-                'title' => $request['title'],
-                'pic' => $name,
-                'path' => $path,
-                'body' => $request['body'],
-                'description' => $request['description'],
-                'cat_id' => $request['category'],
-                'sub_cat_id' => $request['subcategory'],
-                'status' => 1,
-            ]);
-        return redirect('admin.adminTemp.articleForm')->with('status','فرم ارسال شد ');
+        $title = $request->title;
+        $body = $request->body;
+        $description = $request->description;
+        $image = $request->file('pic');
+        $sub_cat_id = $request->subcategory;
+        $cat_id = $request->category;
+        $imageName = time() . "_" . $image->extension();
+        $image->move(public_path('/public/uploads'), $imageName);
+        $article = new Article();
+        $article->pic = $imageName;
+        $article->body = $body;
+        $article->title = $title;
+        $article->description = $description;
+        $article->sub_cat_id = $sub_cat_id;
+        $article->cat_id = $cat_id;
+        $article->status = 1;
+        $article->user_id = user();
+        $article->save();
+//        $name = $request->file('image')->getClientOriginalName();
+//        $path = $request->file('image')->store('public/uploads');
+//        Article::create(
+//            [
+//                'title' => $request['title'],
+//                'pic' => $name,
+//                'path' => $path,
+//                'body' => $request['body'],
+//                'description' => $request['description'],
+//                'cat_id' => $request['category'],
+//                'sub_cat_id' => $request['subcategory'],
+//                'status' => 1,
+//            ]);
+        return redirect('admin.adminTemp.articleForm')->with('status', 'فرم ارسال شد ');
     }
 
     /*
+     *
+     *
      * send category
      *
      * */

@@ -52,7 +52,7 @@
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <select name="category" id="category" class="form-control col-md-7 col-xs-12">
+                        <select  id="category" class="form-control col-md-7 col-xs-12" name="category">
                             @if(count($categories))
                                 @foreach($categories as $rowCategory)
                                     <option value="{{$rowCategory->id}}">{{$rowCategory->name}}</option>

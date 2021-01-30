@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
  *
  * articles Routes
  *
- * 
+ *
  */
 Route::get('/', [ArticleController::class, 'index']);
 Route::middleware('auth')->get('/form', [ArticleController::class, 'form'])->name('form');

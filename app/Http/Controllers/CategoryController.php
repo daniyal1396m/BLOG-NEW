@@ -51,12 +51,14 @@ class CategoryController extends Controller
      * */
     public function store(Request $request): RedirectResponse
     {
+
         $request->validate([
             'category' => 'required',
         ]);
-        if (empty($request['subCategory'])) {
 
-            //            Category::create(
+        if ($request['subCategory'] == 'میتوانید یکی را پدر ان قرار دهید') {
+
+//                        Category::create(
 //                [
 //                    'name' => $request['category'],
 //                    'level' => 1,
@@ -65,19 +67,25 @@ class CategoryController extends Controller
             $category = new Category;
             $category->name = $request->category;
             $category->level = 1;
-            $category->satus = 1;
+            $category->status = 1;
             $category->save();
         } else {
 
-//            $parent = Category::findorfail($request->subCategory)->level;
-            $parent = Category::findorfail($request['subCategory'])->level;
-            Category::create(
-                [
-                    'name' => $request['category'],
-                    'parent_id' => $request['subCategory'],
-                    'level' => $parent + 1,
-                    'status' => 1,
-                ]);
+            $parent = Category::findorfail($request->subCategory)->level;
+//            $parent = Category::findorfail($request['subCategory'])->level;
+//            Category::create(
+//                [
+//                    'name' => $request['category'],
+//                    'parent_id' => $request['subCategory'],
+//                    'level' => $parent + 1,
+//                    'status' => 1,
+//                ]);
+            $category = new Category;
+            $category->name = $request->category;
+            $category->parent_id = $request->subCategory;
+            $category->level = $parent + 1;
+            $category->status = 1;
+            $category->save();
 
         }
         return back();
