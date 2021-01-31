@@ -13,15 +13,17 @@
                 <br/>
                 <form class="form-horizontal form-label-left" method="post" action="{{route('store.category.edit')}}">
                     @csrf
+                    @foreach($editCat as $edit)
                     <div class="form-group">
                         <label class="control-label col-md-3" for="category">ویرایش نام دسته بندی <span
                                 class="required">*</span></label>
                         <div class="col-md-7">
-                            <input type="text" value="{{$editCat->name}}" name="editCat"class="form-control col-md-7 col-xs-12">
+                            <input type="text" value="{{$edit->name}}" name="name" class="form-control col-md-7 col-xs-12">
 
-                            <input type="hidden" value="{{$editCat->id}}" name="editId">
+                            <input type="hidden" value="{{$edit->id}}" name="id">
                         </div>
                     </div>
+                    @endforeach
                     <button type="submit" class="btn btn-secondary btn-lg btn-block">ویرایش</button>
                     @if ($errors->any())
                         <div class="alert alert-danger">

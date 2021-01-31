@@ -49,11 +49,11 @@
                                             <td>{{$art->cat_id}}</td>
                                             @if($arti->status==1)
                                                 <td><a href="{{ url('delete/article/'.$art->id)}}"
-                                                       class="btn btn-success  delete-cat">
+                                                       class="btn btn-success  delete-cat updateCat">
                                                         فعال</a></td>
                                             @else
                                                 <td><a href="{{ url('delete/article/'.$art->id)}}"
-                                                       class="btn btn-danger">غیر
+                                                       class="btn btn-danger updateCat">غیر
                                                         فعال</a>
                                                 </td>
                                             @endif
@@ -139,17 +139,22 @@
                                             <td>{{$cats->name}}</td>
                                             <td>{{$cats->level}}</td>
                                             <td>{{$cats->parent_id}}</td>
-                                            @if($cats->status==1)
-                                                <td><a href="{{ url('delete/category/'.$cats->id)}}"
-                                                       class="btn btn-success  delete-cat">
-                                                        فعال</a></td>
-                                            @else
-                                                <td><a href="{{ url('delete/category/'.$cats->id)}}"
-                                                       class="btn btn-danger">غیر
-                                                        فعال</a>
-                                                </td>
-                                            @endif
-                                            <td><a href="{{ url('edit/category/'.$cats->id)}}" class="btn btn-dark">ویرایش</a>
+                                            <td>
+                                                <button class="btn btn-sm btn-danger delete-article-btn mybtn-{{$cats['id']}}"
+                                                        rel="{{ $cats['id'] }}" rel2="1">فعال
+                                                </button>
+                                            </td>
+                                            {{--                                            @if($cats->status==1)--}}
+                                            {{--                                                <td><a href="{{ url('/update/category/'.$cats->id)}}"--}}
+                                            {{--                                                       class="btn btn-success  delete-cat">--}}
+                                            {{--                                                        فعال</a></td>--}}
+                                            {{--                                            @else--}}
+                                            {{--                                                <td><a href="{{ url('/update/category/'.$cats->id)}}"--}}
+                                            {{--                                                       class="btn btn-danger">غیر--}}
+                                            {{--                                                        فعال</a>--}}
+                                            {{--                                                </td>--}}
+                                            {{--                                            @endif--}}
+                                            <td><a href="{{ url('/edit/category/'.$cats->id)}}" class="btn btn-dark">ویرایش</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -269,43 +274,31 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
-            integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
-            crossorigin="anonymous"></script>
     <script>
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
+        $(document).on('click','.delete-article-btn',function(){
+            var id = $(this).attr('rel');
+            var status = $(this).attr('rel2');
+            $.ajax({
+                url: '{!! URL('/update/category') !!}',
+                type: 'post',
+                dataType: 'json',
+                data: {'cat_id': id,'status':status},
+                success: function (response) {
+                    console.log(response);
+                    console.log('Article ID',id);
+
+                    if (response == 1) {
+                        $('.mybtn-'+id).html('Inactive');
+                        $('.mybtn-'+id).attr('rel2',0);
+                    } else {
+                        $('.mybtn-'+id).html('Active');
+                        $('.mybtn-'+id).attr('rel2',1);
+                    }
+                }, error: function (error) {
+
+                }
+            });
         })
 
-        swalWithBootstrapButtons.fire({
-            title: 'مطعمن هستید حذف شود؟',
-            text: "شما نمیتوانید این را برگردانید",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'بله, حذف شود!',
-            cancelButtonText: 'نه, انصراف!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                swalWithBootstrapButtons.fire(
-                    'جذف!',
-                    'حذف شد',
-                    'success'
-                )
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'انصراف',
-                    'Your imaginary file is safe :)',
-                    'error'
-                )
-            }
-        })
     </script>
 @endsection

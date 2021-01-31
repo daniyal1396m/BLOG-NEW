@@ -5,7 +5,10 @@ use App\Http\Controllers\CallusController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Console\Input\Input;
+use http\Env\Response;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,12 +64,28 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
  *
  *
  * */
-Route::get('/categoryList',[CategoryController::class, 'index'])->name('category');
-Route::get('/Lists',[ArticleController::class, 'list'])->name('list');
-Route::post('/getCatSub',[CategoryController::class, 'check'])->name('getSub');
+Route::get('/categoryList', [CategoryController::class, 'index'])->name('category');
+Route::get('/Lists', [ArticleController::class, 'list'])->name('list');
+
+/*
+ *
+ *
+ * for get sub cat Jquery v1.1
+ *
+ *
+ * */
+//Route::get('/getCatSub/{id}',[CategoryController::class, 'check'])->name('getSub');
+Route::get('/getCatSub/{cat_id}', [CategoryController::class, 'check'])->name('getCatSub');
+/*
+ *
+ *
+ * end get sub cat Jquery v1.1
+ *
+ *
+ * */
 //Route::post('/storeCategory',[CategoryController::class, 'store'])->name('store');
-Route::post('/storeCategory',[CategoryController::class, 'store']);
-Route::get('/res/callus/{id}',[CallusController::class, 'response']);
+Route::post('/storeCategory', [CategoryController::class, 'store']);
+Route::get('/res/callus/{id}', [CallusController::class, 'response']);
 
 /*
  *
@@ -75,6 +94,6 @@ Route::get('/res/callus/{id}',[CallusController::class, 'response']);
  *
  *
  * */
-Route::get('/delete/category/{id}',[CategoryController::class, 'delete'])->name('delete.category');
-Route::get('/edit/category/{id}',[CategoryController::class, 'edit'])->name('edit.category');
-Route::post('/edit/category',[CategoryController::class, 'storeEdit'])->name('store.category.edit');
+Route::post('/update/category', [CategoryController::class, 'delete'])->name('delete.category');
+Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
+Route::post('/edit/category', [CategoryController::class, 'storeEdit'])->name('store.category.edit');

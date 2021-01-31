@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+{{--<html lang="{{ app()->getLocale() }}">--}}
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
@@ -8,7 +9,6 @@
     <meta name="fontiran.com:license" content="Y68A9">
     <link rel="icon" href="/build/images/favicon.ico" type="image/ico"/>
     <title>پنل ادمین</title>
-
     @include('layouts.headerLinksAdmin')
 </head>
 <!-- /header content -->
@@ -31,13 +31,13 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> فرم ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{route('form')}}">فرم ارسال مقاله</a></li>
-                                    <li><a href="{{route('category')}}">فرم ارسال دسته بندی</a></li>
+                                    <li><a href="{{route('form')}}" title="فرم ارسال مقاله">فرم ارسال مقاله</a></li>
+                                    <li><a href="{{route('category')}}" title="فرم ارسال دسته بندی و زیر دسته بندی">فرم ارسال دسته بندی</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i>لیست داده ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{route('list')}}">لیست ها </a></li>
+                                    <li><a href="{{route('list')}}" title="لیست داده ها ">لیست ها </a></li>
 
                                 </ul>
                             </li>
@@ -46,11 +46,13 @@
 
                 </div>
                 <!-- /sidebar menu -->
-
-                <!-- /menu footer buttons -->
                 <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="تمام صفحه" onclick="toggleFullScreen();">
+                    <a data-toggle="tooltip" data-placement="top" title="تمام صفحه"
+                       onclick="toggleFullScreen();">
                         <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="قفل" class="lock_btn">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </a>
                 </div>
                 <!-- /menu footer buttons -->
@@ -64,41 +66,42 @@
                     <div class="nav toggle">
                         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                     </div>
-                        <ul class="nav navbar-nav ml-auto navbar-right">
-                            <!-- Authentication Links -->
-                            @guest
-                                @if (Route::has('login'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('ورود به حساب') }}</a>
-                                    </li>
-                                @endif
+                    <ul class="nav navbar-nav ml-auto navbar-right">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('ورود به حساب') }}</a>
+                                </li>
+                            @endif
 
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('ساخت حساب ') }}</a>
-                                    </li>
-                                @endif
-                            @else
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::user()->name }}
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('ساخت حساب ') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item btn btn-primary btn-lg btn-block"
+                                       href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('خروج') }}
                                     </a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item btn btn-primary btn-lg btn-block" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('خروج') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </li>
-                            @endguest
-                        </ul>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
                 </nav>
             </div>
         </div>
@@ -128,7 +131,6 @@
     </div>
 </div>
 @include('layouts.footerLinksAdmin')
-@include('layouts.adminJquery')
 @yield('script')
 </body>
 </html>

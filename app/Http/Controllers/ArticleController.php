@@ -10,6 +10,7 @@ use App\Models\Newsletter;
 use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Type\Time;
 
 class ArticleController extends Controller
@@ -23,8 +24,8 @@ class ArticleController extends Controller
      * */
     public function index()
     {
-        $articles = Article::where('status' == 1)->paginate(5);
-        $categories = Category::where('status' == 1)->get();
+        $articles = Article::where('status', 1)->paginate(5);
+        $categories = Category::where('status', 1)->get();
         return view('indexes.index', compact('articles', 'categories'));
     }
 
@@ -58,6 +59,7 @@ class ArticleController extends Controller
         $categories = Category::where(['parent_id' => null, 'status' => 1])->get();
         return view('admin.adminTemp.articleForm', compact('categories'));
     }
+
     /*
      *
      *
@@ -69,44 +71,21 @@ class ArticleController extends Controller
     {
         $request->validate([
             'category' => 'required',
-            'subcategory' => 'required',
+            'sub_category' => 'required',
             'title' => 'required|min:5',
             'body' => 'required|min:50',
             'pic' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'description' => 'required|min:50|max:255',
         ]);
-        $title = $request->title;
-        $body = $request->body;
-        $description = $request->description;
         $image = $request->file('pic');
-        $sub_cat_id = $request->subcategory;
-        $cat_id = $request->category;
         $imageName = time() . "_" . $image->extension();
         $image->move(public_path('/public/uploads'), $imageName);
-        $article = new Article();
-        $article->pic = $imageName;
-        $article->body = $body;
-        $article->title = $title;
-        $article->description = $description;
-        $article->sub_cat_id = $sub_cat_id;
-        $article->cat_id = $cat_id;
-        $article->status = 1;
-        $article->user_id = user();
-        $article->save();
-//        $name = $request->file('image')->getClientOriginalName();
-//        $path = $request->file('image')->store('public/uploads');
-//        Article::create(
-//            [
-//                'title' => $request['title'],
-//                'pic' => $name,
-//                'path' => $path,
-//                'body' => $request['body'],
-//                'description' => $request['description'],
-//                'cat_id' => $request['category'],
-//                'sub_cat_id' => $request['subcategory'],
-//                'status' => 1,
-//            ]);
-        return redirect('admin.adminTemp.articleForm')->with('status', 'فرم ارسال شد ');
+        $article = Article::create(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1, 'pic' => $imageName]));
+        if ($article) {
+            return redirect()->back()->with('status', 'فرم ارسال شد');
+        } else {
+            return redirect()->back()->with('status', 'فرم ارسال نشد ');
+        }
     }
 
     /*

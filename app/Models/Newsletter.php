@@ -9,5 +9,6 @@ class Newsletter extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'email'];
+//    protected $fillable = ['id', 'email'];
+    protected $guarded = [];
 }

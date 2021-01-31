@@ -52,7 +52,8 @@
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <select  id="category" class="form-control col-md-7 col-xs-12" name="category">
+                        <select id="category" class="form-control col-md-7 col-xs-12" name="category">
+                            <option class="disabled">یک دسته بندی انتخاب کنید</option>
                             @if(count($categories))
                                 @foreach($categories as $rowCategory)
                                     <option value="{{$rowCategory->id}}">{{$rowCategory->name}}</option>
@@ -68,8 +69,8 @@
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <select name="subcategory" id="sub_category" class="form-control col-md-7 col-xs-12">
-
+                        <select name="sub_category" id="sub_category" class="form-control col-md-7 col-xs-12">
+{{--                            <option value=""></option>--}}
                         </select>
                     </div>
                 </div>
@@ -78,7 +79,8 @@
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <input type="text" id="body" name="body" class="form-control col-md-7 col-xs-12" placeholder="متن">
+                        <input type="text" id="body" name="body" class="form-control col-md-7 col-xs-12"
+                               placeholder="متن">
                     </div>
                 </div>
                 <div class="form-group">
@@ -87,7 +89,8 @@
                     </label>
                     <div class="col-md-7">
                         <textarea type="text" id="description" name="description"
-                                  class="form-control col-md-7 col-xs-12" rows="7" placeholder="توضیحات بیشتتر"></textarea>
+                                  class="form-control col-md-7 col-xs-12" rows="7"
+                                  placeholder="توضیحات بیشتتر"></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-secondary btn-lg btn-block">ارسال مقاله</button>
@@ -98,21 +101,16 @@
 @endsection
 @section('script')
     <script>
-        $(document).ready(function () {
-            $('#category').on('change', function () {
-                var category_id = this.value;
-                $.ajax({
-                    url: "{{route('getSub')}}",
-                    type: "POST",
-                    data: {
-                        category_id: category_id
-                    },
-                    cache: false,
-                    success: function (getsubcats) {
-                        $("#sub_category").html(getsubcats);
-                    }
+        $('#category').on('change', function (e) {
+            // console.log(e);
+            var cat_id = e.target.value;
+            var url = "{{route('getCatSub',['cat_id'=>':id']) }}";
+            url = url.replace(':id', cat_id);
+            $.getJSON(url).done(function (data) {
+                $('#sub_category').empty();
+                $.each(data, function (subCat) {
+                    $('#sub_category').append('<option value="' + subCat.id + '">' + subCat.name + '</option>');
                 });
-
             });
         });
     </script>

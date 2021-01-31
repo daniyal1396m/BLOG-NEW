@@ -10,10 +10,11 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','name', 'parent_id', 'status', 'children'];
+//    protected $fillable = ['id', 'name', 'parent_id', 'status','updated_at'];
+//    protected $fillable = ['id','name','parent_id'];
+    protected $guarded = [];
 
-
-    public function childS(): HasMany
+    public function subcategories(): HasMany
     {
         return $this->hasMany(Category::class, 'parent_id');
     }

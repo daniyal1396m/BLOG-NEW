@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="fa">
+{{--<html lang="fa">--}}
+<html lang="{{ app()->getLocale() }}">
 <head>
 
     <title>صفحه اصلی</title>
