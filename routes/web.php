@@ -29,7 +29,7 @@ use http\Env\Response;
  */
 Route::get('/', [ArticleController::class, 'index']);
 Route::middleware('auth')->get('/form', [ArticleController::class, 'form'])->name('form');
-Route::post('/send/Article', [ArticleController::class, 'store'])->name('article.send');
+Route::post('/send/Article', [ArticleController::class, 'store'])->name('article.store');
 
 /*
  *
@@ -74,7 +74,6 @@ Route::get('/Lists', [ArticleController::class, 'list'])->name('list');
  *
  *
  * */
-//Route::get('/getCatSub/{id}',[CategoryController::class, 'check'])->name('getSub');
 Route::get('/getCatSub/{cat_id}', [CategoryController::class, 'check'])->name('getCatSub');
 /*
  *

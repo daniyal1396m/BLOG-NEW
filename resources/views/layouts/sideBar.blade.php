@@ -5,25 +5,25 @@
 
             <ul class="social-icon-box unstyled">
                 <li class="rss">
-                    <a href="#"><i class="fa fa-rss"></i>
+                    <a href="https://www.w3schools.com/login"><i class="fa fa-rss"></i>
                         <span class="ts-social-title">لورم</span>
                         <span class="ts-social-desc">لورم ایپسوم متن ساختگی</span></a>
                 </li>
 
                 <li class="facebook">
-                    <a href="#"><i class="fa fa-rss"></i>
+                    <a href="https://www.facebook.com/login"><i class="fa fa-rss"></i>
                         <span class="ts-social-title">فیسبوک</span>
                         <span class="ts-social-desc">لورم ایپسوم متن ساختگی</span></a>
                 </li>
 
                 <li class="twitter">
-                    <a href="#"><i class="fa fa-twitter"></i>
+                    <a href="https://www.twitter.com/login"><i class="fa fa-twitter"></i>
                         <span class="ts-social-title">توییتر</span>
                         <span class="ts-social-desc">لورم ایپسوم متن ساختگی</span></a>
                 </li>
 
                 <li class="gplus">
-                    <a href="#"><i class="fa fa-google-plus"></i>
+                    <a href="https://www.google.com/login"><i class="fa fa-google-plus"></i>
                         <span class="ts-social-title">لورم ایپسوم</span>
                         <span class="ts-social-desc">لورم ایپسوم متن ساختگی</span></a>
                 </li>
@@ -32,25 +32,29 @@
 
         <div class="widget color-default">
             <h3 class="block-title"><span>اخبار پربازدید</span></h3>
+            @foreach($articles as $article)
+                @if($article->countview >10)
+                    <div class="post-overaly-style clearfix">
+                        <div class="post-thumb">
+                            <a href="#">
+                                <img class="img-responsive" src="/public/uploads/{{$article->name}}" alt="{{$article->title}}">
+                            </a>
+                        </div>
 
-            <div class="post-overaly-style clearfix">
-                <div class="post-thumb">
-                    <a href="#">
-                        <img class="img-responsive" src="images/news/lifestyle/health4.jpg" alt="">
-                    </a>
-                </div>
-
-                <div class="post-content">
-                    <a class="post-cat" href="#">سلامتی</a>
-                    <h2 class="post-title title-small">
-                        <a href="#">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت</a>
-                    </h2>
-                    <div class="post-meta">
-                        <span class="post-date">2 شهریور 1396</span>
-                    </div>
-                </div><!-- Post content end -->
-            </div><!-- Post Overaly Article end -->
-
+                        <div class="post-content">
+                            <a class="post-cat">{{$article->id}}</a>
+                            <h2 class="post-title title-small">
+                                <a href="/single/{{$article->id}}">{{$article->title}}</a>
+                            </h2>
+                            <div class="post-meta">
+                                <span class="post-date">{{$article->created_at}}</span>
+                            </div>
+                        </div><!-- Post content end -->
+                    </div><!-- Post Overaly Article end -->
+                @else
+                    <h1>در حال حاضر پست وجود ندارد</h1>
+                @endif
+            @endforeach
 
             <div class="list-post-block">
                 <ul class="list-post">
@@ -193,22 +197,5 @@
     </div><!-- Sidebar right end -->
 </div><!-- Sidebar Col end -->
 @section('script')
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>--}}
-{{--    <script type="text/javascript">--}}
-{{--        $('#news').on('submit',function(event){--}}
-{{--            event.preventDefault();--}}
-{{--            let email = $('#email').val();--}}
-{{--            $.ajax({--}}
-{{--                url: "{{route('storeNewsLetter')}}",--}}
-{{--                type:"POST",--}}
-{{--                data:{--}}
-{{--                    "_token": "{{ csrf_token() }}",--}}
-{{--                    email:email,--}}
-{{--                },--}}
-{{--                success:function(response){--}}
-{{--                    console.log(response);--}}
-{{--                },--}}
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
+
 @endsection

@@ -8,7 +8,9 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Newsletter;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Type\Time;
@@ -25,7 +27,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::where('status', 1)->paginate(5);
-        $categories = Category::where('status', 1)->get();
+        $categories = Category::where(['status' => 1])->get();
         return view('indexes.index', compact('articles', 'categories'));
     }
 
@@ -67,20 +69,21 @@ class ArticleController extends Controller
      *
      *
      * */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'category' => 'required',
             'sub_category' => 'required',
-            'title' => 'required|min:5',
-            'body' => 'required|min:50',
-            'pic' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'description' => 'required|min:50|max:255',
+            'title' => 'required|min:5|max:30',
+            'body' => 'required|min:10|max:50',
+            'image' => 'required|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'description' => 'required|min:50|max:500',
         ]);
-        $image = $request->file('pic');
-        $imageName = time() . "_" . $image->extension();
-        $image->move(public_path('/public/uploads'), $imageName);
-        $article = Article::create(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1, 'pic' => $imageName]));
+        $year = Carbon::now()->year;
+        $imagePath = "/uploads/images/{$year}/";
+        $image = time().$request['image']->getClientOriginalName();
+        $request['image']->move(public_path($imagePath) , $image);
+        $article = Article::create(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1,'slug'=>$request['title'],'image'=> $image]));
         if ($article) {
             return redirect()->back()->with('status', 'فرم ارسال شد');
         } else {

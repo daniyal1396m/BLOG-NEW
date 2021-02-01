@@ -34,11 +34,9 @@ class CategoryController extends Controller
      * */
     public function check($cat_id): JsonResponse
     {
-        $subcategories = Category::where('parent_id',$cat_id)
-            ->where('status',1)
-            ->where( 'level','>', 1)
-            ->get();
-        return response()->json($subcategories);
+//        $subcategories = Category::where('parent_id', $cat_id)->where('status', 1)->where('level', '>', 1);
+        $subcategories = Category::where('parent_id', $cat_id)->where('status', 1)->get();
+        return response()->json(['child' => $subcategories]);
     }
 
     /*
@@ -86,14 +84,14 @@ class CategoryController extends Controller
      *
      *
      * */
-    public function update($id)
+    public function update($id): RedirectResponse
     {
         $status = Category::find($id);
-        if ($status['status'] == 0)
+        if ($status['status'] == 0) {
             $status->update(['status' => '1']);
-        else
+        } else {
             $status->update(['status' => '0']);
-
+        }
         return redirect()->back()->with('success', 'وضعیت تغیر کرد');
     }
 

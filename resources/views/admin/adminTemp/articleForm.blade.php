@@ -27,15 +27,15 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @endif
-            <form class="form-horizontal form-label-left" method="post" action="{{route('article.send')}}">
+            <form class="form-horizontal form-label-left" method="post" action="{{route('article.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label class="control-label col-md-3" for="first-name">عکس <span
+                    <label class="control-label col-md-3" for="image">عکس <span
                             class="required">*</span>
                     </label>
                     <div class="col-md-7">
-                        <input type="file" id="pic"
-                               class="form-control col-md-7 col-xs-12" name="pic">
+                        <input type="file" id="image"
+                               class="form-control col-md-7 col-xs-12" name="image">
                     </div>
                 </div>
                 <div class="form-group">
@@ -70,7 +70,7 @@
                     </label>
                     <div class="col-md-7">
                         <select name="sub_category" id="sub_category" class="form-control col-md-7 col-xs-12">
-{{--                            <option value=""></option>--}}
+                            {{--                            <option value=""></option>--}}
                         </select>
                     </div>
                 </div>
@@ -107,9 +107,14 @@
             var url = "{{route('getCatSub',['cat_id'=>':id']) }}";
             url = url.replace(':id', cat_id);
             $.getJSON(url).done(function (data) {
+                // alert(data.child[0]['name']);
                 $('#sub_category').empty();
-                $.each(data, function (subCat) {
-                    $('#sub_category').append('<option value="' + subCat.id + '">' + subCat.name + '</option>');
+                $.each(data, function () {
+                    // $('#sub_category').append('<option value="' + sub.id + '">' + sub.name + '</option>');
+                    for (var i=0 ; i<data.child.length;i++){
+                        $('#sub_category').append('<option value="' + data.child[i]['id'] + '">' + data.child[i]['name']+ '</option>');
+
+                    }
                 });
             });
         });

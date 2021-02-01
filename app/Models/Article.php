@@ -13,7 +13,7 @@ class Article extends Model
 
 //    protected $fillable = ['id', 'user_id', 'cat_id', 'title', 'pic', 'video', 'slug', 'body', 'status', 'countViews', 'countComments'];
     protected $guarded = [];
-    public function slugable(): array
+    public function sluGable(): array
     {
         return [
             'slug' => [

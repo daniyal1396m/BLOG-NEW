@@ -139,23 +139,17 @@
                                             <td>{{$cats->name}}</td>
                                             <td>{{$cats->level}}</td>
                                             <td>{{$cats->parent_id}}</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-danger delete-article-btn mybtn-{{$cats['id']}}"
-                                                        rel="{{ $cats['id'] }}" rel2="1">فعال
-                                                </button>
-                                            </td>
-                                            {{--                                            @if($cats->status==1)--}}
-                                            {{--                                                <td><a href="{{ url('/update/category/'.$cats->id)}}"--}}
-                                            {{--                                                       class="btn btn-success  delete-cat">--}}
-                                            {{--                                                        فعال</a></td>--}}
-                                            {{--                                            @else--}}
-                                            {{--                                                <td><a href="{{ url('/update/category/'.$cats->id)}}"--}}
-                                            {{--                                                       class="btn btn-danger">غیر--}}
-                                            {{--                                                        فعال</a>--}}
-                                            {{--                                                </td>--}}
-                                            {{--                                            @endif--}}
-                                            <td><a href="{{ url('/edit/category/'.$cats->id)}}" class="btn btn-dark">ویرایش</a>
-                                            </td>
+                                            @if($cats->status==1)
+                                                <td><a href="{{ url('/update/category/'.$cats->id)}}"
+                                                       class="btn btn-success  delete-cat">
+                                                        فعال</a></td>
+                                            @else
+                                                <td><a href="{{ url('/update/category/'.$cats->id)}}"
+                                                       class="btn btn-danger">غیر
+                                                        فعال</a>
+                                                </td>
+                                            @endif
+                                            <td><a href="{{ url('/edit/category/'.$cats->id)}}" class="btn btn-dark">ویرایش</a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -274,31 +268,4 @@
     </div>
 @endsection
 @section('script')
-    <script>
-        $(document).on('click','.delete-article-btn',function(){
-            var id = $(this).attr('rel');
-            var status = $(this).attr('rel2');
-            $.ajax({
-                url: '{!! URL('/update/category') !!}',
-                type: 'post',
-                dataType: 'json',
-                data: {'cat_id': id,'status':status},
-                success: function (response) {
-                    console.log(response);
-                    console.log('Article ID',id);
-
-                    if (response == 1) {
-                        $('.mybtn-'+id).html('Inactive');
-                        $('.mybtn-'+id).attr('rel2',0);
-                    } else {
-                        $('.mybtn-'+id).html('Active');
-                        $('.mybtn-'+id).attr('rel2',1);
-                    }
-                }, error: function (error) {
-
-                }
-            });
-        })
-
-    </script>
 @endsection
