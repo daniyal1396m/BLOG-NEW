@@ -133,6 +133,8 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/nesbot/carbon" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/hekmatinasser/verta" />
+      <path value="$PROJECT_DIR$/vendor/hekmatinasser/notowo" />
     </include_path>
   </component>
   <component name="ProjectId" id="1nTYuB9yhRTRWdUVgyV3Y4xg1Fs" />
@@ -184,7 +186,7 @@
       <workItem from="1611998970436" duration="5764000" />
       <workItem from="1612069341784" duration="5686000" />
       <workItem from="1612075147472" duration="13734000" />
-      <workItem from="1612155763292" duration="20877000" />
+      <workItem from="1612155763292" duration="21382000" />
     </task>
     <servers />
   </component>
