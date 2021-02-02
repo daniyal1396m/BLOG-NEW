@@ -11,9 +11,7 @@
         </div>
         <div class="x_content">
             <br/>
-
             <h4>ارسال دسته بندی یا زیر دسته بندی </h4>
-{{--            <form class="form-horizontal form-label-left" method="post" action="{{route('store')}}">--}}
             <form class="form-horizontal form-label-left" method="post" action="/storeCategory">
                 @csrf
                 <div class="form-group">

@@ -28,7 +28,7 @@ class ArticleController extends Controller
     {
         $articles = Article::where('status', 1)->paginate(5);
         $categories = Category::where(['status' => 1])->get();
-        $articlesViews = Article::findorfail('countViews' > 9)->get();
+        $articlesViews = Article::where('countViews' > 9)->get();
         return view('indexes.index', compact('articles', 'categories', 'articlesViews'));
     }
 
@@ -98,7 +98,7 @@ class ArticleController extends Controller
     public function AdList()
     {
         $users = User::paginate(5);
-        return view('admin.adminTemp.adminslist', compact( 'users'));
+        return view('admin.adminTemp.adminslist', compact('users'));
     }/*
     *
     *
@@ -109,7 +109,7 @@ class ArticleController extends Controller
     public function CallList()
     {
         $calluses = Callus::paginate(5);
-        return view('admin.adminTemp.callUsListMsg', compact( 'calluses'));
+        return view('admin.adminTemp.callUsListMsg', compact('calluses'));
     }
 
     /*
@@ -163,5 +163,47 @@ class ArticleController extends Controller
     public function storeCat()
     {
         return view('admin.adminTemp.articleForm');
+    }
+
+    /*
+     *
+     *
+     * update status
+     *
+     * */
+    public function update($id)
+    {
+        $status = Article::find($id);
+        if ($status['status'] == 0) {
+            $status->update(['status' => '1']);
+        } else {
+            $status->update(['status' => '0']);
+        }
+        return redirect()->back()->with('success', 'وضعیت تغیر کرد');
+    }
+
+    /*
+     *
+     *
+     * return edit article page
+     *
+     * */
+    public function edit($id)
+    {
+        $editArticle = Article::where('id',$id)->get();
+        return view('admin.adminTemp.articleFormEdit', compact('editArticle'));
+//        return view('admin.adminTemp.articleFormEdit');
+    }
+
+    /*
+     *
+     *
+     * send category
+     *
+     * */
+    public function storeEdit(Request $request)
+    {
+        Category::where('id', $request['id'])->update(['name' => $request['name']]);
+        return back()->with('success', 'ویرایش شد');
     }
 }

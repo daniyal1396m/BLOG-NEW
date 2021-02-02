@@ -111,7 +111,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $editCat = Category::find($id);
+        $editCat = Category::where('id',$id)->get();
         return view('admin.adminTemp.categoryFormEdit', compact('editCat'));
     }
 

@@ -32,6 +32,9 @@ Route::get('/', [ArticleController::class, 'index']);
 Route::get('/article/single/{id}', [ArticleController::class, 'single']);
 Route::middleware('auth')->get('/form', [ArticleController::class, 'form'])->name('form');
 Route::post('/send/Article', [ArticleController::class, 'store'])->name('article.store');
+Route::get('/update/Article/{id}', [ArticleController::class, 'update'])->name('article.update');
+Route::get('/edit/Article/{id}', [ArticleController::class, 'edit'])->name('article.edit');
+Route::post('/store/edit/Article', [ArticleController::class, 'storeEdit'])->name('article.store.edit');
 
 /*
  *
@@ -95,11 +98,11 @@ Route::get('/subcategory/{id}', [CategoryController::class, 'find']);
 /*
  *
  *
- * edit delete categories
+ * edit update categories
  *
  *
  * */
-Route::post('/update/category', [CategoryController::class, 'delete'])->name('delete.category');
+Route::get('/update/category/{id}', [CategoryController::class, 'update'])->name('update.category');
 Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
 Route::post('/edit/category', [CategoryController::class, 'storeEdit'])->name('store.category.edit');
 /*

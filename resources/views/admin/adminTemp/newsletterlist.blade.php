@@ -17,10 +17,6 @@
                             <h2>خبرنامه
                                 <small>لیست ایمیل های خبر نامه </small>
                             </h2>
-                            {{--                                <ul class="nav navbar-right panel_toolbox">--}}
-                            {{--                                    <li><a href="#" class="btn btn-primary">ارسال پیغام به این ایمیل ها</a></li>--}}
-                            {{--                                </ul>--}}
-                            {{--                                <div class="clearfix"></div>--}}
                         </div>
                         <div class="x_content">
 
