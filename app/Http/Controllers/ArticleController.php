@@ -28,8 +28,10 @@ class ArticleController extends Controller
     {
         $articles = Article::where('status', 1)->paginate(5);
         $categories = Category::where(['status' => 1])->get();
-        return view('indexes.index', compact('articles', 'categories'));
+        $articlesViews = Article::findorfail('countViews' > 9)->get();
+        return view('indexes.index', compact('articles', 'categories', 'articlesViews'));
     }
+
     /*
      *
      *
@@ -39,8 +41,11 @@ class ArticleController extends Controller
      * */
     public function single($id)
     {
-        $articles = Article::where('id',$id)->get();
+
+        $articles = Article::where('id', $id)->get();
+//        $articles->increments('countViews');
         $categories = Category::where(['status' => 1])->get();
+//        $articles->increment('countViews');
         return view('indexes.indexFiles.single-post', compact('articles', 'categories'));
     }
 
@@ -51,15 +56,60 @@ class ArticleController extends Controller
      *
      *
      * */
-    public function list()
+    public function Artlist()
+    {
+        $articles = Article::paginate(5);
+        return view('admin.adminTemp.articleList', compact('articles'));
+    }
+
+    /*
+    *
+    *
+    * admin list panel
+    *
+    *
+    * */
+    public function newslist()
+    {
+        $newsletters = Newsletter::paginate(5);
+        return view('admin.adminTemp.newsletterlist', compact('newsletters'));
+    }
+
+    /*
+    *
+    *
+    * admin list panel
+    *
+    *
+    * */
+    public function CatList()
     {
         $categories = Category::paginate(5);
-        $newsletters = Newsletter::paginate(5);
-        $articles = Article::paginate(5);
-        $calluses = Callus::paginate(5);
-        $comments = Comment::paginate(5);
+        return view('admin.adminTemp.categorylist', compact('categories'));
+    }
+
+    /*
+    *
+    *
+    * admin list panel
+    *
+    *
+    * */
+    public function AdList()
+    {
         $users = User::paginate(5);
-        return view('admin.adminTemp.articleList', compact('categories', 'newsletters', 'articles', 'calluses', 'comments', 'users'));
+        return view('admin.adminTemp.adminslist', compact( 'users'));
+    }/*
+    *
+    *
+    * admin list panel
+    *
+    *
+    * */
+    public function CallList()
+    {
+        $calluses = Callus::paginate(5);
+        return view('admin.adminTemp.callUsListMsg', compact( 'calluses'));
     }
 
     /*
@@ -90,13 +140,13 @@ class ArticleController extends Controller
             'title' => 'required|min:5|max:30',
             'body' => 'required|min:10|max:50',
             'image' => 'required|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'description' => 'required|min:50|max:500',
+            'description' => 'required|min:50|max:10000',
         ]);
         $year = Carbon::now()->year;
         $imagePath = "uploads/images/{$year}/";
-        $image = time().$request['image']->getClientOriginalName();
-        $pic=$request['image']->move($imagePath, $image);
-        $article = Article::create(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1,'slug'=>$request['title'],'image'=> $pic]));
+        $image = time() . $request['image']->getClientOriginalName();
+        $pic = $request['image']->move($imagePath, $image);
+        $article = Article::create(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1, 'slug' => $request['title'], 'image' => $pic]));
         if ($article) {
             return redirect()->back()->with('status', 'فرم ارسال شد');
         } else {

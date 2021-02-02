@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
 use http\Env\Response;
 use Illuminate\Http\JsonResponse;
@@ -37,6 +38,19 @@ class CategoryController extends Controller
 //        $subcategories = Category::where('parent_id', $cat_id)->where('status', 1)->where('level', '>', 1);
         $subcategories = Category::where('parent_id', $cat_id)->where('status', 1)->get();
         return response()->json(['child' => $subcategories]);
+    }
+
+    /*
+     *
+     *
+     * find post subcategory
+     *
+     *
+     * */
+    public function find($id)
+    {
+        $articles = Article::where('sub_category', $id)->where('status', 1)->get();
+        return view('indexes.index', compact('articles'));
     }
 
     /*

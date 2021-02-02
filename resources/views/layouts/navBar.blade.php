@@ -29,7 +29,7 @@
                                 @foreach($rowCat->subcategories as $child)
                                     <li class="dropdown-submenu">
                                         <ul class="dropdown-menu">
-                                            <li><a href="/page/{{$child->id}}">{{$child->name}}</a></li>
+                                            <li><a href="/subcategory/{{$child->id}}">{{$child->name}}</a></li>
                                         </ul>
                                     </li>
                                 @endforeach

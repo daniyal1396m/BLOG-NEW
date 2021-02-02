@@ -35,9 +35,13 @@
                                     <li><a href="{{route('category')}}" title="فرم ارسال دسته بندی و زیر دسته بندی">فرم ارسال دسته بندی</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-edit"></i>لیست داده ها <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-edit"></i>لیست ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{route('list')}}" title="لیست داده ها ">لیست ها </a></li>
+                                    <li><a href="{{route('article.list')}}" title="لیست مقاله ها ">لیست مقاله ها  </a></li>
+                                    <li><a href="{{route('category.list')}}" title="لیست دسته ها ">لیست دسته بندی و زیر دسته بندی ها  </a></li>
+                                    <li><a href="{{route('newsletter.list')}}" title="لیست خبرنامه ها ">لیست خبرنامه  </a></li>
+                                    <li><a href="{{route('admins.list')}}" title="لیست مدیران  ">لیست مدیران  </a></li>
+                                    <li><a href="{{route('callus.list')}}" title="لیست تماس ها ">لیست تماس باما </a></li>
 
                                 </ul>
                             </li>

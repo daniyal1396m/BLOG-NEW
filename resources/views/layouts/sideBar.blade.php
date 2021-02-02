@@ -32,17 +32,16 @@
 
         <div class="widget color-default">
             <h3 class="block-title"><span>اخبار پربازدید</span></h3>
-            @foreach($articles as $article)
-                @if($article->countview >10)
+            @foreach($articlesViews as $article)
                     <div class="post-overaly-style clearfix">
                         <div class="post-thumb">
                             <a href="#">
-                                <img class="img-responsive" src="/public/uploads/{{$article->name}}" alt="{{$article->title}}">
+                                <img class="img-responsive" src="{{url('/')."/".$article->image}}" alt="{{$article->title}}">
                             </a>
                         </div>
 
                         <div class="post-content">
-                            <a class="post-cat">{{$article->id}}</a>
+                            <a class="post-cat">{{$article->sub_category}}</a>
                             <h2 class="post-title title-small">
                                 <a href="/single/{{$article->id}}">{{$article->title}}</a>
                             </h2>
@@ -51,9 +50,6 @@
                             </div>
                         </div><!-- Post content end -->
                     </div><!-- Post Overaly Article end -->
-                @else
-                    <h1>در حال حاضر پست وجود ندارد</h1>
-                @endif
             @endforeach
 
             <div class="list-post-block">
@@ -79,72 +75,6 @@
                             </div><!-- Post content end -->
                         </div><!-- Post block style end -->
                     </li><!-- Li 1 end -->
-
-                    <li class="clearfix">
-                        <div class="post-block-style post-float clearfix">
-                            <div class="post-thumb">
-                                <a href="#">
-                                    <img class="img-responsive" src="images/news/lifestyle/travel5.jpg"
-                                         alt="">
-                                </a>
-                                <a class="post-cat" href="#">مسافرت</a>
-                            </div><!-- Post thumb end -->
-
-                            <div class="post-content">
-                                <h2 class="post-title title-small">
-                                    <a href="#">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
-                                        صنعت</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="post-date">18 بهمن 1396</span>
-                                </div>
-                            </div><!-- Post content end -->
-                        </div><!-- Post block style end -->
-                    </li><!-- Li 2 end -->
-
-                    <li class="clearfix">
-                        <div class="post-block-style post-float clearfix">
-                            <div class="post-thumb">
-                                <a href="#">
-                                    <img class="img-responsive" src="images/news/tech/robot5.jpg"
-                                         alt="">
-                                </a>
-                                <a class="post-cat" href="#">رباتیک</a>
-                            </div><!-- Post thumb end -->
-
-                            <div class="post-content">
-                                <h2 class="post-title title-small">
-                                    <a href="#">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                        چاپ و با</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="post-date">30 فروردین 1396</span>
-                                </div>
-                            </div><!-- Post content end -->
-                        </div><!-- Post block style end -->
-                    </li><!-- Li 3 end -->
-
-                    <li class="clearfix">
-                        <div class="post-block-style post-float clearfix">
-                            <div class="post-thumb">
-                                <a href="#">
-                                    <img class="img-responsive" src="images/news/lifestyle/food1.jpg"
-                                         alt="">
-                                </a>
-                                <a class="post-cat" href="#">غذا</a>
-                            </div><!-- Post thumb end -->
-
-                            <div class="post-content">
-                                <h2 class="post-title title-small">
-                                    <a href="#">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                        چاپ</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="post-date">27 خرداد 1396</span>
-                                </div>
-                            </div><!-- Post content end -->
-                        </div><!-- Post block style end -->
-                    </li><!-- Li 4 end -->
 
                 </ul><!-- List post end -->
             </div><!-- List post block end -->

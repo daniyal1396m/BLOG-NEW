@@ -67,7 +67,11 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
  *
  * */
 Route::get('/categoryList', [CategoryController::class, 'index'])->name('category');
-Route::get('/Lists', [ArticleController::class, 'list'])->name('list');
+Route::get('/Articles/Lists', [ArticleController::class, 'ArtList'])->name('article.list');
+Route::get('/Newsletter/Lists', [ArticleController::class, 'NewsList'])->name('newsletter.list');
+Route::get('/Category/Lists', [ArticleController::class, 'CatList'])->name('category.list');
+Route::get('/Ad/Lists', [ArticleController::class, 'AdList'])->name('admins.list');
+Route::get('/Callus/Lists', [ArticleController::class, 'CallList'])->name('callus.list');
 
 /*
  *
@@ -87,7 +91,7 @@ Route::get('/getCatSub/{cat_id}', [CategoryController::class, 'check'])->name('g
 //Route::post('/storeCategory',[CategoryController::class, 'store'])->name('store');
 Route::post('/storeCategory', [CategoryController::class, 'store']);
 Route::get('/res/callus/{id}', [CallusController::class, 'response']);
-
+Route::get('/subcategory/{id}', [CategoryController::class, 'find']);
 /*
  *
  *

@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->integer('sub_category',null);
             $table->string('title', 30);
             $table->string('body', 50);
-            $table->string('description', 500);
+            $table->string('description', 10000);
 //            $table->string('name', 255);
             $table->string('image', 255);//path
 //            $table->string('video', 255)->nullable();
