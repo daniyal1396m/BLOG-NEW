@@ -15,12 +15,10 @@ class CreateCallusesTable extends Migration
     {
         Schema::create('calluses', function (Blueprint $table) {
             $table->id();
-            $table->string('name',50);
-            $table->string('lastname',50);
+            $table->string('name',60);
             $table->string('email',100);
-            $table->integer('phone',null)->nullable();
-            $table->string('title',50);
-            $table->string('body',100);
+            $table->string('subject',20);
+            $table->string('message',150);
             $table->timestamps();
         });
     }

@@ -30,11 +30,11 @@
                                 <div class="row">
                                     <div class="col-md-5 col-sm-6">
                                         <div class="post-thumb thumb-float-style">
-                                            <a href="#">
-                                                <img class="img-responsive" src="/uploads/{{$article->pic}}"
-                                                     alt="{{$article->name}}">
+                                            <a href="/article/single/{{$article->id}}">
+                                                <img class="img-responsive" src="{{url('/')."/".$article->image}}"
+                                                     alt="{{$article->title}}">
                                             </a>
-                                            <a class="post-cat" href="#">{{$article->cat_id}}</a>
+                                            <a class="post-cat" href="#">{{$article->sub_category}}</a>
                                         </div>
                                     </div><!-- Img thumb col end -->
 
@@ -45,13 +45,7 @@
                                             </h2>
                                             <div class="post-meta">
                                                 <span class="post-author"><a href="#">{{$article->user_id}}</a></span>
-                                                <span class="post-date">{{$article->created_at}}</span>
-                                                <span class="post-comment pull-right"><i class="fa fa-comments-o"></i><a
-                                                        href="#"
-                                                        class="comments-link"><span>{{$articles->countComments}}</span></a></span>
-                                                <span class="post-comment pull-right"><i class="fa fa-comments-o"></i><a
-                                                        href="#"
-                                                        class="comments-link"><span>{{$articles->countViews}}</span></a></span>
+                                                <span class="post-date">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                             </div>
                                             <p>{{$article->body}}</p>
                                         </div><!-- Post content end -->
@@ -61,9 +55,9 @@
 
                         @endforeach
 
-                    <div class="paging">
-                        {{$articles->render()}}
-                    </div>
+                        <div class="paging">
+                            {{$articles->render()}}
+                        </div>
                     @else
                         <h1>فعلا هیچ داده ای نیست </h1>
                     @endif

@@ -34,7 +34,9 @@
                                         <th>عکس</th>
                                         <th>عنوان</th>
                                         <th>متن</th>
+                                        <th>توضیحات</th>
                                         <th>دسته بندی</th>
+                                        <th> زیردسته بندی</th>
                                         <th>فعال غیر فعال</th>
                                         <th>ویرایش</th>
                                     </tr>
@@ -43,11 +45,13 @@
                                     @foreach($articles as $art)
                                         <tr>
                                             <th scope="row">{{$art->id}}</th>
-                                            <td><img src="/uploads/{{$art->pic}}" alt="pic"></td>
+                                            <td><img src="{{url('/')."/".$art->image}}" alt="pic" width="50px" height="50px"></td>
                                             <td>{{$art->title}}</td>
                                             <td>{{$art->body}}</td>
-                                            <td>{{$art->cat_id}}</td>
-                                            @if($arti->status==1)
+                                            <td>{{$art->description}}</td>
+                                            <td>{{$art->category}}</td>
+                                            <td>{{$art->sub_category}}</td>
+                                            @if($art->status==1)
                                                 <td><a href="{{ url('delete/article/'.$art->id)}}"
                                                        class="btn btn-success  delete-cat updateCat">
                                                         فعال</a></td>

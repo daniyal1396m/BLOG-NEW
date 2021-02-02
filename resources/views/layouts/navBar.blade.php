@@ -12,6 +12,9 @@
                 <li>
                     <a href="/">خانه </a>
                 </li>
+                <li>
+                    <a href="{{route('contactUs')}}">تماس با ما </a>
+                </li>
                 @foreach($categories as $rowCat)
                     <li class="dropdown">
                         @if(empty($rowCat->parent_id))

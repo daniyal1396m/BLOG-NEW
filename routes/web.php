@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CallusController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NewsletterController;
 use App\Models\Category;
@@ -28,6 +29,7 @@ use http\Env\Response;
  *
  */
 Route::get('/', [ArticleController::class, 'index']);
+Route::get('/article/single/{id}', [ArticleController::class, 'single']);
 Route::middleware('auth')->get('/form', [ArticleController::class, 'form'])->name('form');
 Route::post('/send/Article', [ArticleController::class, 'store'])->name('article.store');
 
@@ -39,7 +41,7 @@ Route::post('/send/Article', [ArticleController::class, 'store'])->name('article
  *
  * */
 Route::get('/contactus', [CallusController::class, 'index'])->name('contactUs');
-Route::post('/sendContact', [CallusController::class, 'store'])->name('sendContactus');
+Route::post('/sendMessage', [CallusController::class, 'store'])->name('store.Contactus');
 
 /*
  *
@@ -96,3 +98,11 @@ Route::get('/res/callus/{id}', [CallusController::class, 'response']);
 Route::post('/update/category', [CategoryController::class, 'delete'])->name('delete.category');
 Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
 Route::post('/edit/category', [CategoryController::class, 'storeEdit'])->name('store.category.edit');
+/*
+ *
+ *
+ * comments route
+ *
+ *
+ * */
+Route::post('/store/comment', [CommentController::class, 'store'])->name('store.comment');

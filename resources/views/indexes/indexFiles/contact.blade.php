@@ -13,23 +13,7 @@
                 @include('layouts.navBar')
             </div><!--/ Row end -->
         </div><!--/ Container end -->
-
     </div><!-- Menu wrapper end -->
-
-{{--    <div class="page-title">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-sm-12">--}}
-{{--                    <ol class="breadcrumb">--}}
-{{--                        <li><a href="#">خانه</a></li>--}}
-{{--                        <li><a href="#">ویژگی ها</a></li>--}}
-{{--                        <li>تماس</li>--}}
-{{--                    </ol>--}}
-{{--                </div><!-- Col end -->--}}
-{{--            </div><!-- Row end -->--}}
-{{--        </div><!-- Container end -->--}}
-{{--    </div><!-- Page title end -->--}}
-
     <section class="block-wrapper">
         <div class="container">
             <div class="row">
@@ -65,48 +49,55 @@
                         </div>
 
                     </div><!-- Widget end -->
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success">
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
                     <h3>فرم تماس</h3>
-                    <form id="contact-form" action="{{route('sendContactus')}}" method="post" role="form">
-                        @csrf
+
+                    <form id="contact-form" action="{{route('store.Contactus')}}" method="post" role="form">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <div class="error-container"></div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>نام</label>
                                     <input class="form-control form-control-name" name="name" id="name" placeholder=""
-                                           type="text" required>
+                                           type="text" >
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ایمیل</label>
                                     <input class="form-control form-control-email" name="email" id="email"
-                                           placeholder="" type="email" required>
+                                           placeholder="" type="email" >
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>موضوع</label>
                                     <input class="form-control form-control-subject" name="subject" id="subject"
-                                           placeholder="" required>
+                                           placeholder="" >
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>ارسال فایل</label>
-                                <input class="form-control form-control-file" name="the_file" id="the_file"
-                                       placeholder="" type="file" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>پیام</label>
                             <textarea class="form-control form-control-message" name="message" id="message"
-                                      placeholder="" rows="10" required></textarea>
+                                      placeholder="" rows="10" ></textarea>
                         </div>
                         <div class="text-right"><br>
-                            <button class="btn btn-primary solid blank" type="submit">ارسال پیام</button>
+                            <button class="btn btn-primary" type="submit">ارسال پیام</button>
                         </div>
                     </form>
 

@@ -30,6 +30,19 @@ class ArticleController extends Controller
         $categories = Category::where(['status' => 1])->get();
         return view('indexes.index', compact('articles', 'categories'));
     }
+    /*
+     *
+     *
+     * see single page
+     *
+     *
+     * */
+    public function single($id)
+    {
+        $articles = Article::where('id',$id)->get();
+        $categories = Category::where(['status' => 1])->get();
+        return view('indexes.indexFiles.single-post', compact('articles', 'categories'));
+    }
 
     /*
      *
@@ -80,10 +93,10 @@ class ArticleController extends Controller
             'description' => 'required|min:50|max:500',
         ]);
         $year = Carbon::now()->year;
-        $imagePath = "/uploads/images/{$year}/";
+        $imagePath = "uploads/images/{$year}/";
         $image = time().$request['image']->getClientOriginalName();
-        $request['image']->move(public_path($imagePath) , $image);
-        $article = Article::create(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1,'slug'=>$request['title'],'image'=> $image]));
+        $pic=$request['image']->move($imagePath, $image);
+        $article = Article::create(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1,'slug'=>$request['title'],'image'=> $pic]));
         if ($article) {
             return redirect()->back()->with('status', 'فرم ارسال شد');
         } else {
