@@ -17,25 +17,25 @@
                 </li>
                 @foreach($categories as $rowCat)
                     <li class="dropdown">
-                        @if(empty($rowCat->parent_id))
+                        @if($rowCat->parent_id == null)
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{$rowCat->name}}</a>
-
-{{--                        @else--}}
-{{--                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{$rowCat->name}}<i--}}
-{{--                                    class="fa fa-angle-down"></i></a>--}}
+                            @if($rowCat->subcategories)
+                                <ul class="dropdown-menu" role="menu">
+                                    @foreach($rowCat->subcategories as $child)
+                                        <li class="dropdown-submenu">
+                                            <a href="#">{{$child->name}}</a>
+                                            @if($child->subcategories)
+                                                <ul class="dropdown-menu">
+                                                    @foreach($child->subcategories as $childe)
+                                                        <li><a href="/">{{$childe->name}}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul><!-- End dropdown -->
+                            @endif
                         @endif
-                        @if($rowCat->subcategories)
-                            <ul class="dropdown-menu" role="menu">
-                                @foreach($rowCat->subcategories as $child)
-                                    <li class="dropdown-submenu">
-                                        <ul class="dropdown-menu">
-                                            <li><a href="/subcategory/{{$child->id}}">{{$child->name}}</a></li>
-                                        </ul>
-                                    </li>
-                                @endforeach
-                            </ul><!-- End dropdown -->
-                        @endif
-
                     </li><!-- Features menu end -->
                 @endforeach
             </ul>

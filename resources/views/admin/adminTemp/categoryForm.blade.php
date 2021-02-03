@@ -40,20 +40,7 @@
                 </div>
                 <button type="submit" class="btn btn-secondary btn-lg btn-block">ارسال دسته بندی یا زیر دسته بندی
                 </button>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
+                @include('layouts.messages')
             </form>
 
         </div>

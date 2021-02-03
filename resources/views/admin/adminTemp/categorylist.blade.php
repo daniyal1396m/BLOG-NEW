@@ -44,16 +44,16 @@
                                             <td>{{$cats->level}}</td>
                                             <td>{{$cats->parent_id}}</td>
                                             @if($cats->status==1)
-                                                <td><a href="{{ url('/update/category/'.$cats->id)}}"
+                                                <td><a href="{{route('update.category',[$cats->id])}}"
                                                        class="btn btn-success  delete-cat">
                                                         فعال</a></td>
                                             @else
-                                                <td><a href="{{ url('/update/category/'.$cats->id)}}"
+                                                <td><a href="{{route('update.category',[$cats->id])}}"
                                                        class="btn btn-danger">غیر
                                                         فعال</a>
                                                 </td>
                                             @endif
-                                            <td><a href="{{ url('/edit/category/'.$cats->id)}}" class="btn btn-dark">ویرایش</a></td>
+                                            <td><a href="{{route('edit.category',[$cats->id])}}" class="btn btn-dark">ویرایش</a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

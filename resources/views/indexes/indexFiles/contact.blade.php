@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
 
-                    <h3>تماس با ما</h3>
+                    <h3>درباره ما </h3>
                     <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
                         چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی
                         مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه
@@ -65,36 +65,37 @@
                     @endif
                     <h3>فرم تماس</h3>
 
-                    <form id="contact-form" action="{{route('store.Contactus')}}" method="post" role="form">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                    <form action="{{route('store.Contactus')}}" method="POST">
+                        @csrf
                         <div class="error-container"></div>
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>نام</label>
-                                    <input class="form-control form-control-name" name="name" id="name" placeholder=""
-                                           type="text" >
+                                    <input class="form-control form-control-name" name="name" id="name"
+                                           placeholder="نام خود را وارد کنید "
+                                           type="text">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>ایمیل</label>
                                     <input class="form-control form-control-email" name="email" id="email"
-                                           placeholder="" type="email" >
+                                           placeholder="پست الکترونیکی خود را وارد کنید" type="email">
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>موضوع</label>
                                     <input class="form-control form-control-subject" name="subject" id="subject"
-                                           placeholder="" >
+                                           placeholder=" موضوع  پیام خود را وارد کنید">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>پیام</label>
                             <textarea class="form-control form-control-message" name="message" id="message"
-                                      placeholder="" rows="10" ></textarea>
+                                      placeholder="متن  پیام خود را وارد کنید " rows="10"></textarea>
                         </div>
                         <div class="text-right"><br>
                             <button class="btn btn-primary" type="submit">ارسال پیام</button>

@@ -52,16 +52,16 @@
                                             <td>{{$art->category}}</td>
                                             <td>{{$art->sub_category}}</td>
                                             @if($art->status==1)
-                                                <td><a href="{{ url('/update/article/'.$art->id)}}"
+                                                <td><a href="{{route('update.article',[$art->id])}}"
                                                        class="btn btn-success  delete-cat updateCat">
                                                         فعال</a></td>
                                             @else
-                                                <td><a href="{{ url('/update/article/'.$art->id)}}"
+                                                <td><a href="{{route('update.article',[$art->id])}}"
                                                        class="btn btn-danger updateCat">غیر
                                                         فعال</a>
                                                 </td>
                                             @endif
-                                            <td><a href="{{ url('/edit/article/'.$art->id)}}">ویرایش</a></td>
+                                            <td><a href="{{route('edit.article',[$art->id])}}">ویرایش</a></td>
                                         </tr>
                                     @endforeach
                                     </tbody>

@@ -148,6 +148,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Blog-laravel" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -188,6 +189,10 @@
       <workItem from="1612075147472" duration="13734000" />
       <workItem from="1612155763292" duration="24823000" />
       <workItem from="1612244345575" duration="21426000" />
+      <workItem from="1612281427872" duration="1523000" />
+      <workItem from="1612327858505" duration="4838000" />
+      <workItem from="1612334886341" duration="3992000" />
+      <workItem from="1612338920036" duration="11670000" />
     </task>
     <servers />
   </component>

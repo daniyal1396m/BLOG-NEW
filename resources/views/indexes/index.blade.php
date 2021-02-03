@@ -44,7 +44,7 @@
                                                 <a href="/article/single/{{$article->id}}">{{$article->title}}</a>
                                             </h2>
                                             <div class="post-meta">
-                                                <span class="post-author"><a href="#">{{$article->user_id}}</a></span>
+                                                <span class="post-author"><a href="#">{{$article->user->name}}</a></span>
                                                 <span class="post-date">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                             </div>
                                             <p>{{$article->body}}</p>

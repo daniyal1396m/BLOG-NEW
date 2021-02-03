@@ -19,9 +19,10 @@ class CallusController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
+//        dd($request->all());
         $request->validate([
             'name' => 'required|min:10|max:60',
-            'email' => 'required|min:20|max:100',
+            'email' => 'required|min:20|max:100|email',
             'subject' => 'required|min:15|max:20',
             'message' => 'required|min:50|max:150',
         ]);
@@ -32,5 +33,12 @@ class CallusController extends Controller
             return redirect()->back()->with('session', 'فرم ارسال شد');
         }
 
+    }
+
+    public function test()
+    {
+        $cats = Category::where('id',1)->with(['subcategories' => function ($query) {
+            $query->where('status', 1);
+        }])->get();
     }
 }

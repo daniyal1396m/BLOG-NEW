@@ -26,13 +26,13 @@
                             <div class="single-post">
 
                                 <div class="post-title-area">
-                                    <a class="post-cat" href="#">{{$article->sub_category}}</a>
+                                    <a class="post-cat" href="#">{{$article->category->name}}</a>
                                     <h2 class="post-title">
                                         {{$article->title}}
                                     </h2>
                                     <div class="post-meta">
 									<span class="post-author">
-										 <a href="#">{{$article->user_id}}</a>
+										 <a href="#">{{$article->user->name}}</a>
 									</span>
                                         <span class="post-date"><i
                                                 class="fa fa-clock-o"></i>  ارسال شده در تاریخ {{verta($article->created_at)->format('%B %d, %Y')}} </span>
@@ -67,62 +67,48 @@
 
                         <ul class="comments-list">
                             <li>
+                                @foreach($comments as $comment)
                                 <div class="comment">
                                     <div class="comment-body">
                                         <div class="meta-data">
-                                            <span class="comment-author">میلاد آقایی</span>
-                                            <span class="comment-date pull-right">26 دی 1396 - 15:36</span>
+                                            <span class="comment-author">{{$comment->name}}</span>
+                                            <span class="comment-date pull-right">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                         </div>
                                         <div class="comment-content">
-                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                                                طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و
-                                                سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی</p></div>
-                                        <div class="text-left">
-                                            <a class="comment-reply" href="#">پاسخ</a>
-                                        </div>
+                                            <p>{{$comment->message}}</p></div>
+{{--                                        <div class="text-left">--}}
+{{--                                            <a class="comment-reply" href="#">پاسخ</a>--}}
+{{--                                        </div>--}}
                                     </div>
                                 </div><!-- Comments end -->
-
-                                <ul class="comments-reply">
-                                    <li>
-                                        <div class="comment">
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <span class="comment-author">فرهاد عظیم پور</span>
-                                                    <span class="comment-date pull-right">26 دی 1396 - 15:36</span>
-                                                </div>
-                                                <div class="comment-content">
-                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با
-                                                        استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله
-                                                        در ستون</p></div>
-                                                <div class="text-left">
-                                                    <a class="comment-reply" href="#">پاسخ</a>
-                                                </div>
-                                            </div>
-                                        </div><!-- Comments end -->
-                                    </li>
-                                </ul><!-- comments-reply end -->
+                                @endforeach
+{{--                                <ul class="comments-reply">--}}
+{{--                                    <li>--}}
+{{--                                        <div class="comment">--}}
+{{--                                            <div class="comment-body">--}}
+{{--                                                <div class="meta-data">--}}
+{{--                                                    <span class="comment-author">فرهاد عظیم پور</span>--}}
+{{--                                                    <span class="comment-date pull-right">26 دی 1396 - 15:36</span>--}}
+{{--                                                </div>--}}
+{{--                                                <div class="comment-content">--}}
+{{--                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با--}}
+{{--                                                        استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله--}}
+{{--                                                        در ستون</p></div>--}}
+{{--                                                <div class="text-left">--}}
+{{--                                                    <a class="comment-reply" href="#">پاسخ</a>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </div><!-- Comments end -->--}}
+{{--                                    </li>--}}
+{{--                                </ul><!-- comments-reply end -->--}}
                             </li><!-- Comments-list li end -->
                         </ul><!-- Comments-list ul end -->
                     </div><!-- Post comment end -->
 
                     <div class="comments-form">
                         <h3 class="title-normal">دیدگاه خود را بیان کنید</h3>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @endif
-                        <form role="form" action="{{route('store.comment')}}" method="post">
+                       @include('layouts.messages')
+                        <form role="form" action="{{route('store.comment',['slug',$article->slug])}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -145,11 +131,11 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="وب‌سایت" type="text" name="website">
-                                    </div>
-                                </div>
+{{--                                <div class="col-md-12">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <input class="form-control" placeholder="وب‌سایت" type="text" name="website">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                             </div><!-- Form row end -->
                             <div class="clearfix">
                                 <button class="comments-btn btn btn-primary" type="submit">ارسال دیدگاه</button>

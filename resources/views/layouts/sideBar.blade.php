@@ -6,7 +6,7 @@
             <ul class="social-icon-box unstyled">
                 <li class="rss">
                     <a href="https://www.w3schools.com/login"><i class="fa fa-rss"></i>
-                        <span class="ts-social-title">لورم</span>
+                        <span class="ts-social-title">آموزش وب</span>
                         <span class="ts-social-desc">لورم ایپسوم متن ساختگی</span></a>
                 </li>
 
@@ -24,7 +24,7 @@
 
                 <li class="gplus">
                     <a href="https://www.google.com/login"><i class="fa fa-google-plus"></i>
-                        <span class="ts-social-title">لورم ایپسوم</span>
+                        <span class="ts-social-title">گوگل</span>
                         <span class="ts-social-desc">لورم ایپسوم متن ساختگی</span></a>
                 </li>
             </ul>
@@ -32,24 +32,27 @@
 
         <div class="widget color-default">
             <h3 class="block-title"><span>اخبار پربازدید</span></h3>
-            @foreach($articlesViews as $article)
-                    <div class="post-overaly-style clearfix">
-                        <div class="post-thumb">
-                            <a href="#">
-                                <img class="img-responsive" src="{{url('/')."/".$article->image}}" alt="{{$article->title}}">
-                            </a>
-                        </div>
+          @foreach($articles as $article)
+                @if($article->countviews > 10)
+                <div class="post-overaly-style clearfix">
+                    <div class="post-thumb">
+                        <a href="#">
+                            <img class="img-responsive" src="{{url('/')."/".$article->image}}"
+                                 alt="{{$article->title}}">
+                        </a>
+                    </div>
 
-                        <div class="post-content">
-                            <a class="post-cat">{{$article->sub_category}}</a>
-                            <h2 class="post-title title-small">
-                                <a href="/single/{{$article->id}}">{{$article->title}}</a>
-                            </h2>
-                            <div class="post-meta">
-                                <span class="post-date">{{$article->created_at}}</span>
-                            </div>
-                        </div><!-- Post content end -->
-                    </div><!-- Post Overaly Article end -->
+                    <div class="post-content">
+                        <a class="post-cat">{{$article->sub_category}}</a>
+                        <h2 class="post-title title-small">
+                            <a href="/single/{{$article->id}}">{{$article->title}}</a>
+                        </h2>
+                        <div class="post-meta">
+                            <span class="post-date">{{$article->created_at}}</span>
+                        </div>
+                    </div><!-- Post content end -->
+                </div><!-- Post Overaly Article end -->
+                @endif
             @endforeach
 
             <div class="list-post-block">
@@ -58,7 +61,7 @@
                         <div class="post-block-style post-float clearfix">
                             <div class="post-thumb">
                                 <a href="#">
-                                    <img class="img-responsive" src="images/news/tech/gadget3.jpg"
+                                    <img class="img-responsive" src="/images/news/tech/gadget3.jpg"
                                          alt="">
                                 </a>
                                 <a class="post-cat" href="#">گجت ها</a>
@@ -82,27 +85,14 @@
         </div><!-- Popular news widget end -->
 
         <div class="widget text-center">
-            <img class="banner img-responsive" src="images/banner-ads/ad-sidebar.png" alt="">
+            <img class="banner img-responsive" src="/images/banner-ads/ad-sidebar.png" alt="">
         </div><!-- Sidebar Ad end -->
 
         <div class="widget m-bottom-0">
 
             <h3 class="block-title"><span>خبرنامه</span></h3>
             <div class="ts-newsletter">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
+                @include('layouts.messages')
                 <div class="newsletter-introtext">
                     <h4>به روز باشید</h4>
                     <p>با عضویت در خبرنامه جدیدترین اخبار را در ایمیل خود دریافت کنید!</p>

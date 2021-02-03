@@ -134,6 +134,8 @@ return array(
         "tags" => "تگ ها",
         "category" => " دسته بندی ",
         "sub_category" => "زیر دسته بندی",
-        "pic" => "عکس"
+        "pic" => "عکس",
+        "subject" => "موضوع",
+        "message" => "پیام",
     ),
 );

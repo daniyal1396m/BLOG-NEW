@@ -13,20 +13,7 @@
         <div class="x_content">
             <br/>
             <h4>فرم ارسال مقاله </h4>
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success">
-                    <strong>{{ $message }}</strong>
-                </div>
-            @endif
+            @include('layouts.messages')
             <form class="form-horizontal form-label-left" method="post" action="{{route('article.store')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">

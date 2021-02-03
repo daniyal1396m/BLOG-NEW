@@ -27,9 +27,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::where('status', 1)->paginate(5);
-        $categories = Category::where(['status' => 1])->get();
-        $articlesViews = Article::where('countViews' > 9)->get();
-        return view('indexes.index', compact('articles', 'categories', 'articlesViews'));
+        $categories = Category::where('status', 1)->get();
+        return view('indexes.index', compact('articles', 'categories'));
     }
 
     /*
@@ -39,14 +38,13 @@ class ArticleController extends Controller
      *
      *
      * */
-    public function single($id)
+    public function single(Article $article, $id)
     {
 
         $articles = Article::where('id', $id)->get();
-//        $articles->increments('countViews');
         $categories = Category::where(['status' => 1])->get();
-//        $articles->increment('countViews');
-        return view('indexes.indexFiles.single-post', compact('articles', 'categories'));
+        $comments = $article->comments()->get();
+        return view('indexes.indexFiles.single-post', compact('articles', 'categories', 'comments'));
     }
 
     /*
@@ -171,7 +169,7 @@ class ArticleController extends Controller
      * update status
      *
      * */
-    public function update($id)
+    public function update($id): RedirectResponse
     {
         $status = Article::find($id);
         if ($status['status'] == 0) {
@@ -190,9 +188,9 @@ class ArticleController extends Controller
      * */
     public function edit($id)
     {
-        $editArticle = Article::where('id',$id)->get();
-        return view('admin.adminTemp.articleFormEdit', compact('editArticle'));
-//        return view('admin.adminTemp.articleFormEdit');
+        $editArticle = Article::where('id', $id)->get();
+        $categories = Category::where(['parent_id' => null, 'status' => 1])->get();
+        return view('admin.adminTemp.articleFormEdit', compact('editArticle', 'categories'));
     }
 
     /*
@@ -201,9 +199,18 @@ class ArticleController extends Controller
      * send category
      *
      * */
-    public function storeEdit(Request $request)
+    public function storeEdit(Request $request, $id): RedirectResponse
     {
-        Category::where('id', $request['id'])->update(['name' => $request['name']]);
-        return back()->with('success', 'ویرایش شد');
+        $edit = Article::find($id);
+        if (!empty($image)) {
+            $year = Carbon::now()->year;
+            $imagePath = "uploads/images/{$year}/";
+            $image = time() . $request['image']->getClientOriginalName();
+            $pic = $request['image']->move($imagePath, $image);
+            $edit->update(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1, 'slug' => $request['title'], 'image' => $pic]));
+        } else {
+            $edit->update(array_merge($request->all(), ['user_id' => Auth::id(), 'status' => 1, 'slug' => $request['title']]));
+        }
+        return redirect()->back()->with('status', 'ویرایش شد');
     }
 }
