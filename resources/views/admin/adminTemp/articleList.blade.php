@@ -45,23 +45,40 @@
                                     @foreach($articles as $art)
                                         <tr>
                                             <th scope="row">{{$art->id}}</th>
-                                            <td><img src="{{url('/')."/".$art->image}}" alt="pic" width="50px" height="50px"></td>
+                                            <td><img src="{{url('/')."/".$art->image}}" alt="pic" width="50px"
+                                                     height="50px"></td>
                                             <td>{{$art->title}}</td>
                                             <td>{{$art->body}}</td>
                                             <td>{{$art->description}}</td>
                                             <td>{{$art->category}}</td>
                                             <td>{{$art->sub_category}}</td>
-                                            @if($art->status==1)
-                                                <td><a href="{{route('update.article',[$art->id])}}"
-                                                       class="btn btn-success  delete-cat updateCat">
-                                                        فعال</a></td>
+                                            @if($art->deleted_at==null)
+                                                <td>
+                                                    <form action="{{route('destroy.article',[$art->id])}}" method="post">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-success  delete-cat updateCat">
+                                                            فعال
+                                                        </button>
+                                                    </form>
+                                                </td>
                                             @else
-                                                <td><a href="{{route('update.article',[$art->id])}}"
-                                                       class="btn btn-danger updateCat">غیر
-                                                        فعال</a>
+                                                <td>
+                                                    <form action="{{route('destroy.article',[$art->id])}}" method="post">
+                                                        @csrf
+                                                        <button type="submit"
+                                                                class="btn btn-danger updateCat">غیر
+                                                            فعال
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             @endif
-                                            <td><a href="{{route('edit.article',[$art->id])}}">ویرایش</a></td>
+                                            <td>
+                                                <form action="{{route('article.edit',['article'=>$art->id])}}"
+                                                      method="post">
+                                                    <button type="submit" class="btn btn-dark">ویرایش</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

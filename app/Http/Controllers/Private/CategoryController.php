@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Private;
 
+use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
-use http\Env\Response;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Compound;
-use Symfony\Component\Console\Input\Input;
+use Illuminate\View\Factory;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
@@ -22,8 +23,14 @@ class CategoryController extends Controller
      * */
     public function index(Request $request)
     {
-        $subCat = Category::where(['status' => 1])->get();
+        $subCat = Category::withTrashed()->get();
         return view('admin.adminTemp.categoryForm', compact('subCat'));
+    }
+
+    public function CatList(): Factory|View|Application
+    {
+        $categories = Category::withTrashed()->paginate(5);
+        return view('admin.adminTemp.categorylist', compact('categories'));
     }
 
     /*
@@ -35,8 +42,7 @@ class CategoryController extends Controller
      * */
     public function check($cat_id): JsonResponse
     {
-//        $subcategories = Category::where('parent_id', $cat_id)->where('status', 1)->where('level', '>', 1);
-        $subcategories = Category::where('parent_id', $cat_id)->where('status', 1)->get();
+        $subcategories = Category::where('parent_id', $cat_id)->withTrashed()->get();
         return response()->json(['child' => $subcategories]);
     }
 
@@ -49,7 +55,7 @@ class CategoryController extends Controller
      * */
     public function find($id)
     {
-        $articles = Article::where('sub_category', $id)->where('status', 1)->get();
+        $articles = Article::where('sub_category', $id)->withTrashed()->get();
         return view('indexes.index', compact('articles'));
     }
 
@@ -98,20 +104,20 @@ class CategoryController extends Controller
      *
      *
      * */
-    public function update($id): RedirectResponse
+    public function destroy($id)
     {
-        $status = Category::find($id);
-        if ($status['status'] == 0) {
-            $status->update(['status' => '1']);
+        $deleted_at = Category::where('id', $id)->withTrashed()->first();
+        if ($deleted_at['deleted_at'] != null) {
+            $deleted_at->restore();
         } else {
-            $status->update(['status' => '0']);
+            $deleted_at->delete();
         }
         return redirect()->back()->with('success', 'وضعیت تغیر کرد');
     }
 
     public function edit($id)
     {
-        $editCat = Category::where('id',$id)->get();
+        $editCat = Category::where('id', $id)->get();
         return view('admin.adminTemp.categoryFormEdit', compact('editCat'));
     }
 

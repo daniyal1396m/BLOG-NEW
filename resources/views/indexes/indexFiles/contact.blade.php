@@ -49,20 +49,7 @@
                         </div>
 
                     </div><!-- Widget end -->
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <strong>{{ $message }}</strong>
-                        </div>
-                    @endif
+                    @include('layouts.messages')
                     <h3>فرم تماس</h3>
 
                     <form action="{{route('store.Contactus')}}" method="POST">

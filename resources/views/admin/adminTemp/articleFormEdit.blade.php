@@ -27,11 +27,10 @@
                     <strong>{{ $message }}</strong>
                 </div>
             @endif
-            @foreach($editArticle as $edit)
-                <form class="form-horizontal form-label-left" method="post" action="{{route('store.edit.article',[$edit->id])}}" enctype="multipart/form-data">
+                <form class="form-horizontal form-label-left" method="post" action="{{route('store.edit.article',[$article->id])}}" enctype="multipart/form-data">
 
                     @csrf
-                    <div class="text-center"><img src="{{url('/')."/".$edit->image}}" alt="" class="img-responsive" width="304" height="236"></div>
+                    <div class="text-center"><img src="{{url('/')."/".$article->image}}" alt="" class="img-responsive" width="304" height="236"></div>
 
                     <div class="form-group">
                         <label class="control-label col-md-3" for="image">عکس <span
@@ -40,7 +39,7 @@
 
                         <div class="col-md-7">
                             <input type="file" id="image"
-                                   class="form-control col-md-7 col-xs-12" name="image" value="{{$edit->image}}">
+                                   class="form-control col-md-7 col-xs-12" name="image" value="{{$article->image}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -49,7 +48,7 @@
                         </label>
                         <div class="col-md-7">
                             <input type="text" id="title"
-                                   class="form-control col-md-7 col-xs-12" name="title" placeholder="تیتر" value="{{$edit->title}}">
+                                   class="form-control col-md-7 col-xs-12" name="title" placeholder="تیتر" value="{{$article->title}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -58,7 +57,7 @@
                         </label>
                         <div class="col-md-7">
                             <select id="category" class="form-control col-md-7 col-xs-12" name="category">
-                                <option value="{{$edit->category}}">{{$edit->category}}</option>
+                                <option value="{{$article->category}}">{{$article->category}}</option>
                                 @if(count($categories))
                                     @foreach($categories as $rowCategory)
                                         <option value="{{$rowCategory->id}}">{{$rowCategory->name}}</option>
@@ -75,7 +74,7 @@
                         </label>
                         <div class="col-md-7">
                             <select name="sub_category" id="sub_category" class="form-control col-md-7 col-xs-12">
-                                <option value="{{$edit->sub_category}}">{{$edit->sub_category}}</option>
+                                <option value="{{$article->sub_category}}">{{$article->sub_category}}</option>
                                 <option value=""></option>
                             </select>
                         </div>
@@ -86,7 +85,7 @@
                         </label>
                         <div class="col-md-7">
                             <input type="text" id="body" name="body" class="form-control col-md-7 col-xs-12"
-                                   placeholder="متن" value="{{$edit->body}}">
+                                   placeholder="متن" value="{{$article->body}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -96,13 +95,12 @@
                         <div class="col-md-7">
                         <textarea type="text" id="description" name="description"
                                   class="form-control col-md-7 col-xs-12" rows="7"
-                                  placeholder="توضیحات بیشتتر">{{$edit->description}}</textarea>
+                                  placeholder="توضیحات بیشتتر">{{$article->description}}</textarea>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-secondary btn-lg btn-block">ارسال مقاله</button>
 
                 </form>
-            @endforeach
         </div>
     </div>
 @endsection

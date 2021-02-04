@@ -21,12 +21,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    @if(count($articles))
-                        @foreach($articles as $article)
                             <div class="single-post">
-
                                 <div class="post-title-area">
-                                    <a class="post-cat" href="#">{{$article->category->name}}</a>
+{{--                                    <a class="post-cat" href="#">{{$article->category->name}}</a>--}}
+                                    <a class="post-cat" href="#">{{$article->sub_category}}</a>
                                     <h2 class="post-title">
                                         {{$article->title}}
                                     </h2>
@@ -57,10 +55,7 @@
 
                                 </div><!-- post-content end -->
                             </div><!-- Single post end -->
-                        @endforeach
-                    @else
-                        <h1>در حال حاضر هیچ داده ای نیست </h1>
-                @endif
+
                 <!-- Post comment start -->
                     <div id="comments" class="comments-area block">
                         <h3 class="block-title"><span>{{$article->countComments}} دیدگاه</span></h3>
@@ -108,16 +103,9 @@
                     <div class="comments-form">
                         <h3 class="title-normal">دیدگاه خود را بیان کنید</h3>
                        @include('layouts.messages')
-                        <form role="form" action="{{route('store.comment',['slug',$article->slug])}}" method="post">
+                        <form role="form" action="{{route('store.comment',['id',$article->id])}}" method="post">
                             @csrf
                             <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control required-field" id="message" name="message"
-                                                  placeholder="دیدگاه شما"></textarea>
-                                    </div>
-                                </div><!-- Col end -->
-
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input class="form-control" name="name" id="name" placeholder="نام" type="text">
@@ -130,6 +118,14 @@
                                                type="email">
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control required-field" id="message" name="message"
+                                                  placeholder="دیدگاه شما"></textarea>
+                                    </div>
+                                </div><!-- Col end -->
+
+
 
 {{--                                <div class="col-md-12">--}}
 {{--                                    <div class="form-group">--}}

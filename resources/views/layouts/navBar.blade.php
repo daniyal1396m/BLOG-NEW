@@ -21,13 +21,13 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> {{$rowCat->name}}</a>
                             @if($rowCat->subcategories)
                                 <ul class="dropdown-menu" role="menu">
-                                    @foreach($rowCat->subcategories as $child)
+                                    @foreach($rowCat->subcategories as $childOne)
                                         <li class="dropdown-submenu">
-                                            <a href="#">{{$child->name}}</a>
-                                            @if($child->subcategories)
+                                            <a href="/subcategory/{{$childOne->id}}">{{$childOne->name}}</a>
+                                            @if($childOne->subcategories)
                                                 <ul class="dropdown-menu">
-                                                    @foreach($child->subcategories as $childe)
-                                                        <li><a href="/">{{$childe->name}}</a></li>
+                                                    @foreach($childOne->subcategories as $childe)
+                                                        <li><a href="/subcategory/{{$childe->id}}">{{$childe->name}}</a></li>
                                                     @endforeach
                                                 </ul>
                                             @endif

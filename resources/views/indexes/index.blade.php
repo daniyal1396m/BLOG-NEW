@@ -30,11 +30,11 @@
                                 <div class="row">
                                     <div class="col-md-5 col-sm-6">
                                         <div class="post-thumb thumb-float-style">
-                                            <a href="/article/single/{{$article->id}}">
+                                            <a href="{{route('single.post',$article->id)}}">
                                                 <img class="img-responsive" src="{{url('/')."/".$article->image}}"
                                                      alt="{{$article->title}}">
                                             </a>
-                                            <a class="post-cat" href="#">{{$article->sub_category}}</a>
+{{--                                            <a class="post-cat" href="#">{{$article->subcategory->name}}</a>--}}
                                         </div>
                                     </div><!-- Img thumb col end -->
 
@@ -44,7 +44,7 @@
                                                 <a href="/article/single/{{$article->id}}">{{$article->title}}</a>
                                             </h2>
                                             <div class="post-meta">
-                                                <span class="post-author"><a href="#">{{$article->user->name}}</a></span>
+                                                <span class="post-author">{{$article->user->name}}</span>
                                                 <span class="post-date">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                             </div>
                                             <p>{{$article->body}}</p>

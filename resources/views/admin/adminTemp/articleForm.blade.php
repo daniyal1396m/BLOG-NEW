@@ -14,7 +14,8 @@
             <br/>
             <h4>فرم ارسال مقاله </h4>
             @include('layouts.messages')
-            <form class="form-horizontal form-label-left" method="post" action="{{route('article.store')}}" enctype="multipart/form-data">
+            <form class="form-horizontal form-label-left" method="post" action="{{route('article.store')}}"
+                  enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label class="control-label col-md-3" for="image">عکس <span
@@ -57,7 +58,7 @@
                     </label>
                     <div class="col-md-7">
                         <select name="sub_category" id="sub_category" class="form-control col-md-7 col-xs-12">
-                            {{--                            <option value=""></option>--}}
+                            <option value=""></option>
                         </select>
                     </div>
                 </div>
@@ -98,8 +99,8 @@
                 $('#sub_category').empty();
                 $.each(data, function () {
                     // $('#sub_category').append('<option value="' + sub.id + '">' + sub.name + '</option>');
-                    for (var i=0 ; i<data.child.length;i++){
-                        $('#sub_category').append('<option value="' + data.child[i]['id'] + '">' + data.child[i]['name']+ '</option>');
+                    for (var i = 0; i < data.child.length; i++) {
+                        $('#sub_category').append('<option value="' + data.child[i]['id'] + '">' + data.child[i]['name'] + '</option>');
 
                     }
                 });

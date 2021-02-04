@@ -24,11 +24,11 @@ class CreateArticlesTable extends Migration
 //            $table->string('name', 255);
             $table->string('image', 255);//path
 //            $table->string('video', 255)->nullable();
-            $table->boolean('status');
             $table->string('slug');
             $table->integer('countViews',null)->nullable();
             $table->integer('countComments',null)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

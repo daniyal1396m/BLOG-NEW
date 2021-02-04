@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\CallusController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Private\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\Private\ArticleController;
+use App\Http\Controllers\Public\ArticlePubController;
+use App\Http\Controllers\Public\CallusController;
+use App\Http\Controllers\Public\CallusPubController;
+use App\Http\Controllers\Public\NewsletterController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Input\Input;
@@ -21,70 +23,23 @@ use Symfony\Component\Console\Input\Input;
 |
 */
 
-Route::get('/', [ArticleController::class, 'index']);
-
-
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 
 //Route::post('/storeCategory',[CategoryController::class, 'store'])->name('store');
 
-
-Route::middleware('auth')->prefix('admin')->group(function () {
-    /*
-     *
-     *
-     * articles Routes
-     *
-     *
-     */
-    Route::get('/update/Article/{id}', [ArticleController::class, 'update'])->name('update.article');
-    Route::get('/form', [ArticleController::class, 'form'])->name('form');
-    Route::post('/send/Article', [ArticleController::class, 'store'])->name('article.store');
-    Route::get('/edit/Article/{id}', [ArticleController::class, 'edit'])->name('edit.article');
-    Route::post('/store/edit/Article/{id}', [ArticleController::class, 'storeEdit'])->name('store.edit.article');
-    /*
+Route::get('/', [ArticlePubController::class, 'index']);
+Route::get('/article/single/{id}', [ArticlepubController::class, 'single'])->name('single.post');
+/*
  *
  *
- * admin pages
+ * contacts Routes
  *
  *
  * */
-    Route::get('/categoryList', [CategoryController::class, 'index'])->name('category');
-    Route::get('/Articles/Lists', [ArticleController::class, 'ArtList'])->name('article.list');
-    Route::get('/Newsletter/Lists', [ArticleController::class, 'NewsList'])->name('newsletter.list');
-    Route::get('/Category/Lists', [ArticleController::class, 'CatList'])->name('category.list');
-    Route::get('/Ad/Lists', [ArticleController::class, 'AdList'])->name('admins.list');
-    Route::get('/Callus/Lists', [ArticleController::class, 'CallList'])->name('callus.list');
-
-    /*
-      *
-      *
-      *  categories  route
-      *
-      *
-      * */
-    Route::get('/update/category/{id}', [CategoryController::class, 'update'])->name('update.category');
-    Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
-    Route::post('/edit/category', [CategoryController::class, 'storeEdit'])->name('store.category.edit');
-    Route::post('/storeCategory', [CategoryController::class, 'store']);
-    Route::get('/subcategory/{id}', [CategoryController::class, 'find']);
-
-    /*
-     *
-     *
-     * call us single message
-     *
-     * */
-    Route::get('/res/callus/{id}', [CallusController::class, 'response']);
-
-});
+Route::get('/contactus', [CallusPubController::class, 'index'])->name('contactUs');
+Route::post('/sendMessage', [CallusPubController::class, 'store'])->name('store.Contactus');
 /*
  *
  *
@@ -96,18 +51,11 @@ Route::get('/getCatSub/{cat_id}', [CategoryController::class, 'check'])->name('g
 /*
  *
  *
- * end get sub cat Jquery v1.1
- *
- *
- * */
-/*
- *
- *
  * comments route
  *
  *
  * */
-Route::post('/store/comment/{slug}', [CommentController::class, 'store'])->name('store.comment');
+Route::post('/store/comment/{id}', [CommentController::class, 'store'])->name('store.comment');
 /*
  *
  *
@@ -116,15 +64,55 @@ Route::post('/store/comment/{slug}', [CommentController::class, 'store'])->name(
  *
  * */
 Route::post('/Newsletter', [NewsletterController::class, 'store'])->name('storeNewsLetter');
-/*
+Route::middleware('auth')->prefix('admin')->group(function () {
+    /*
+     *
+     *
+     * articles Routes
+     *
+     *
+     */
+    Route::get('/article', [ArticleController::class, 'ArtList'])->name('article.list');
+    Route::get('/form', [ArticleController::class, 'form'])->name('article.form');
+    Route::post('/delete/Article/{id}', [ArticleController::class, 'destroy'])->name('destroy.article');
+    Route::get('/article/create', [ArticleController::class, 'index'])->name('article.create');
+    Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
+    Route::get('/article/{article}/edit', [ArticleController::class, 'edit'])->name('article.edit');
+    Route::post('/store/edit/Article/{id}', [ArticleController::class, 'storeEdit'])->name('store.edit.article');
+    /*
  *
  *
- * contacts Routes
+ * admin pages
  *
  *
  * */
-Route::get('/contactus', [CallusController::class, 'index'])->name('contactUs');
-Route::post('/sendMessage', [CallusController::class, 'store'])->name('store.Contactus');
-Route::get('/article/single/{id}', [ArticleController::class, 'single']);
+    Route::get('/categoryList', [CategoryController::class, 'index'])->name('category');
+    Route::get('/Newsletter/Lists', [ArticleController::class, 'NewsList'])->name('newsletter.list');
+    Route::get('/Category/Lists', [CategoryController::class, 'CatList'])->name('category.list');
+    Route::get('/Admin/Lists', [ArticleController::class, 'AdList'])->name('admins.list');
+    Route::get('/Callus/Lists', [ArticleController::class, 'CallList'])->name('callus.list');
+
+    /*
+      *
+      *
+      *  categories  route
+      *
+      *
+      * */
+    Route::post('/update/category/{id}', [CategoryController::class, 'destroy'])->name('destroy.category');
+    Route::get('/edit/category/{id}', [CategoryController::class, 'edit'])->name('edit.category');
+    Route::post('/category/edit', [CategoryController::class, 'storeEdit'])->name('store.category.edit');
+    Route::post('/storeCategory', [CategoryController::class, 'store'])->name('store.category');
+    Route::get('/subcategory/{id}', [CategoryController::class, 'find']);
+
+    /*
+     *
+     *
+     * call us single message
+     *
+     * */
+    Route::get('/res/callus/{id}', [CallusController::class, 'response'])->name('response.user');
+
+});
 
 

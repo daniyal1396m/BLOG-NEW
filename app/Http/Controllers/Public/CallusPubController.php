@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Public;
 
+use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Callus;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class CallusController extends Controller
+class CallusPubController extends Controller
 {
     public function index()
     {
-        $articles = Article::where('status', 1)->take(5);
-        $categories = Category::where(['status' => 1])->get();
-        return view('indexes.indexFiles.contact', compact('categories', 'articles'));
+        $articles = Article::where("deleted_at", null)->take(5);
+        $categories = Category::where("deleted_at", null)->get();
+        $articleView = Article::orderby('countViews', 'desc')->first();
+        return view('indexes.indexFiles.contact', compact('categories', 'articles', 'articleView'));
     }
 
     public function store(Request $request): RedirectResponse
     {
-//        dd($request->all());
         $request->validate([
             'name' => 'required|min:10|max:60',
             'email' => 'required|min:20|max:100|email',
@@ -35,10 +36,4 @@ class CallusController extends Controller
 
     }
 
-    public function test()
-    {
-        $cats = Category::where('id',1)->with(['subcategories' => function ($query) {
-            $query->where('status', 1);
-        }])->get();
-    }
 }

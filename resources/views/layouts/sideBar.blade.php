@@ -32,89 +32,60 @@
 
         <div class="widget color-default">
             <h3 class="block-title"><span>اخبار پربازدید</span></h3>
-          @foreach($articles as $article)
-                @if($article->countviews > 10)
-                <div class="post-overaly-style clearfix">
+            <div class="post-overaly-style clearfix">
                     <div class="post-thumb">
                         <a href="#">
-                            <img class="img-responsive" src="{{url('/')."/".$article->image}}"
-                                 alt="{{$article->title}}">
+                            <img class="img-responsive" src="{{url('/')."/".$articleView->image}}"
+                                 alt="{{$articleView->title}}">
                         </a>
                     </div>
 
                     <div class="post-content">
-                        <a class="post-cat">{{$article->sub_category}}</a>
+                        <a class="post-cat">{{$articleView->sub_category}}</a>
                         <h2 class="post-title title-small">
-                            <a href="/single/{{$article->id}}">{{$article->title}}</a>
+                            <a href="{{route('single.post',$articleView->id)}}">{{$articleView->title}}</a>
                         </h2>
                         <div class="post-meta">
-                            <span class="post-date">{{$article->created_at}}</span>
+                            <span class="post-date">{{$articleView->created_at}}</span>
                         </div>
                     </div><!-- Post content end -->
-                </div><!-- Post Overaly Article end -->
-                @endif
-            @endforeach
+            </div><!-- Post Overaly Article end -->
+            </ul><!-- List post end -->
+        </div><!-- List post block end -->
 
-            <div class="list-post-block">
-                <ul class="list-post">
-                    <li class="clearfix">
-                        <div class="post-block-style post-float clearfix">
-                            <div class="post-thumb">
-                                <a href="#">
-                                    <img class="img-responsive" src="/images/news/tech/gadget3.jpg"
-                                         alt="">
-                                </a>
-                                <a class="post-cat" href="#">گجت ها</a>
-                            </div><!-- Post thumb end -->
+    </div><!-- Popular news widget end -->
 
-                            <div class="post-content">
-                                <h2 class="post-title title-small">
-                                    <a href="#">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                        چاپ و با</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="post-date">15 آذر 1396</span>
-                                </div>
-                            </div><!-- Post content end -->
-                        </div><!-- Post block style end -->
-                    </li><!-- Li 1 end -->
+    <div class="widget text-center">
+        <img class="banner img-responsive" src="/images/banner-ads/ad-sidebar.png" alt="">
+    </div><!-- Sidebar Ad end -->
 
-                </ul><!-- List post end -->
-            </div><!-- List post block end -->
+    <div class="widget m-bottom-0">
 
-        </div><!-- Popular news widget end -->
+        <h3 class="block-title"><span>خبرنامه</span></h3>
+        <div class="ts-newsletter">
+            @include('layouts.messages')
+            <div class="newsletter-introtext">
+                <h4>به روز باشید</h4>
+                <p>با عضویت در خبرنامه جدیدترین اخبار را در ایمیل خود دریافت کنید!</p>
+            </div>
 
-        <div class="widget text-center">
-            <img class="banner img-responsive" src="/images/banner-ads/ad-sidebar.png" alt="">
-        </div><!-- Sidebar Ad end -->
+            <div class="newsletter-form">
+                <form id="news" action="{{route('storeNewsLetter')}}" method="post">
+                    @csrf
+                    <div class="form-group">
+                        <input type="email" name="email" id="newsletter-form-email"
+                               class="form-control form-control-lg" placeholder="ایمیل"
+                               autocomplete="off">
+                        <button class="btn btn-primary" type="submit" id="submit">عضویت</button>
+                    </div>
 
-        <div class="widget m-bottom-0">
+                </form>
 
-            <h3 class="block-title"><span>خبرنامه</span></h3>
-            <div class="ts-newsletter">
-                @include('layouts.messages')
-                <div class="newsletter-introtext">
-                    <h4>به روز باشید</h4>
-                    <p>با عضویت در خبرنامه جدیدترین اخبار را در ایمیل خود دریافت کنید!</p>
-                </div>
+            </div>
+        </div><!-- Newsletter end -->
+    </div><!-- Newsletter widget end -->
 
-                <div class="newsletter-form">
-                    <form id="news" action="{{route('storeNewsLetter')}}" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <input type="email" name="email" id="newsletter-form-email"
-                                   class="form-control form-control-lg" placeholder="ایمیل"
-                                   autocomplete="off">
-                            <button class="btn btn-primary" type="submit" id="submit">عضویت</button>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div><!-- Newsletter end -->
-        </div><!-- Newsletter widget end -->
-
-    </div><!-- Sidebar right end -->
+</div><!-- Sidebar right end -->
 </div><!-- Sidebar Col end -->
 @section('script')
 

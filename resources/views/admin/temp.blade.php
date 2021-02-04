@@ -31,7 +31,7 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> فرم ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{route('form')}}" title="فرم ارسال مقاله">فرم ارسال مقاله</a></li>
+                                    <li><a href="{{route('article.create')}}" title="فرم ارسال مقاله">فرم ارسال مقاله</a></li>
                                     <li><a href="{{route('category')}}" title="فرم ارسال دسته بندی و زیر دسته بندی">فرم ارسال دسته بندی</a></li>
                                 </ul>
                             </li>

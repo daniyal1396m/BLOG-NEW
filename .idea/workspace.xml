@@ -18,9 +18,6 @@
       </list>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/app/Http/Controllers/CategoryController.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
@@ -146,16 +143,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Blog-laravel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers\Private" />
+      <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers\Public" />
+      <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers" />
       <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\public" />
       <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\resources\views" />
-      <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\resources\lang" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers\Public" />
+      <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers\Private" />
     </key>
   </component>
   <component name="RunManager">
@@ -192,7 +195,10 @@
       <workItem from="1612281427872" duration="1523000" />
       <workItem from="1612327858505" duration="4838000" />
       <workItem from="1612334886341" duration="3992000" />
-      <workItem from="1612338920036" duration="11670000" />
+      <workItem from="1612338920036" duration="14374000" />
+      <workItem from="1612414597603" duration="7385000" />
+      <workItem from="1612425570145" duration="182000" />
+      <workItem from="1612425770270" duration="14871000" />
     </task>
     <servers />
   </component>
