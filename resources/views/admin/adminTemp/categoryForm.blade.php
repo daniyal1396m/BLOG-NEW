@@ -4,7 +4,6 @@
         <div class="x_title">
             <h2>فرم ایجاد دسته بندی</h2>
             <ul class="nav navbar-right panel_toolbox">
-
             </ul>
 
             <div class="clearfix"></div>

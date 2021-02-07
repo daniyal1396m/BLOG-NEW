@@ -45,8 +45,8 @@
                                     @foreach($articles as $art)
                                         <tr>
                                             <th scope="row">{{$art->id}}</th>
-                                            <td><img src="{{url('/')."/".$art->image}}" alt="pic" width="50px"
-                                                     height="50px"></td>
+                                            <td><img src="{{url('/')."/".$art->image}}" alt="pic" width="150px"
+                                                     height="150px"></td>
                                             <td>{{$art->title}}</td>
                                             <td>{{$art->body}}</td>
                                             <td>{{$art->description}}</td>

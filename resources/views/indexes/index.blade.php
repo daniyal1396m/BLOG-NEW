@@ -34,7 +34,9 @@
                                                 <img class="img-responsive" src="{{url('/')."/".$article->image}}"
                                                      alt="{{$article->title}}">
                                             </a>
-{{--                                            <a class="post-cat" href="#">{{$article->subcategory->name}}</a>--}}
+                                            <a class="post-cat"
+                                               href="#">{{$article->subcategory->name}} </a>
+                                            {{--                                            <a class="post-cat" href="#">{{$article->sub_category}}</a>--}}
                                         </div>
                                     </div><!-- Img thumb col end -->
 
@@ -45,7 +47,8 @@
                                             </h2>
                                             <div class="post-meta">
                                                 <span class="post-author">{{$article->user->name}}</span>
-                                                <span class="post-date">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
+                                                <span
+                                                    class="post-date">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                             </div>
                                             <p>{{$article->body}}</p>
                                         </div><!-- Post content end -->

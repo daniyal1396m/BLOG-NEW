@@ -52,7 +52,9 @@
                     <div class="form-group">
                             <label for="inputPassword3" class="col-sm-2 col-form-label">متن</label>
                             <div class="col-sm-10  col-md-12">
-                                <textarea class="form-control"  placeholder="متن خبر" rows="10"></textarea>
+                                <textarea type="text" id="description" name="description"
+                                          class="form-control col-md-7 col-xs-12" rows="7"
+                                          placeholder="توضیحات بیشتتر"></textarea>
                             </div>
                         </div>
                     <button type="button" class="btn btn-outline-dark">ارسال</button>

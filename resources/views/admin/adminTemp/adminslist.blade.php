@@ -42,9 +42,23 @@
                                             <th scope="row">{{$user->id}}</th>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->email}}</td>
-                                            <td>
-                                                <a href="#" class="btn btn-success">فعال</a>
-                                            </td>
+                                            @if($user['deleted_at']==null)
+                                                <td>
+                                                    <form action="{{route('destroy.user',[$user->id])}}"
+                                                          method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-success">فعال</button>
+                                                    </form>
+                                                </td>
+                                            @else
+                                                <td>
+                                                    <form action="{{route('destroy.user',[$user->id])}}"
+                                                          method="post">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-danger">غیر    فعال</button>
+                                                    </form>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                     </tbody>

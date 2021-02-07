@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-//    protected $fillable = ['id', 'user_id', 'category', 'sub_category','title', 'pic', 'video', 'slug', 'body', 'countViews', 'countComments'];
+//    protected $fillable = ['id', 'user_id', 'category', 'sub_category','title', 'pic', 'video', 'slug', 'body', 'countViews', 'countComments','created_at','updated_at','deleted_at'];
 
     protected $guarded = [];
 
@@ -42,8 +42,8 @@ class Article extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function subcategory(): HasMany
+    public function subcategory(): BelongsTo
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class,'sub_category');
     }
 }

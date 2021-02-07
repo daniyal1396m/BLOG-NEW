@@ -21,89 +21,67 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="single-post">
-                                <div class="post-title-area">
-{{--                                    <a class="post-cat" href="#">{{$article->category->name}}</a>--}}
-                                    <a class="post-cat" href="#">{{$article->sub_category}}</a>
-                                    <h2 class="post-title">
-                                        {{$article->title}}
-                                    </h2>
-                                    <div class="post-meta">
+                    <div class="single-post">
+                        <div class="post-title-area">
+                            <a class="post-cat" href="{{$article->subcategory->id}}">{{$article->subcategory->name}}</a>
+                            <h2 class="post-title">
+                                {{$article->title}}
+                            </h2>
+                            <div class="post-meta">
 									<span class="post-author">
 										 <a href="#">{{$article->user->name}}</a>
 									</span>
-                                        <span class="post-date"><i
-                                                class="fa fa-clock-o"></i>  ارسال شده در تاریخ {{verta($article->created_at)->format('%B %d, %Y')}} </span>
-                                        <span class="post-hits">{{$article->countViews}}<i
-                                                class="fa fa-eye"></i> </span>
-                                        <span class="post-comment"><i
-                                                class="fa fa-comments-o">{{$article->countComments}}</i></span>
-                                    </div>
-                                </div><!-- Post title end -->
+                                <span class="post-date"><i
+                                        class="fa fa-clock-o"></i>  ارسال شده در تاریخ {{verta($article->created_at)->format('%B %d, %Y')}} </span>
+                                <span class="post-hits">{{$article->countViews}}<i
+                                        class="fa fa-eye"></i> </span>
+                                <span class="post-comment"><i
+                                        class="fa fa-comments-o">{{$article->countComments}}</i></span>
+                            </div>
+                        </div><!-- Post title end -->
 
-                                <div class="post-content-area">
-                                    <div class="post-media post-featured-image">
-                                        <img src="{{url('/')."/".$article->image}}" class="img-responsive"
-                                             alt="{{$article->title}}">
-                                    </div>
-                                    <div class="entry-content">
-                                        <p>{{$article->body}}</p>
+                        <div class="post-content-area">
+                            <div class="post-media post-featured-image">
+                                <img src="{{url('/')."/".$article->image}}" class="img-responsive"
+                                     alt="{{$article->title}}">
+                            </div>
+                            <div class="entry-content">
+                                <p>{{$article->body}}</p>
 
-                                        <p>{{$article->description}}</p>
+                                <p>{{$article->description}}</p>
 
-                                    </div><!-- Entery content end -->
+                            </div><!-- Entery content end -->
 
-                                </div><!-- post-content end -->
-                            </div><!-- Single post end -->
+                        </div><!-- post-content end -->
+                    </div><!-- Single post end -->
 
-                <!-- Post comment start -->
+                    <!-- Post comment start -->
                     <div id="comments" class="comments-area block">
                         <h3 class="block-title"><span>{{$article->countComments}} دیدگاه</span></h3>
 
                         <ul class="comments-list">
                             <li>
                                 @foreach($comments as $comment)
-                                <div class="comment">
-                                    <div class="comment-body">
-                                        <div class="meta-data">
-                                            <span class="comment-author">{{$comment->name}}</span>
-                                            <span class="comment-date pull-right">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
+                                    <div class="comment">
+                                        <div class="comment-body">
+                                            <div class="meta-data">
+                                                <span class="comment-author">{{$comment->name}}</span>
+                                                <span
+                                                    class="comment-date pull-right">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
+                                            </div>
+                                            <div class="comment-content">
+                                                <p>{{$comment->message}}</p></div>
                                         </div>
-                                        <div class="comment-content">
-                                            <p>{{$comment->message}}</p></div>
-{{--                                        <div class="text-left">--}}
-{{--                                            <a class="comment-reply" href="#">پاسخ</a>--}}
-{{--                                        </div>--}}
-                                    </div>
-                                </div><!-- Comments end -->
+                                    </div><!-- Comments end -->
                                 @endforeach
-{{--                                <ul class="comments-reply">--}}
-{{--                                    <li>--}}
-{{--                                        <div class="comment">--}}
-{{--                                            <div class="comment-body">--}}
-{{--                                                <div class="meta-data">--}}
-{{--                                                    <span class="comment-author">فرهاد عظیم پور</span>--}}
-{{--                                                    <span class="comment-date pull-right">26 دی 1396 - 15:36</span>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="comment-content">--}}
-{{--                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با--}}
-{{--                                                        استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله--}}
-{{--                                                        در ستون</p></div>--}}
-{{--                                                <div class="text-left">--}}
-{{--                                                    <a class="comment-reply" href="#">پاسخ</a>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div><!-- Comments end -->--}}
-{{--                                    </li>--}}
-{{--                                </ul><!-- comments-reply end -->--}}
                             </li><!-- Comments-list li end -->
                         </ul><!-- Comments-list ul end -->
                     </div><!-- Post comment end -->
 
                     <div class="comments-form">
                         <h3 class="title-normal">دیدگاه خود را بیان کنید</h3>
-                       @include('layouts.messages')
-                        <form role="form" action="{{route('store.comment',['id',$article->id])}}" method="post">
+                        @include('layouts.messages')
+                        <form role="form" action="{{route('store.comment')}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-md-12">
@@ -111,7 +89,7 @@
                                         <input class="form-control" name="name" id="name" placeholder="نام" type="text">
                                     </div>
                                 </div><!-- Col end -->
-
+                                <input type="hidden" value="{{$article->id}}" name="article_id">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input class="form-control" name="email" id="email" placeholder="ایمیل"
@@ -124,14 +102,6 @@
                                                   placeholder="دیدگاه شما"></textarea>
                                     </div>
                                 </div><!-- Col end -->
-
-
-
-{{--                                <div class="col-md-12">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <input class="form-control" placeholder="وب‌سایت" type="text" name="website">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div><!-- Form row end -->
                             <div class="clearfix">
                                 <button class="comments-btn btn btn-primary" type="submit">ارسال دیدگاه</button>

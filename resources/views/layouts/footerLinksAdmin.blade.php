@@ -20,6 +20,20 @@
 <script src="/vendors/fullcalendar/dist/fullcalendar.min.js"></script>
 <script src='/vendors/fullcalendar/dist/lang/fa.js'></script>
 
+<script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+
+
+
+
+
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#description' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 <!-- Custom Theme Scripts -->
 <script src="/build/js/custom.min.js"></script>
 

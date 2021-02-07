@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\public;
+namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use JetBrains\PhpStorm\NoReturn;
 
 class CommentController extends Controller
 {
-    public function store(Request $request, $id): RedirectResponse
+    #[NoReturn] public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => 'required|min:5|max:15',
-            'email' => 'required|min:10|max:70',
+            'email' => 'required|min:10|max:70|email',
             'message' => 'required|min:10|max:150',
         ]);
-        $comment = Comment::create(array_merge($request->all(), ['article_id', $id]));
+        $comment = Comment::create($request->all());
         if ($comment) {
             return redirect()->back()->with('status', 'فرم ارسال شد');
         } else {

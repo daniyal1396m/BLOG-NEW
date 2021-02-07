@@ -16,7 +16,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                             <h2>ارتباط با ما
+                            <h2>ارتباط با ما
                                 <small>لیست پیام های ارتباط باما</small>
                             </h2>
                             <div class="clearfix"></div>
@@ -36,15 +36,21 @@
                                 </thead>
                                 <tbody>
                                 @foreach($calluses as $rowCallus)
-                                        <tr>
-                                            <th scope="row">{{$rowCallus->id}}</th>
-                                            <td>{{$rowCallus->name}}</td>
-                                            <td>{{$rowCallus->email}}</td>
-                                            <td>{{$rowCallus->subject}}</td>
-                                            <td>{{$rowCallus->message}}</td>
-                                            <td><a href="{{ url('res/callus/'.$rowCallus->id) }}"
-                                                   class="btn btn-primary">پاسخ به این پیام</a></td>
-                                        </tr>
+                                    <tr>
+                                        <th scope="row">{{$rowCallus->id}}</th>
+                                        <td>{{$rowCallus->name}}</td>
+                                        <td>{{$rowCallus->email}}</td>
+                                        <td>{{$rowCallus->subject}}</td>
+                                        <td>{{$rowCallus->message}}</td>
+                                        <td>
+                                            <form action="{{route('response.msg',[$rowCallus->id])}}" method="post">
+                                                @csrf
+                                                <button type="submit"
+                                                        class="btn btn-primary">پاسخ به این پیام
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>

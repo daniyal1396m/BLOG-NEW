@@ -27,22 +27,49 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>عمومی</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> فرم ها <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-home"></i> مقاله ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{route('article.create')}}" title="فرم ارسال مقاله">فرم ارسال مقاله</a></li>
-                                    <li><a href="{{route('category')}}" title="فرم ارسال دسته بندی و زیر دسته بندی">فرم ارسال دسته بندی</a></li>
+                                    <li><a href="{{route('article.create')}}" title="فرم ارسال مقاله">فرم ارسال
+                                            مقاله</a></li>
+                                    <li><a href="{{route('article.list')}}" title="لیست مقاله ها ">لیست مقاله ها </a>
+                                    </li>
+
+
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-edit"></i>لیست ها <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-home"></i>تماس با ما <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{route('article.list')}}" title="لیست مقاله ها ">لیست مقاله ها  </a></li>
-                                    <li><a href="{{route('category.list')}}" title="لیست دسته ها ">لیست دسته بندی و زیر دسته بندی ها  </a></li>
-                                    <li><a href="{{route('newsletter.list')}}" title="لیست خبرنامه ها ">لیست خبرنامه  </a></li>
-                                    <li><a href="{{route('admins.list')}}" title="لیست مدیران  ">لیست مدیران  </a></li>
-                                    <li><a href="{{route('callus.list')}}" title="لیست تماس ها ">لیست تماس باما </a></li>
 
+                                    <li><a href="{{route('callus.list')}}" title="لیست تماس ها ">لیست تماس باما </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-home"></i>خبر نامه <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{route('newsletter.list')}}" title="لیست خبرنامه ها ">لیست
+                                            خبرنامه </a></li>
+
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-home"></i>دسته بندی <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{route('category')}}" title="فرم ارسال دسته بندی و زیر دسته بندی">فرم
+                                            ارسال دسته بندی</a></li>
+                                    <li><a href="{{route('category.list')}}" title="لیست دسته ها ">لیست دسته بندی و زیر
+                                            دسته بندی ها </a></li>
+
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-home"></i>کامنت ها <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="!#">فعلا هیچ چیز تعبیه نشده است </a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-home"></i>مدیریت<span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{route('admins.list')}}" title="لیست مدیران  ">لیست مدیران </a></li>
                                 </ul>
                             </li>
                         </ul>

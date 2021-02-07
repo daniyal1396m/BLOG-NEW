@@ -126,4 +126,13 @@ class CategoryController extends Controller
         Category::where('id', $request['id'])->update(['name' => $request['name']]);
         return back()->with('success', 'ویرایش شد');
     }
+
+    public function subcategory($id)
+    {
+        $articles = Article::where('sub_category', $id)->paginate(2);
+        $parent=Category::findorfail($id);
+        $categories = Category::where("deleted_at", null)->get();
+        $articleView = Article::orderby('countViews', 'desc')->first();
+        return view('indexes.index', compact('articles', 'categories', 'articleView','parent'));
+    }
 }

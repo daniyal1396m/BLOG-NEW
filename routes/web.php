@@ -1,16 +1,14 @@
 <?php
 
+use App\Http\Controllers\Private\CallusController;
 use App\Http\Controllers\Private\CategoryController;
-use App\Http\Controllers\CommentController;
+use App\Http\Controllers\Public\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Private\ArticleController;
 use App\Http\Controllers\Public\ArticlePubController;
-use App\Http\Controllers\Public\CallusController;
 use App\Http\Controllers\Public\CallusPubController;
 use App\Http\Controllers\Public\NewsletterController;
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
-use Symfony\Component\Console\Input\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +53,7 @@ Route::get('/getCatSub/{cat_id}', [CategoryController::class, 'check'])->name('g
  *
  *
  * */
-Route::post('/store/comment/{id}', [CommentController::class, 'store'])->name('store.comment');
+Route::post('/store/comment', [CommentController::class, 'store'])->name('store.comment');
 /*
  *
  *
@@ -64,6 +62,7 @@ Route::post('/store/comment/{id}', [CommentController::class, 'store'])->name('s
  *
  * */
 Route::post('/Newsletter', [NewsletterController::class, 'store'])->name('storeNewsLetter');
+Route::get('/subcategory/{id}', [CategoryController::class, 'subcategory'])->name('subcategory');
 Route::middleware('auth')->prefix('admin')->group(function () {
     /*
      *
@@ -77,6 +76,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/delete/Article/{id}', [ArticleController::class, 'destroy'])->name('destroy.article');
     Route::get('/article/create', [ArticleController::class, 'index'])->name('article.create');
     Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
+    Route::post('ckeditor', [ArticleController::class, 'storeCk'])->name('ckeditor.upload');
     Route::get('/article/{article}/edit', [ArticleController::class, 'edit'])->name('article.edit');
     Route::post('/store/edit/Article/{id}', [ArticleController::class, 'storeEdit'])->name('store.edit.article');
     /*
@@ -90,6 +90,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/Newsletter/Lists', [ArticleController::class, 'NewsList'])->name('newsletter.list');
     Route::get('/Category/Lists', [CategoryController::class, 'CatList'])->name('category.list');
     Route::get('/Admin/Lists', [ArticleController::class, 'AdList'])->name('admins.list');
+    Route::post('/delete/admin/{id}', [HomeController::class, 'destroy'])->name('destroy.user');
     Route::get('/Callus/Lists', [ArticleController::class, 'CallList'])->name('callus.list');
 
     /*
@@ -111,7 +112,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
      * call us single message
      *
      * */
-    Route::get('/res/callus/{id}', [CallusController::class, 'response'])->name('response.user');
+    Route::post('/res/callus/{id}', [CallusController::class, 'show'])->name('response.msg');
+    Route::post('/send/res/callus', [CallusController::class, 'store'])->name('store.response.msg');
 
 });
 

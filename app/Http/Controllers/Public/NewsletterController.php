@@ -13,7 +13,7 @@ class NewsletterController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'email' => 'required'
+            'email' => 'required|email'
         ]);
         $news = new Newsletter;
         $news->email = $request->email;

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class CallusPubController extends Controller
 {
-    public function index()
+    public function index(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $articles = Article::where("deleted_at", null)->take(5);
         $categories = Category::where("deleted_at", null)->get();
@@ -35,5 +35,6 @@ class CallusPubController extends Controller
         }
 
     }
+
 
 }

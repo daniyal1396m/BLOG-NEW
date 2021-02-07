@@ -98,7 +98,6 @@
                 // alert(data.child[0]['name']);
                 $('#sub_category').empty();
                 $.each(data, function () {
-                    // $('#sub_category').append('<option value="' + sub.id + '">' + sub.name + '</option>');
                     for (var i = 0; i < data.child.length; i++) {
                         $('#sub_category').append('<option value="' + data.child[i]['id'] + '">' + data.child[i]['name'] + '</option>');
 

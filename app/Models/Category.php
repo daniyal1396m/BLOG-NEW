@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-//    protected $fillable = ['id', 'name', 'parent_id', 'status','updated_at'];
-//    protected $fillable = ['id','name','parent_id'];
+//    protected $fillable = ['id', 'name', 'parent_id', 'created_at', 'updated_at', 'deleted_at', 'level'];
+
     protected $guarded = [];
 
     public function subcategories(): HasMany
