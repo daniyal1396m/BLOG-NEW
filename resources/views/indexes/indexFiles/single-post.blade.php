@@ -54,29 +54,45 @@
 
                         </div><!-- post-content end -->
                     </div><!-- Single post end -->
-
-                    <!-- Post comment start -->
                     <div id="comments" class="comments-area block">
-                        <h3 class="block-title"><span>{{$article->countComments}} دیدگاه</span></h3>
+                        <h3 class="block-title"><span>3 دیدگاه</span></h3>
 
                         <ul class="comments-list">
                             <li>
                                 @foreach($comments as $comment)
-                                    <div class="comment">
-                                        <div class="comment-body">
-                                            <div class="meta-data">
-                                                <span class="comment-author">{{$comment->name}}</span>
-                                                <span
-                                                    class="comment-date pull-right">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
-                                            </div>
-                                            <div class="comment-content">
-                                                <p>{{$comment->message}}</p></div>
+                                <div class="comment">
+                                    <div class="comment-body">
+                                        <div class="meta-data">
+                                            <span class="comment-author">{{$comment->name}}</span>
+                                            <span
+                                                class="comment-date pull-right">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                         </div>
-                                    </div><!-- Comments end -->
+                                        <div class="comment-content">
+                                            <p>{{$comment->message}}</p></div>
+                                        <div class="text-left">
+                                            <a class="comment-reply" href="/replay/{{$comment->id}}">پاسخ</a>
+                                        </div>
+                                    </div>
+
+                                </div><!-- Comments end -->
                                 @endforeach
-                            </li><!-- Comments-list li end -->
-                        </ul><!-- Comments-list ul end -->
-                    </div><!-- Post comment end -->
+                                <ul class="comments-reply">
+                                    <li>
+                                        <div class="comment">
+                                            <div class="comment-body">
+                                                <div class="meta-data">
+                                                    <span class="comment-author">فرهاد عظیم پور</span>
+                                                    <span class="comment-date pull-right">26 دی 1396 - 15:36</span>
+                                                </div>
+                                                <div class="comment-content">
+                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون</p></div>
+                                                <div class="text-left">
+                                                    <a class="comment-reply" href="#">پاسخ</a>
+                                                </div>
+                                            </div>
+                                        </div><!-- Comments end -->
+                                    </li>
+                                </ul><!-- comments-reply end -->
 
                     <div class="comments-form">
                         <h3 class="title-normal">دیدگاه خود را بیان کنید</h3>
