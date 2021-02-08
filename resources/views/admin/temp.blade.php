@@ -64,7 +64,7 @@
                             </li>
                             <li><a><i class="fa fa-home"></i>کامنت ها <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="!#">فعلا هیچ چیز تعبیه نشده است </a></li>
+                                    <li><a href="{{route('list.comment')}}">لیست </a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-home"></i>مدیریت<span class="fa fa-chevron-down"></span></a>

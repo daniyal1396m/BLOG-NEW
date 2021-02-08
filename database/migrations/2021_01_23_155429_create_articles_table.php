@@ -21,9 +21,7 @@ class CreateArticlesTable extends Migration
             $table->string('title', 30);
             $table->string('body', 50);
             $table->string('description', 10000);
-//            $table->string('name', 255);
-            $table->string('image', 255);//path
-//            $table->string('video', 255)->nullable();
+            $table->string('image', 255);
             $table->string('slug');
             $table->integer('countViews',null)->nullable();
             $table->integer('countComments',null)->nullable();

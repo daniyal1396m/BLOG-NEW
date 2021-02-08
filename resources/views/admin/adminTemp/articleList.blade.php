@@ -54,7 +54,8 @@
                                             <td>{{$art->sub_category}}</td>
                                             @if($art->deleted_at==null)
                                                 <td>
-                                                    <form action="{{route('destroy.article',[$art->id])}}" method="post">
+                                                    <form action="{{route('destroy.article',[$art->id])}}"
+                                                          method="post">
                                                         @csrf
                                                         <button type="submit"
                                                                 class="btn btn-success  delete-cat updateCat">
@@ -64,7 +65,8 @@
                                                 </td>
                                             @else
                                                 <td>
-                                                    <form action="{{route('destroy.article',[$art->id])}}" method="post">
+                                                    <form action="{{route('destroy.article',[$art->id])}}"
+                                                          method="post">
                                                         @csrf
                                                         <button type="submit"
                                                                 class="btn btn-danger updateCat">غیر
@@ -74,10 +76,11 @@
                                                 </td>
                                             @endif
                                             <td>
-                                                <form action="{{route('article.edit',['article'=>$art->id])}}"
-                                                      method="post">
-                                                    <button type="submit" class="btn btn-dark">ویرایش</button>
-                                                </form>
+                                                {{--                                                <form action="{{route('article.edit',$art->id)}}"--}}
+                                                {{--                                                      method="post">--}}
+                                                {{--                                                    <button type="submit" class="btn btn-dark">ویرایش</button>--}}
+                                                {{--                                                </form>--}}
+                                                <a href="{{route('article.edit',$art->id)}}">ویرایش</a>
                                             </td>
                                         </tr>
                                     @endforeach

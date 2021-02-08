@@ -14,6 +14,6 @@
 <script type="text/javascript" src="/js/ini.isotope.js"></script>
 
 <!-- Template custom -->
-<script type="text/javascript" src="/js/custom.js"></script>
+<script type="/ext/javascript" src="/js/custom.js"></script>
 <script src="/js/html5shiv.js"></script>
 <script src="/js/respond.min.js"></script>

@@ -24,4 +24,27 @@ class CommentController extends Controller
             return redirect()->back()->with('status', 'فرم ارسال نشد');
         }
     }
+
+    public function replay(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'namereplay' => 'required|min:5|max:15',
+            'emailreplay' => 'required|min:10|max:70|email',
+            'messagereplay' => 'required|min:10|max:150',
+        ]);
+        $comment = Comment::create([
+            'name' => $request['namereplay'],
+            'email' => $request['emailreplay'],
+            'message' => $request['messagereplay'],
+            'parent_id' => $request['parent_id'],
+            'article_id' => $request['article_id'],
+            'deleted_at' => $request->delete()
+
+        ]);
+        if ($comment) {
+            return redirect()->back()->with('status', 'فرم ارسال شد');
+        } else {
+            return redirect()->back()->with('status', 'فرم ارسال نشد');
+        }
+    }
 }

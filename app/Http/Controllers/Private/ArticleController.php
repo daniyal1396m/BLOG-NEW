@@ -65,7 +65,6 @@ class ArticleController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        dd($request->description);
         $request->validate([
             'category' => 'required',
             'sub_category' => 'required',
@@ -86,27 +85,12 @@ class ArticleController extends Controller
         }
     }
 
-    public function storeCk(Request $request)
-    {
-        if ($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName . '_' . time() . '.' . $extension;
-            $request->file('upload')->move(public_path('pages'), $fileName);
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('pages/' . $fileName);
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url')</script>";
-            echo $response;
-        }
 
-    }
-
-    public
-    function edit(Article $article): Factory|View|Application
+    public function edit($id): Factory|View|Application
     {
-        $categories = Category::where('parent_id', null)->get();
-        return view('admin.adminTemp.articleFormEdit', compact('article', 'categories'));
+        $article = Article::where('id', $id)->first();
+        $categories = Category::where('deleted_at', null)->get();
+        return view('admin.adminTemp.articleFormEdit', compact('article','categories'));
     }
 
     public
@@ -125,8 +109,7 @@ class ArticleController extends Controller
         return redirect()->back()->with('status', 'ویرایش شد');
     }
 
-    public
-    function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $deleted_at = Article::where('id', $id)->withTrashed()->first();
         if ($deleted_at['deleted_at'] != null) {

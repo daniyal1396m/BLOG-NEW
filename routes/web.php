@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Private\CallusController;
 use App\Http\Controllers\Private\CategoryController;
+use App\Http\Controllers\Private\CommentPrivateController;
 use App\Http\Controllers\Public\CommentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Private\ArticleController;
@@ -54,6 +55,7 @@ Route::get('/getCatSub/{cat_id}', [CategoryController::class, 'check'])->name('g
  *
  * */
 Route::post('/store/comment', [CommentController::class, 'store'])->name('store.comment');
+Route::post('/store/replay/comment', [CommentController::class, 'replay'])->name('store.replay');
 /*
  *
  *
@@ -77,7 +79,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/article/create', [ArticleController::class, 'index'])->name('article.create');
     Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
     Route::post('ckeditor', [ArticleController::class, 'storeCk'])->name('ckeditor.upload');
-    Route::get('/article/{article}/edit', [ArticleController::class, 'edit'])->name('article.edit');
+    Route::get('/article/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
     Route::post('/store/edit/Article/{id}', [ArticleController::class, 'storeEdit'])->name('store.edit.article');
     /*
  *
@@ -114,7 +116,14 @@ Route::middleware('auth')->prefix('admin')->group(function () {
      * */
     Route::post('/res/callus/{id}', [CallusController::class, 'show'])->name('response.msg');
     Route::post('/send/res/callus', [CallusController::class, 'store'])->name('store.response.msg');
-
+/*
+ *
+ *
+ * comments
+ *
+ * */
+    Route::post('/update/comment/{id}', [CommentPrivateController::class, 'destroy'])->name('destroy.comment');
+    Route::get('/list/comment', [CommentPrivateController::class, 'index'])->name('list.comment');
 });
 
 
