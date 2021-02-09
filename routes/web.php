@@ -78,7 +78,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/delete/Article/{id}', [ArticleController::class, 'destroy'])->name('destroy.article');
     Route::get('/article/create', [ArticleController::class, 'index'])->name('article.create');
     Route::post('/article/store', [ArticleController::class, 'store'])->name('article.store');
-    Route::post('ckeditor', [ArticleController::class, 'storeCk'])->name('ckeditor.upload');
+    /*
+     *
+     * CK - editor
+     *
+     * */
+
+    Route::post('/article/ckeditor', [ArticleController::class, 'imageUpload'])->name('imageUpload');
+    /*
+     *
+     * end CK - editor
+     *
+     * */
     Route::get('/article/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
     Route::post('/store/edit/Article/{id}', [ArticleController::class, 'storeEdit'])->name('store.edit.article');
     /*
@@ -116,13 +127,13 @@ Route::middleware('auth')->prefix('admin')->group(function () {
      * */
     Route::post('/res/callus/{id}', [CallusController::class, 'show'])->name('response.msg');
     Route::post('/send/res/callus', [CallusController::class, 'store'])->name('store.response.msg');
-/*
- *
- *
- * comments
- *
- * */
-    Route::post('/update/comment/{id}', [CommentPrivateController::class, 'destroy'])->name('destroy.comment');
+    /*
+     *
+     *
+     * comments
+     *
+     * */
+    Route::get('/update/comment/{id}', [CommentPrivateController::class, 'destroy'])->name('destroy.comment');
     Route::get('/list/comment', [CommentPrivateController::class, 'index'])->name('list.comment');
 });
 

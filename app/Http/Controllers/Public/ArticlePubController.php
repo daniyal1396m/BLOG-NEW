@@ -24,7 +24,7 @@ class ArticlePubController extends Controller
     {
         $article = Article::where('id', $id)->first();
         $categories = Category::where("deleted_at", null)->get();
-        $comments = $article->comments()->where("deleted_at", null)->get();
+        $comments = $article->comments()->where("status", 1)->get();
         $count = $article->countViews + 1;
         $article->update(['countViews' => $count]);
         return view('indexes.indexFiles.single-post', compact('article', 'categories', 'comments'));

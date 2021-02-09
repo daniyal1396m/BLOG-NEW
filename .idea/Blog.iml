@@ -121,5 +121,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="froala-editor" level="application" />
+    <orderEntry type="library" name="tinymce" level="application" />
   </component>
 </module>

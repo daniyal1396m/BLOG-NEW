@@ -13,17 +13,17 @@ class CommentPrivateController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $comments = Comment::withTrashed()->get();
+        $comments = Comment::get();
         return view('admin.adminTemp.commentList', compact('comments'));
     }
 
     public function destroy($id): RedirectResponse
     {
-        $deleted_at = Comment::where('id', $id)->withTrashed()->first();
-        if ($deleted_at['deleted_at'] != null) {
-            $deleted_at->restore();
+        $status = Comment::where('id', $id)->first();
+        if ($status['status'] == 0) {
+            $status->update(['status' => 1]);
         } else {
-            $deleted_at->delete();
+            $status->update(['status' => 0]);
         }
         return redirect()->back()->with('success', 'وضعیت تغیر کرد');
     }

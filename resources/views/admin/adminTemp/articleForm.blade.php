@@ -77,7 +77,7 @@
                     </label>
                     <div class="col-md-7">
                         <textarea type="text" id="description" name="description"
-                                  class="form-control col-md-7 col-xs-12" rows="7"
+                                  class="form-control col-md-7 col-xs-12" rows="10" cols="30"
                                   placeholder="توضیحات بیشتتر"></textarea>
                     </div>
                 </div>
@@ -88,6 +88,24 @@
     </div>
 @endsection
 @section('script')
+    <script>
+        ClassicEditor.create(document.querySelector('#description'),
+                {
+                    ckfinder: {
+                        // Feature configuration.
+                        uploadUrl: '{{route('imageUpload')}}',
+                        withCredentials: true,
+                        method:'POST',
+                        // headers: {
+                        //     'X-CSRF-TOKEN': 'CSRF-Token',
+                        //     Authorization: 'Bearer <JSON Web Token>'
+                        // }
+                    }
+                })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
     <script>
         $('#category').on('change', function (e) {
             // console.log(e);

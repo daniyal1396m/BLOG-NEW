@@ -20,8 +20,8 @@ class CreateCommentsTable extends Migration
             $table->string('email',100);
             $table->string('message',150);
             $table->integer('parent_id',null)->nullable();
+            $table->boolean('status');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

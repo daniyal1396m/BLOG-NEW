@@ -24,5 +24,9 @@
         "vue-loader": "^15.9.5",
         "vue-template-compiler": "^2.6.10"
     },
-    "name": "Blog"
+    "name": "Blog",
+    "dependencies": {
+        "@ckeditor/ckeditor5-easy-image": "^25.0.0",
+        "@ckeditor/ckeditor5-upload": "^25.0.0"
+    }
 }

@@ -26,14 +26,13 @@
 
 
 
-
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#description' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
+{{--<script>--}}
+{{--    ClassicEditor--}}
+{{--        .create( document.querySelector( '#description' ) )--}}
+{{--        .catch( error => {--}}
+{{--            console.error( error );--}}
+{{--        } );--}}
+{{--</script>--}}
 <!-- Custom Theme Scripts -->
 <script src="/build/js/custom.min.js"></script>
 

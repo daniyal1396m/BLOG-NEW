@@ -19,7 +19,7 @@ class CommentController extends Controller
         ]);
         $comment = Comment::create($request->all());
         if ($comment) {
-            return redirect()->back()->with('status', 'فرم ارسال شد');
+            return redirect()->back()->with('status', 'فرم ارسال شد در صورت تایید مدیریت قرار داده میشود');
         } else {
             return redirect()->back()->with('status', 'فرم ارسال نشد');
         }
@@ -37,12 +37,11 @@ class CommentController extends Controller
             'email' => $request['emailreplay'],
             'message' => $request['messagereplay'],
             'parent_id' => $request['parent_id'],
-            'article_id' => $request['article_id'],
-            'deleted_at' => $request->delete()
+            'article_id' => $request['article_id']
 
         ]);
         if ($comment) {
-            return redirect()->back()->with('status', 'فرم ارسال شد');
+            return redirect()->back()->with('status', 'فرم ارسال شد در صورت تایید مدیریت قرار داده میشود');
         } else {
             return redirect()->back()->with('status', 'فرم ارسال نشد');
         }

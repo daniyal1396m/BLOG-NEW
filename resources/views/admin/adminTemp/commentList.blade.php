@@ -50,26 +50,22 @@
                                         @else
                                             <td>پاسخ پیغام کد {{$comment->parent_id}}</td>
                                         @endif
-                                        @if($comment->deleted_at==null)
+                                        @if($comment->status==0)
                                             <td>
-                                                <form action="{{route('destroy.comment',[$comment->id])}}" method="post">
-                                                    @csrf
-                                                    <button type="submit"
-                                                            class="btn btn-success  delete-cat">
-                                                        فعال
-                                                    </button>
-                                                </form>
+                                                <a href="{{route('destroy.comment',[$comment->id])}}">
+
+                                                    غیر فعال
+
+                                                </a>
                                             </td>
 
                                         @else
                                             <td>
-                                                <form action="{{route('destroy.comment',[$comment->id])}}" method="post">
-                                                    @csrf
-                                                    <button type="submit"
-                                                            class="btn btn-danger">غیر
-                                                        فعال
-                                                    </button>
-                                                </form>
+                                                <a href="{{route('destroy.comment',[$comment->id])}}">
+
+                                                    فعال
+
+                                                </a>
                                             </td>
                                         @endif
                                     </tr>
@@ -78,7 +74,7 @@
                             </table>
 
                         </div>
-{{--                        {!! $comment->render() !!}--}}
+                        {{--                        {!! $comment->render() !!}--}}
                     </div>
 
                 </div>

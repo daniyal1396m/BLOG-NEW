@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="post-content">
-                        <a class="post-cat">{{$article->subcategory->name}}</a>
+                        <a class="post-cat">{{$articleView->subcategory->name}}</a>
                         <h2 class="post-title title-small">
                             <a href="{{route('single.post',$articleView->id)}}">{{$articleView->title}}</a>
                         </h2>

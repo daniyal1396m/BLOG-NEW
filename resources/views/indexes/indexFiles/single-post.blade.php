@@ -62,7 +62,7 @@
                         @if(count($comments))
                             @foreach($comments as $comment)
                                 @if($comment->parent_id==null)
-                                    @if($comment->deleted_at==null)
+                                    @if($comment->status==1)
                                         <ul class="comments-list">
                                             <li>
                                                 <div class="comment">
@@ -202,6 +202,8 @@
                                             <input class="form-control" name="email" id="email"
                                                    placeholder="ایمیل" type="email">
                                         </div>
+                                        <input type="hidden" value="{{$article->id}}"
+                                               name="article_id" id="article_id">
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -275,9 +277,9 @@
                 type: "post",
                 data: $('#modalForm').serialize(),
                 success: function (response) {
-                    $('#submit').html('Submit');
+                    $('#submit').html('تایید');
                     $("#submit").attr("disabled", false);
-                    alert('پاسخ با موفقیت ارسال شد');
+                    alert('پاسخ با موفقیت ارسال شد در صورت تایید مدیر نمایش داده میشود');
                     document.getElementById("modalForm").reset();
                 }
             });
