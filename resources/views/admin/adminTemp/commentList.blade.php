@@ -74,7 +74,7 @@
                             </table>
 
                         </div>
-                        {{--                        {!! $comment->render() !!}--}}
+                        {!! $comments->render() !!}
                     </div>
 
                 </div>

@@ -8,17 +8,19 @@
 
 <!-- CSS================================================== -->
 <!-- Bootstrap -->
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<!-- Template styles-->
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="{{url('css')}}/bootstrap.min.css">
+<link rel="stylesheet" href="{{url('css')}}/global.css">
 <!-- Responsive styles-->
-<link rel="stylesheet" href="/css/responsive.css">
+<link rel="stylesheet" href="{{url('css')}}/responsive.css">
 <!-- FontAwesome -->
-<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{url('css')}}/font-awesome.min.css">
 <!-- Animation -->
-<link rel="stylesheet" href="/css/animate.css">
+<link rel="stylesheet" href="{{url('css')}}/animate.css">
 <!-- Owl Carousel -->
-<link rel="stylesheet" href="/css/owl.carousel.min.css">
-<link rel="stylesheet" href="/css/owl.theme.default.min.css">
+<link rel="stylesheet" href="{{url('css')}}/owl.carousel.min.css">
+<link rel="stylesheet" href="{{url('css')}}/owl.theme.default.min.css">
 <!-- Colorbox -->
-<link rel="stylesheet" href="/css/colorbox.css">
+<link rel="stylesheet" href="{{url('css')}}/colorbox.css">
+<!-- Template styles-->
+<link rel="stylesheet" href="{{url('css')}}/style.css">
+

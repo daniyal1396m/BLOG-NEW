@@ -126,7 +126,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
      *
      * */
     Route::post('/res/callus/{id}', [CallusController::class, 'show'])->name('response.msg');
-    Route::post('/send/res/callus', [CallusController::class, 'store'])->name('store.response.msg');
+    Route::post('/send/res/callus', [CallusController::class, 'sendEmail'])->name('store.response.msg');
     /*
      *
      *

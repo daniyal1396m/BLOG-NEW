@@ -13,7 +13,7 @@ class CommentPrivateController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $comments = Comment::get();
+        $comments = Comment::paginate(5);
         return view('admin.adminTemp.commentList', compact('comments'));
     }
 

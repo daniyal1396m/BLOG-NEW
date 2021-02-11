@@ -5,8 +5,6 @@
 
     @include('layouts.headerLinks')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">--}}
-
 </head>
 
 <body>
@@ -57,64 +55,64 @@
 
                         </div><!-- post-content end -->
                     </div><!-- Single post end -->
+                    <!-- Post comment start -->
                     <div id="comments" class="comments-area block">
                         <h3 class="block-title"><span> دیدگاه</span></h3>
                         @if(count($comments))
                             @foreach($comments as $comment)
-                                @if($comment->parent_id==null)
-                                    @if($comment->status==1)
-                                        <ul class="comments-list">
-                                            <li>
+                                <ul class="comments-list">
+                                    <li>
+                                        @if($comment->status==1)
+                                            @if($comment->parent_id==null)
                                                 <div class="comment">
                                                     <div class="comment-body">
                                                         <div class="meta-data">
                                                             <span class="comment-author">{{$comment->name}}</span>
                                                             <span
-                                                                class="comment-date pull-right">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
+                                                                class="comment-date pull-right"{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                                         </div>
                                                         <div class="comment-content">
-                                                            <p>{{$comment->message}}</p></div>
+                                                            <p>{{$comment->message}}</p>
+                                                        </div>
                                                         <div class="text-left">
                                                             <button class="comment-reply" type="button"
                                                                     data-toggle="modal" data-target="#myModal">پاسخ
                                                             </button>
                                                         </div>
                                                     </div>
-
                                                 </div><!-- Comments end -->
-                                                @endif
-                                                @else
-                                                    @if($comment->replayComment)
-                                                        @foreach($comment->replayComment as $replay)
-                                                            <ul class="comments-reply">
-                                                                <li>
-                                                                    <div class="comment">
-                                                                        <div class="comment-body">
-                                                                            <div class="meta-data">
+                                                @if(count($comment->replayComment))
+                                                    @foreach($comment->replayComment as $replay)
+                                                        <ul class="comments-reply">
+                                                            <li>
+                                                                <div class="comment">
+                                                                    <div class="comment-body">
+                                                                        <div class="meta-data">
                                                                         <span
                                                                             class="comment-author">{{$replay->name}}</span>
-                                                                                <span
-                                                                                    class="comment-date pull-right">{{verta($replay->created_at)->format('%B %d, %Y')}}</span>
-                                                                            </div>
-                                                                            <div class="comment-content">
-                                                                                <p>{{$replay->message}}</p></div>
-                                                                            <div class="text-left">
-                                                                                <button class="comment-reply"
-                                                                                        type="button"
-                                                                                        data-toggle="modal"
-                                                                                        data-target="#myModal">پاسخ
-                                                                                </button>
-                                                                            </div>
+                                                                            <span
+                                                                                class="comment-date pull-right">{{verta($replay->created_at)->format('%B %d, %Y')}}</span>
                                                                         </div>
-                                                                    </div><!-- Comments end -->
-                                                                </li>
-                                                            </ul><!-- comments-reply end -->
-                                                        @endforeach
-                                            </li>
-                                        </ul>
+                                                                        <div class="comment-content">
+                                                                            <p>{{$replay->message}}</p></div>
+                                                                        <div class="text-left">
+                                                                            <button class="comment-reply"
+                                                                                    type="button"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#myModal">پاسخ
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div><!-- Comments end -->
+                                                            </li>
+                                                        </ul><!-- comments-reply end -->
+                                                    @endforeach
 
-                                    @endif
-                                @endif
+                                                @endif
+                                            @endif
+                                        @endif
+                                    </li><!-- Comments-list li end -->
+                                </ul><!-- Comments-list ul end -->
                             @endforeach
                         <!-- The Modal -->
                             <div class="modal fade" id="myModal">
@@ -182,44 +180,42 @@
                             </div>
                         @else
                             <h2 class="text-center">هیچ کامنتی وجود ندارد </h2>
-
                         @endif
-
-                        <div class="comments-form">
-                            <h3 class="title-normal">دیدگاه خود را بیان کنید</h3>
-                            @include('layouts.messages')
-                            <form role="form" action="{{route('store.comment')}}" method="post">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input class="form-control" name="name" id="name" placeholder="نام"
-                                                   type="text">
-                                        </div>
-                                    </div><!-- Col end -->
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <input class="form-control" name="email" id="email"
-                                                   placeholder="ایمیل" type="email">
-                                        </div>
-                                        <input type="hidden" value="{{$article->id}}"
-                                               name="article_id" id="article_id">
+                    </div><!-- Post comment end -->
+                    <div class="comments-form">
+                        <h3 class="title-normal">دیدگاه خود را بیان کنید</h3>
+                        @include('layouts.messages')
+                        <form role="form" action="{{route('store.comment')}}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="name" id="name" placeholder="نام"
+                                               type="text">
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
+                                </div><!-- Col end -->
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input class="form-control" name="email" id="email"
+                                               placeholder="ایمیل" type="email">
+                                    </div>
+                                    <input type="hidden" value="{{$article->id}}"
+                                           name="article_id" id="article_id">
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <textarea class="form-control required-field" id="message" name="message"
                                                   placeholder="دیدگاه شما"></textarea>
-                                        </div>
-                                    </div><!-- Col end -->
-                                </div><!-- Form row end -->
-                                <div class="clearfix">
-                                    <button class="comments-btn btn btn-primary" type="submit">ارسال دیدگاه
-                                    </button>
-                                </div>
-                            </form><!-- Form end -->
+                                    </div>
+                                </div><!-- Col end -->
+                            </div><!-- Form row end -->
+                            <div class="clearfix">
+                                <button class="comments-btn btn btn-primary" type="submit">ارسال دیدگاه
+                                </button>
+                            </div>
+                        </form><!-- Form end -->
 
-                        </div><!-- Comments form end -->
-                    </div><!-- Content Col end -->
+                    </div><!-- Comments form end -->
                 </div>
             </div><!-- Row end -->
         </div><!-- Container end -->
@@ -229,7 +225,7 @@
     @include('layouts.copyRight')
 </div><!-- Body inner end -->
 @include('layouts.footerLinks')
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
 

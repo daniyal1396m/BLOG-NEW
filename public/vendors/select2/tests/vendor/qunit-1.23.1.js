@@ -2340,7 +2340,7 @@ function getUrlParams() {
 			param = params[ i ].split( "=" );
 			name = decodeURIComponent( param[ 0 ] );
 
-			// Allow just a key to turn on a flag, e.g., test.html?noglobals
+			// Allow just a key to turn on a flag, e.g., test.blade.php?noglobals
 			value = param.length === 1 ||
 				decodeURIComponent( param.slice( 1 ).join( "=" ) ) ;
 			if ( urlParams[ name ] ) {

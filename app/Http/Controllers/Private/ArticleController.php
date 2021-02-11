@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
-use MongoDB\Driver\Exception\Exception;
 
 class ArticleController extends Controller
 {
@@ -65,7 +64,7 @@ class ArticleController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        dd($request['description']);
+
         $request->validate([
             'category' => 'required',
             'sub_category' => 'required',
@@ -86,69 +85,28 @@ class ArticleController extends Controller
         }
     }
 
-    public function imageUpload(Request $request)
+    public function imageUpload(): string
     {
 
-        try {
-            $year = Carbon::now()->year;
-            // File Route.
-            $fileRoute = "/public/uploads/images/{$year}";
+        $this->validate(request(), [
+            'upload' => 'required|mimes:jpeg,png,bmp',
+        ]);
 
-            $fieldname = "my_editor";
+        $year = Carbon::now()->year;
+        $imagePath = "/uploads/images/{$year}/";
 
-            // Get filename.
-            $filename = explode(".", $_FILES[$fieldname]["name"]);
+        $file = request()->file('upload');
+        $filename = $file->getClientOriginalName();
 
-            // Validate uploaded files.
-            // Do not use $_FILES["file"]["type"] as it can be easily forged.
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-
-            // Get temp file name.
-            $tmpName = $_FILES[$fieldname]["tmp_name"];
-
-            // Get mime type.
-            $mimeType = finfo_file($finfo, $tmpName);
-
-            // Get extension. You must include fileinfo PHP extension.
-            $extension = end($filename);
-
-            // Allowed extensions.
-            $allowedExts = array("gif", "jpeg", "jpg", "png", "svg", "blob");
-
-            // Allowed mime types.
-            $allowedMimeTypes = array("image/gif", "image/jpeg", "image/pjpeg", "image/x-png", "image/png", "image/svg+xml");
-
-            // Validate image.
-            if (!in_array(strtolower($mimeType), $allowedMimeTypes) || !in_array(strtolower($extension), $allowedExts)) {
-                throw new \Exception("لطفا فقط عکس ارسال کنید .");
-            }
-
-            // Generate new random name.
-            $name = sha1(microtime()) . "." . $extension;
-            $fullNamePath = dirname(__FILE__) . $fileRoute . $name;
-
-            // Check server protocol and load resources accordingly.
-            if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] != "off") {
-                $protocol = "https://";
-            } else {
-                $protocol = "http://";
-            }
-
-            // Save file in the uploads folder.
-            move_uploaded_file($tmpName, $fullNamePath);
-
-            // Generate response.
-            $response = new \StdClass;
-            $response->link = $protocol . $_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]) . $fileRoute . $name;
-
-            // Send response.
-            echo stripslashes(json_encode($response));
-
-        } catch (Exception $e) {
-            // Send error response.
-            echo $e->getMessage();
-            http_response_code(404);
+        if (file_exists(public_path($imagePath) . $filename)) {
+            $filename = Carbon::now()->timestamp . $filename;
         }
+
+        $file->move(public_path($imagePath), $filename);
+        $url = url($imagePath . $filename);
+
+        return "<script>window.parent.CKEDITOR.tools.callFunction(1 , '{$url}' , '')</script>";
+
     }
 
     public function edit($id): Factory|View|Application

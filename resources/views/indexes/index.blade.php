@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-{{--<html lang="fa">--}}
 <html lang="{{ app()->getLocale() }}">
 <head>
 
@@ -17,9 +16,7 @@
                 @include('layouts.navBar')
             </div><!--/ Row end -->
         </div><!--/ Container end -->
-
     </div><!-- Menu wrapper end -->
-
     <section class="block-wrapper">
         <div class="container">
             <div class="row">
@@ -36,7 +33,6 @@
                                             </a>
                                             <a class="post-cat"
                                                href="#">{{$article->subcategory->name}} </a>
-                                            {{--                                            <a class="post-cat" href="#">{{$article->sub_category}}</a>--}}
                                         </div>
                                     </div><!-- Img thumb col end -->
 
@@ -77,8 +73,6 @@
     @include('layouts.copyRight')
 </div><!-- Body inner end -->
 @include('layouts.footerLinks')
-
 @yield('script')
-
 </body>
 </html>

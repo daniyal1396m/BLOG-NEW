@@ -1,12 +1,5 @@
 <nav class="site-navigation navigation">
     <div class="site-nav-inner pull-left">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">تغییر وضعیت ناوبری</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
                 <li>
@@ -27,7 +20,8 @@
                                             @if($childOne->subcategories)
                                                 <ul class="dropdown-menu">
                                                     @foreach($childOne->subcategories as $childe)
-                                                        <li><a href="/subcategory/{{$childe->id}}">{{$childe->name}}</a></li>
+                                                        <li><a href="/subcategory/{{$childe->id}}">{{$childe->name}}</a>
+                                                        </li>
                                                     @endforeach
                                                 </ul>
                                             @endif
@@ -42,12 +36,3 @@
         </div>
     </div>
 </nav><!--/ Navigation end -->
-
-<div class="nav-search">
-    <span id="search"><i class="fa fa-search"></i></span>
-</div><!-- Search end -->
-
-<div class="search-block" style="display: none;">
-    <input type="text" class="form-control" placeholder="عبارت را وارد نموده و اینتر بزنید">
-    <span class="search-close">×</span>
-</div><!-- Site search end -->

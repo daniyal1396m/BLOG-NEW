@@ -1,4 +1,9 @@
 @import url("font/iran-yekan.css");
+@import url("font/iran-sans.css");
+@import url("font/lalezar.css");
+@import url("font/vazir.css");
+@import url("font/shabnam.css");
+@import url("font/dubai.css");
 
 /* Table of Content
 ==================================================
@@ -55,8 +60,10 @@
 body {
 	background: #fff;
 	color: #333;
-	font-family: 'primary-font', 'segoe ui', tahoma;
-	direction: rtl;
+	/*font-family: 'primary-font', 'segoe ui', tahoma;*/
+    /*font-family: iranyekan !important;/*/
+    font-family: primary-font !important;
+    direction: rtl;
 }
 
 
@@ -1796,7 +1803,7 @@ ul.navbar-nav > li.mega-dropdown {
 	margin-right: -15px;
 }
 
-/* Featured Post area 
+/* Featured Post area
 ================================================== */
 
 .featured-post-area {
@@ -2639,7 +2646,7 @@ ul.navbar-nav > li.mega-dropdown {
 }
 
 
-/* Sub Pages 
+/* Sub Pages
 ================================================== */
 
 /*-- Page title --*/

@@ -21,7 +21,7 @@
             <h4>فرم ارسال پاسخ پیغام </h4>
             <form class="form-horizontal form-label-left" method="post" action="{{route('store.response.msg')}}">
                 @csrf
-
+                <input type="hidden" value="{{$singleMsg->email}}" name="email">
                 <div class="form-group">
                     <label class="control-label col-md-3" for="subCategory">ورودی پیغام</label>
                     <div class="col-md-7">

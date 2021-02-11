@@ -15,6 +15,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="composer.json" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -140,21 +141,22 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/css" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\public\css" />
       <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers\Private" />
       <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers\Public" />
       <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers" />
       <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\public" />
-      <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\resources\views" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\STARTLARAVEL\Blog\app\Http\Controllers\Public" />
@@ -205,7 +207,10 @@
       <workItem from="1612674017542" duration="17361000" />
       <workItem from="1612748260215" duration="12084000" />
       <workItem from="1612777397658" duration="8695000" />
-      <workItem from="1612833501635" duration="23598000" />
+      <workItem from="1612833501635" duration="28466000" />
+      <workItem from="1612950865584" duration="3998000" />
+      <workItem from="1612990806400" duration="7127000" />
+      <workItem from="1613032413360" duration="611000" />
     </task>
     <servers />
   </component>

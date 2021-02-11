@@ -2,12 +2,14 @@
 <html lang="fa" dir="rtl">
 {{--<html lang="{{ app()->getLocale() }}">--}}
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="fontiran.com:license" content="Y68A9">
     <link rel="icon" href="/build/images/favicon.ico" type="image/ico"/>
+
     <title>پنل ادمین</title>
     @include('layouts.headerLinksAdmin')
 </head>

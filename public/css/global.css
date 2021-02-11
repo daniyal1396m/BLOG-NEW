@@ -1,6 +1,6 @@
 @import url(fontfaces.css); /* لینک فایلی که وظیفه بارگذاری فونت ها را برعهده دارد */
 body, html {
-    font-family: iranyekan !important;
+    /*font-family: iranyekan !important;*/
     direction: rtl;
     background-color: #cdcdcd;
     margin: 0;
@@ -8,7 +8,7 @@ body, html {
 }
 
 h1, h2, h3, h4, h5, h6, input, textarea, p {
-    font-family: iranyekan !important;
+    /*font-family: iranyekan !important;*/
 }
 
 h1 {
