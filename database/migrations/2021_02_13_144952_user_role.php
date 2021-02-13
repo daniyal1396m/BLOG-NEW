@@ -13,7 +13,11 @@ class UserRole extends Migration
      */
     public function up()
     {
-
+        Schema::create('user_role', function (Blueprint $table) {
+            $table->integer('user_id', null);
+            $table->integer('role_id', null);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UserRole extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_role');
     }
 }
