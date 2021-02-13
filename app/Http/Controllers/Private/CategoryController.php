@@ -75,7 +75,6 @@ class CategoryController extends Controller
             $category = new Category;
             $category->name = $request->category;
             $category->level = 1;
-            $category->status = 1;
             $category->save();
         } else {
 
@@ -84,7 +83,6 @@ class CategoryController extends Controller
             $category->name = $request->category;
             $category->parent_id = $request->subCategory;
             $category->level = $parent + 1;
-            $category->status = 1;
             $category->save();
 
         }

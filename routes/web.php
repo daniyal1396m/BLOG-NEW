@@ -133,7 +133,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
      * comments
      *
      * */
-    Route::get('/update/comment/{id}', [CommentPrivateController::class, 'destroy'])->name('destroy.comment');
+    Route::post('/update/comment/{id}', [CommentPrivateController::class, 'destroy'])->name('destroy.comment');
     Route::get('/list/comment', [CommentPrivateController::class, 'index'])->name('list.comment');
 });
 

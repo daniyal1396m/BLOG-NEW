@@ -17,9 +17,9 @@ class CommentController extends Controller
             'email' => 'required|min:10|max:70|email',
             'message' => 'required|min:10|max:150',
         ]);
-        $comment = Comment::create($request->all());
+        $comment = Comment::create(array_merge($request->all()));
         if ($comment) {
-            return redirect()->back()->with('status', 'فرم ارسال شد در صورت تایید مدیریت قرار داده میشود');
+            return redirect()->back()->with('success', 'فرم ارسال شد در صورت تایید مدیریت قرار داده میشود');
         } else {
             return redirect()->back()->with('status', 'فرم ارسال نشد');
         }
@@ -37,11 +37,11 @@ class CommentController extends Controller
             'email' => $request['emailreplay'],
             'message' => $request['messagereplay'],
             'parent_id' => $request['parent_id'],
-            'article_id' => $request['article_id']
+            'article_id' => $request['article_id'],
 
         ]);
         if ($comment) {
-            return redirect()->back()->with('status', 'فرم ارسال شد در صورت تایید مدیریت قرار داده میشود');
+            return redirect()->back()->with('success', 'فرم ارسال شد در صورت تایید مدیریت قرار داده میشود');
         } else {
             return redirect()->back()->with('status', 'فرم ارسال نشد');
         }

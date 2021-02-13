@@ -39,8 +39,13 @@
                                 </thead>
                                 <tbody>
                                 @foreach($comments as $comment)
+
                                     <tr>
+                                        {{--                                            {{$count = 0}}--}}
+                                        {{--                                            @while($comment > 1)--}}
                                         <th scope="row">{{$comment->id}}</th>
+                                        {{--                                                {{$count++}}--}}
+                                        {{--                                            @endwhile--}}
                                         <td>{{$comment->name}}</td>
                                         <td>{{$comment->email}}</td>
                                         <td>{{$comment->message}}</td>
@@ -52,23 +57,38 @@
                                         @endif
                                         @if($comment->status==0)
                                             <td>
-                                                <a href="{{route('destroy.comment',[$comment->id])}}">
+                                                <form action="{{route('destroy.comment',[$comment->id])}}"
+                                                      method="post">
+                                                    {{--                                                <a href="{{route('destroy.comment',[$comment->id])}}"--}}
+                                                    {{--                                                   class="btn btn-danger">--}}
 
-                                                    غیر فعال
-
-                                                </a>
+                                                    {{--                                                    غیر فعال--}}
+                                                    @csrf
+                                                    <button class="btn btn-danger btn-sm "
+                                                            data-name="{{ $comment->name }}" type="submit">غیر فعال است
+                                                    </button>
+                                                    {{--                                                </a>--}}
+                                                </form>
                                             </td>
 
                                         @else
                                             <td>
-                                                <a href="{{route('destroy.comment',[$comment->id])}}">
+                                                <form action="{{route('destroy.comment',[$comment->id])}}"
+                                                      method="post">
+                                                    {{--                                                <a href="{{route('destroy.comment',[$comment->id])}}"--}}
+                                                    {{--                                                   class="btn btn-danger">--}}
 
-                                                    فعال
-
-                                                </a>
+                                                    {{--                                                    غیر فعال--}}
+                                                    @csrf
+                                                    <button class="btn btn-success btn-sm delete-confirm"
+                                                            data-name="{{ $comment->name }}" type="submit">فعال است
+                                                    </button>
+                                                    {{--                                                </a>--}}
+                                                </form>
                                             </td>
                                         @endif
                                     </tr>
+
                                 @endforeach
                                 </tbody>
                             </table>
@@ -86,4 +106,30 @@
         </div>
     </div>
     </div>
+@endsection
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script>
+        $('.delete-confirm').click(function (event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title: `ایا میخواهید کامنت  ${name} حذف کنید?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+
+                    }else {
+                        swal('کنسل شد ',"درخواست کنسل دادید","error");
+                    }
+                });
+
+        });
+
+    </script>
 @endsection

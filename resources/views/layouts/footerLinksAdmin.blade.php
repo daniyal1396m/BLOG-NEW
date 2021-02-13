@@ -1,5 +1,6 @@
 <!-- jQuery -->
 <script src="{{url('vendors')}}/jquery/dist/jquery.min.js"></script>
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>--}}
 <!-- Bootstrap -->
 <script src="{{url('vendors')}}/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- FastClick -->
@@ -23,13 +24,4 @@
 <!-- Custom Theme Scripts -->
 <script src="{{url('build')}}/js/custom.min.js"></script>
 
-<script src="{{url('ckeditor')}}/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('description' ,{
-        filebrowserUploadUrl : '{{route('imageUpload')}}',
-        filebrowserImageUploadUrl :  '{{route('imageUpload')}}',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        }
-    });
-</script>
+

@@ -70,7 +70,7 @@ class ArticleController extends Controller
             'sub_category' => 'required',
             'title' => 'required|min:5|max:30',
             'body' => 'required|min:10|max:50',
-            'image' => 'required|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|mimes:jpg,png,jpeg,gif,svg',
             'description' => 'required|min:50',
         ]);
         $year = Carbon::now()->year;

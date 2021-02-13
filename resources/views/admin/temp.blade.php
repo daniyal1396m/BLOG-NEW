@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl">
 {{--<html lang="{{ app()->getLocale() }}">--}}
 <head>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,9 +64,10 @@
 
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-home"></i>کامنت ها <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="{{route('list.comment')}}">لیست </a></li>
+                            <li><a><i class="fa fa-home"></i>کامنت ها <h4>@if($temp >0){{$temp}}@else    خوانده شده اند @endif</h4><span
+                                        class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{route('list.comment')}}">لیست </a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-home"></i>مدیریت<span class="fa fa-chevron-down"></span></a>

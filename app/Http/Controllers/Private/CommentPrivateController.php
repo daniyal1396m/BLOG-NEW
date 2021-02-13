@@ -13,7 +13,8 @@ class CommentPrivateController extends Controller
 {
     public function index(): Factory|View|Application
     {
-        $comments = Comment::paginate(5);
+        $comments = Comment::latest()->paginate(5);
+
         return view('admin.adminTemp.commentList', compact('comments'));
     }
 
@@ -21,7 +22,7 @@ class CommentPrivateController extends Controller
     {
         $status = Comment::where('id', $id)->first();
         if ($status['status'] == 0) {
-            $status->update(['status' => 1]);
+            $status->update(['status' => 1, 'seen' => 1]);
         } else {
             $status->update(['status' => 0]);
         }

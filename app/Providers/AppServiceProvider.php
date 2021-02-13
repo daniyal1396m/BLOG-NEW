@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,10 +21,14 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      *
-     * @return void
+     * @return
      */
     public function boot()
     {
-        //
+        View::composer('admin.temp', function ($view) {
+            $countComment = Comment::where('seen', 0)->count();
+            $view->with(['temp' => $countComment]);
+        });
+
     }
 }

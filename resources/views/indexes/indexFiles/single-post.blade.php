@@ -19,6 +19,7 @@
 
     </div><!-- Menu wrapper end -->
     <section class="block-wrapper no-sidebar">
+        @include('layouts.messages')
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -62,14 +63,13 @@
                             @foreach($comments as $comment)
                                 <ul class="comments-list">
                                     <li>
-                                        @if($comment->status==1)
+                                        @if($comment->deleted_at==null)
                                             @if($comment->parent_id==null)
                                                 <div class="comment">
                                                     <div class="comment-body">
                                                         <div class="meta-data">
                                                             <span class="comment-author">{{$comment->name}}</span>
-                                                            <input type="hidden" value="{{$comment->id}}"
-                                                                   id="comment_id">
+                                                            {{--                                                            <input type="hidden" value="{{$comment->id}}" id="comment_id">--}}
                                                             <span
                                                                 class="comment-date pull-right">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                                         </div>
@@ -77,38 +77,46 @@
                                                             <p>{{$comment->message}}</p>
                                                         </div>
                                                         <div class="text-left">
-                                                            <button class="comment-reply" type="button"
-                                                                    data-toggle="modal" data-target="#myModal"
-                                                                    onclick="GetId()">پاسخ
+                                                            {{--                                                            <button class="comment-reply" type="button"--}}
+                                                            {{--                                                                    data-toggle="modal" data-target="#myModal"--}}
+                                                            {{--                                                                    onclick="GetId()">پاسخ--}}
+                                                            {{--                                                            </button>--}}
+                                                            <button class="comment-reply"
+                                                                    type="button"
+                                                                    data-toggle="modal"
+                                                                    data-target="#myModal_{{$comment->id}}">پاسخ
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </div><!-- Comments end -->
                                                 @if(count($comment->replayComment))
                                                     @foreach($comment->replayComment as $replay)
-                                                        <ul class="comments-reply">
-                                                            <li>
-                                                                <div class="comment">
-                                                                    <div class="comment-body">
-                                                                        <div class="meta-data">
+                                                        @if($replay->deleted_at==null)
+                                                            <ul class="comments-reply">
+                                                                <li>
+                                                                    <div class="comment">
+                                                                        <div class="comment-body">
+                                                                            <div class="meta-data">
                                                                             <span
                                                                                 class="comment-author">{{$replay->name}}</span>
-                                                                            <span
-                                                                                class="comment-date pull-right">{{verta($replay->created_at)->format('%B %d, %Y')}}</span>
+                                                                                <span
+                                                                                    class="comment-date pull-right">{{verta($replay->created_at)->format('%B %d, %Y')}}</span>
+                                                                            </div>
+                                                                            <div class="comment-content">
+                                                                                <p>{{$replay->message}}</p></div>
+                                                                            <div class="text-left">
+                                                                                <button class="comment-reply"
+                                                                                        type="button"
+                                                                                        data-toggle="modal"
+                                                                                        data-target="#myModal_{{$replay->id}}">
+                                                                                    پاسخ
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
-                                                                        <div class="comment-content">
-                                                                            <p>{{$replay->message}}</p></div>
-                                                                        <div class="text-left">
-                                                                            <button class="comment-reply"
-                                                                                    type="button"
-                                                                                    data-toggle="modal"
-                                                                                    data-target="#myModal">پاسخ
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div><!-- Comments end -->
-                                                            </li>
-                                                        </ul><!-- comments-reply end -->
+                                                                    </div><!-- Comments end -->
+                                                                </li>
+                                                            </ul><!-- comments-reply end -->
+                                                        @endif
                                                     @endforeach
 
                                                 @endif
@@ -116,78 +124,78 @@
                                         @endif
                                     </li><!-- Comments-list li end -->
                                 </ul><!-- Comments-list ul end -->
-                            @endforeach
-                        <!-- The Modal -->
-                            <div class="modal fade" id="myModal">
-                                <div class="modal-dialog modal-xl">
-                                    <div class="modal-content">
+                                <div class="modal fade" id="myModal_{{$comment->id}}">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
 
-                                        <!-- Modal Header -->
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">پاسخ به این دیدگاه </h4>
-                                            <button type="button" class="close" data-dismiss="modal">&times;
-                                            </button>
-                                        </div>
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">پاسخ به این دیدگاه </h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;
+                                                </button>
+                                            </div>
 
-                                        <!-- Modal body -->
-                                        <div class="modal-body">
-                                            <form method="post" id="modalForm" action="javascript:void(0)"
-                                                  name="modalForm">
-                                                @csrf
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input class="form-control" name="namereplay"
-                                                                   id="namereplay"
-                                                                   placeholder="نام"
-                                                                   type="text">
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <form method="post" id="modalForm" action="javascript:void(0)"
+                                                      name="modalForm">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input class="form-control" name="namereplay"
+                                                                       id="namereplay"
+                                                                       placeholder="نام"
+                                                                       type="text">
+                                                            </div>
+                                                            <input type="hidden" value="{{$comment->id}}"
+                                                                   name="parent_id" id="parent_id">
+                                                            <input type="hidden" value="{{$article->id}}"
+                                                                   name="article_id" id="article_id">
+                                                        </div><!-- Col end -->
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <input class="form-control" name="emailreplay"
+                                                                       id="emailreplay"
+                                                                       placeholder="ایمیل"
+                                                                       type="email">
+                                                            </div>
                                                         </div>
-                                                        <input type="hidden" value="{{$comment->id}}"
-                                                               name="parent_id" id="parent_id">
-                                                        <input type="hidden" value="{{$article->id}}"
-                                                               name="article_id" id="article_id">
-                                                    </div><!-- Col end -->
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input class="form-control" name="emailreplay"
-                                                                   id="emailreplay"
-                                                                   placeholder="ایمیل"
-                                                                   type="email">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
                                                                 <textarea class="form-control required-field"
                                                                           id="messagereplay" name="messagereplay"
                                                                           placeholder="دیدگاه شما"></textarea>
-                                                        </div>
-                                                    </div><!-- Col end -->
-                                                </div><!-- Form row end -->
-                                                <div class="clearfix">
-                                                    <button class="comments-btn btn btn-primary" type="submit"
-                                                            id="submit">پاسخ دیدگاه
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
+                                                            </div>
+                                                        </div><!-- Col end -->
+                                                    </div><!-- Form row end -->
+                                                    <div class="clearfix">
+                                                        <button class="comments-btn btn btn-primary" type="submit"
+                                                                id="submit">پاسخ دیدگاه
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                            </div>
 
-                                        <!-- Modal footer -->
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                                منصرف شدن
-                                            </button>
-                                        </div>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    منصرف شدن
+                                                </button>
+                                            </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
+                        <!-- The Modal -->
                         @else
                             <h2 class="text-center">هیچ کامنتی وجود ندارد </h2>
                         @endif
                     </div><!-- Post comment end -->
                     <div class="comments-form">
                         <h3 class="title-normal">دیدگاه خود را بیان کنید</h3>
-                        @include('layouts.messages')
+
                         <form role="form" action="{{route('store.comment')}}" method="post">
                             @csrf
                             <div class="row">
@@ -204,6 +212,8 @@
                                     </div>
                                     <input type="hidden" value="{{$article->id}}"
                                            name="article_id" id="article_id">
+                                    <input type="hidden" value="{{$comment->id}}"
+                                           name="parent_id" id="parent_id">
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -230,16 +240,16 @@
 @include('layouts.footerLinks')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-<script type="text/javascript">
-    function GetId() {
-        var commentReplay = document.getElementById('comment_id');
-        var input = document.createElement('input');
-        input.setAttribute("type", "hidden");
-        input.setAttribute("name", "parent_id");
-        input.setAttribute("value", commentReplay);
-        document.getElementById("modalForm").appendChild(input);
-    }
-</script>
+{{--<script>--}}
+{{--    function GetId() {--}}
+{{--        var commentReplay = document.getElementById('comment_id');--}}
+{{--        var input = document.createElement('input');--}}
+{{--        input.setAttribute("type", "hidden");--}}
+{{--        input.setAttribute("name", "parent_id");--}}
+{{--        input.setAttribute("value", commentReplay);--}}
+{{--        document.getElementById("modalForm").appendChild(input);--}}
+{{--    }--}}
+{{--</script>--}}
 <script>
 
     $("#modalForm").validate({

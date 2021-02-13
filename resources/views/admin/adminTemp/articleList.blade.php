@@ -58,7 +58,8 @@
                                                           method="post">
                                                         @csrf
                                                         <button type="submit"
-                                                                class="btn btn-success  delete-cat updateCat">
+                                                                class="btn btn-success  delete-cat updateCat delete-confirm"
+                                                                data-name="{{$art->title}}">
                                                             فعال
                                                         </button>
                                                     </form>
@@ -69,7 +70,7 @@
                                                           method="post">
                                                         @csrf
                                                         <button type="submit"
-                                                                class="btn btn-danger updateCat">غیر
+                                                                class="btn btn-danger updateCat ">غیر
                                                             فعال
                                                         </button>
                                                     </form>
@@ -99,4 +100,28 @@
     </div>
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script>
+        $('.delete-confirm').click(function (event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title: `ایا میخواهید مقاله  ${name} حذف کنید?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+
+                    } else {
+                        swal('کنسل شد ', "درخواست کنسل دادید", "error");
+                    }
+                });
+
+        });
+
+    </script>
 @endsection

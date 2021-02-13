@@ -47,16 +47,16 @@
                         </div>
                         {!! $newsletters->render() !!}
                     </div>
-{{--                    <form action="{{route('store.news')}}" method="post">--}}
+                    {{--                    <form action="{{route('store.news')}}" method="post">--}}
                     @csrf
                     <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 col-form-label">متن</label>
-                            <div class="col-sm-10  col-md-12">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">متن</label>
+                        <div class="col-sm-10  col-md-12">
                                 <textarea type="text" id="description" name="description"
                                           class="form-control col-md-7 col-xs-12" rows="7"
                                           placeholder="توضیحات بیشتتر"></textarea>
-                            </div>
                         </div>
+                    </div>
                     <button type="button" class="btn btn-outline-dark">ارسال</button>
                     </form>
                 </div>
@@ -69,4 +69,14 @@
     </div>
 @endsection
 @section('script')
+    <script src="{{url('ckeditor')}}/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('description', {
+            filebrowserUploadUrl: '{{route('imageUpload')}}',
+            filebrowserImageUploadUrl: '{{route('imageUpload')}}',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            }
+        });
+    </script>
 @endsection

@@ -21,6 +21,7 @@ class CreateCommentsTable extends Migration
             $table->string('message',150);
             $table->integer('parent_id',null)->nullable();
             $table->boolean('status');
+            $table->boolean('seen');
             $table->timestamps();
         });
     }
