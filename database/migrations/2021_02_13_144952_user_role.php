@@ -13,7 +13,7 @@ class UserRole extends Migration
      */
     public function up()
     {
-        //
+
     }
 
     /**
