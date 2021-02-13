@@ -1,5 +1,12 @@
 <nav class="site-navigation navigation">
     <div class="site-nav-inner pull-left">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">تغییر وضعیت ناوبری</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
         <div class="collapse navbar-collapse navbar-responsive-collapse">
             <ul class="nav navbar-nav">
                 <li>

@@ -68,15 +68,18 @@
                                                     <div class="comment-body">
                                                         <div class="meta-data">
                                                             <span class="comment-author">{{$comment->name}}</span>
+                                                            <input type="hidden" value="{{$comment->id}}"
+                                                                   id="comment_id">
                                                             <span
-                                                                class="comment-date pull-right"{{verta($article->created_at)->format('%B %d, %Y')}}</span>
+                                                                class="comment-date pull-right">{{verta($article->created_at)->format('%B %d, %Y')}}</span>
                                                         </div>
                                                         <div class="comment-content">
                                                             <p>{{$comment->message}}</p>
                                                         </div>
                                                         <div class="text-left">
                                                             <button class="comment-reply" type="button"
-                                                                    data-toggle="modal" data-target="#myModal">پاسخ
+                                                                    data-toggle="modal" data-target="#myModal"
+                                                                    onclick="GetId()">پاسخ
                                                             </button>
                                                         </div>
                                                     </div>
@@ -88,8 +91,8 @@
                                                                 <div class="comment">
                                                                     <div class="comment-body">
                                                                         <div class="meta-data">
-                                                                        <span
-                                                                            class="comment-author">{{$replay->name}}</span>
+                                                                            <span
+                                                                                class="comment-author">{{$replay->name}}</span>
                                                                             <span
                                                                                 class="comment-date pull-right">{{verta($replay->created_at)->format('%B %d, %Y')}}</span>
                                                                         </div>
@@ -227,6 +230,16 @@
 @include('layouts.footerLinks')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    function GetId() {
+        var commentReplay = document.getElementById('comment_id');
+        var input = document.createElement('input');
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "parent_id");
+        input.setAttribute("value", commentReplay);
+        document.getElementById("modalForm").appendChild(input);
+    }
+</script>
 <script>
 
     $("#modalForm").validate({

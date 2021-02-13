@@ -88,16 +88,6 @@
     </div>
 @endsection
 @section('script')
-<script src="{{url('ckeditor')}}/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace('description' ,{
-        filebrowserUploadUrl : '{{route('imageUpload')}}',
-        filebrowserImageUploadUrl :  '{{route('imageUpload')}}',
-        headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        }
-    });
-</script>
     <script>
         $('#category').on('change', function (e) {
             // console.log(e);
