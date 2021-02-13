@@ -13,8 +13,13 @@ class PermissionRole extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('permission_role', function (Blueprint $table) {
+            $table->integer('role_id', null);
+            $table->integer('permission_id', null);
+            $table->timestamps();
+        });
     }
+
 
     /**
      * Reverse the migrations.
@@ -23,6 +28,6 @@ class PermissionRole extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('permission_role');
     }
 }
